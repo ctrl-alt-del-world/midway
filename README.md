@@ -20,7 +20,7 @@ Clone this repository to bootstrap a fresh Gatsby site, powered by Sanity CMS an
 3. Develop your front end, etc.
 4. Create a repo specifically for your Gatsby build, host with Netlify or anywhere you can have a Lambda function
 
-## Shopify 
+### Shopify 
 
 1. In your netlify environment, go to your project and create a new Function
 2. Set the functions directory to be the `functions/` folder in your `web/` project
@@ -40,7 +40,10 @@ Clone this repository to bootstrap a fresh Gatsby site, powered by Sanity CMS an
   * 🏢 Site settings
   * 📃 Pages
   * 📰 Posts
-  * 🛍 Products
+  * 🛍 Products & Variants
+    * Products have default settings for `title`, `slug`, `defaultPrice`, `id`, `productId`.
+    * Variants have default settings for `id`, `productId`, `variantId`, `title`, `variantTitle`, `sku`, and `price`.
+    * The `web/functions/shopify` file will generate new Sanity documents with these default fields.
 
 
 ## Enable Gatsby watch mode for drafts
