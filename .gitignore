@@ -1,0 +1,13 @@
+# Mac files
+.DS_Store
+
+# Dependency directories
+/node_modules
+/studio/node_modules
+/web/node_modules
+
+# Ignore hidden files as default
+*.env
+.prettierrc
+
+web/public

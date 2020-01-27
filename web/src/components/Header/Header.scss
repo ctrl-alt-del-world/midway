@@ -1,0 +1,17 @@
+header {
+	padding: 10px;
+}
+.logotype {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	text-transform: uppercase;
+	font-weight: normal;
+	font-size: 18px;
+
+	.line {
+		width: 93%;
+		background-color:  #111111;
+		height: 2px;
+	}
+}
