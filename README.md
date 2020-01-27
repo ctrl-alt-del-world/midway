@@ -18,12 +18,13 @@ Clone this repository to bootstrap a fresh Gatsby site, powered by Sanity CMS an
 2. Enter the Sanity API keys to `.env` file
 3. Modify `gatsby-config.js` and add your site title, etc.
 3. Develop your front end, etc.
+4. Create a repo specifically for your Gatsby build, host with Netlify or anywhere you can have a Lambda function
 
 ## Shopify 
 
 1. In your netlify environment, go to your project and create a new Function
 2. Set the functions directory to be the `functions/` folder in your `web/` project
-3. In Shopify, go to `Settings -> Notifications -> Webhooks` and create webhooks for Product Creation & Product Updates. Set the webhook's Callback URL to `[https://YOUR_URL.DOMAIN/.netlify/functions/shopify]`
+3. In Shopify, go to `Settings -> Notifications -> Webhooks` and create webhooks for Product Creation & Product Updates. Set the webhook's Callback URL to `[https://YOUR_URL.DOMAIN/.netlify/functions/shopify]` (if using Netlify, otherwise point to your provider's Lambda location)
 
 ## Features
 
