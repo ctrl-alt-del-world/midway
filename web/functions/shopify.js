@@ -166,6 +166,20 @@ exports.handler = async (event, context) => {
         console.error(`Sanity error:`, error)
       })
 
+    // *~* OR *~*
+
+    // DELETE FROM SANITY
+    // tread carefully here: you might not want to do this if you have products associated anywhere else such as "related products" or any other schemas. 
+    // this will likely cause in your schemas breaking
+    //   return client
+    //     .delete(data.id.toString())
+    //     .then(res => {
+    //       console.log(`Successfully deleted product ${data.id}`)
+    //     })
+    //     .catch(err => {
+    //       console.error('Delete failed: ', err.message)
+    //     })
+
 
   }
 };
