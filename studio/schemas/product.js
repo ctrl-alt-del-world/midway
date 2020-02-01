@@ -17,6 +17,12 @@ export default {
       hidden: true
     },
     {
+      name: 'deleted',
+      title: 'Deleted',
+      type: 'boolean',
+      description: 'This can be a flag set if the item is deleted from Shopify'
+    },
+    {
       name: 'productId',
       title: 'Product ID',
       type: 'string',
@@ -57,11 +63,11 @@ export default {
       type: 'blockContent'
     },
     {
-			name: 'variants',
-			title : 'Variants',
-			type: 'array',
-			of: [{type: 'reference', to: {type: 'productVariant'}}]
-		},
+      name: 'variants',
+      title: 'Variants',
+      type: 'array',
+      of: [{ type: 'reference', to: { type: 'productVariant' } }]
+    },
   ],
 
   preview: {
