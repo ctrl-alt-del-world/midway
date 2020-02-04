@@ -6,6 +6,10 @@ Clone this repository to bootstrap a fresh Gatsby site, powered by Sanity CMS an
 
 ## Basic Instructions
 
+### Initial Setup
+1. Remove remote repo by entering `rm -rf .git`
+2. Either create a new repo in this folder and version control both Sanity & Gatsby, or set up new repos for both folders
+
 ### Studio/
 1. In the `studio` folder run `sanity init` and create a new project.
 2. Update `studio/sanity.json` and update the Project ID.
