@@ -1,8 +1,7 @@
 import S from '@sanity/desk-tool/structure-builder'
-import { MdSettings, MdDvr } from 'react-icons/md'
-import { GiShoppingCart } from 'react-icons/gi'
+import React from 'react'
 
-const hiddenTypes = [ 'product', 'productVariant', 'page', 'post', 'siteSettings']
+const hiddenTypes = ['product', 'productVariant', 'page', 'post', 'siteSettings']
 
 export default () =>
   S.list()
@@ -16,7 +15,7 @@ export default () =>
             .schemaType('siteSettings')
             .documentId('siteSettings')
         )
-        .icon(MdSettings),
+        .icon(() => <span style={{ fontSize: '1.6rem' }} role='img'>🌐</span>),
       S.listItem()
         .title('Posts')
         .child(
@@ -25,11 +24,11 @@ export default () =>
             .schemaType('post')
             .child(S.documentTypeList('post').title('Posts'))
         )
-        .icon(MdDvr),
+        .icon(() => <span style={{ fontSize: '1.6rem' }} role='img'>📄</span>),
       S.listItem()
         .title('Products')
         .schemaType('product')
         .child(S.documentTypeList('product').title('Products'))
-        .icon(GiShoppingCart),
+        .icon(() => <span style={{ fontSize: '1.6rem' }} role='img'>🛍 </span>),
       ...S.documentTypeListItems().filter(listItem => !hiddenTypes.includes(listItem.getId()))
     ])
