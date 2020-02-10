@@ -18,12 +18,8 @@ export default () =>
         .icon(() => <span style={{ fontSize: '1.6rem' }} role='img'>🌐</span>),
       S.listItem()
         .title('Posts')
-        .child(
-          S.editor()
-            .id('post')
-            .schemaType('post')
-            .child(S.documentTypeList('post').title('Posts'))
-        )
+        .schemaType('post')
+        .child(S.documentTypeList('post').title('Posts'))
         .icon(() => <span style={{ fontSize: '1.6rem' }} role='img'>📄</span>),
       S.listItem()
         .title('Products')
