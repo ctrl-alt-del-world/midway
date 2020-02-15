@@ -15,3 +15,7 @@
 *.woff2
 *.eot
 *.ttf
+
+# gatsby files
+.cache/
+public

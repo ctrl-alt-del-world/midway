@@ -8,9 +8,12 @@
     "@sanity/client": "^0.147.3",
     "gatsby": "^2.18.12",
     "gatsby-image": "^2.2.34",
+    "gatsby-plugin-create-client-paths": "^2.1.22",
     "gatsby-plugin-manifest": "^2.2.31",
     "gatsby-plugin-offline": "^3.0.27",
+    "gatsby-plugin-postcss": "^2.1.20",
     "gatsby-plugin-react-helmet": "^3.1.16",
+    "gatsby-plugin-root-import": "^2.0.5",
     "gatsby-plugin-sass": "^2.1.27",
     "gatsby-plugin-sharp": "^2.3.5",
     "gatsby-source-filesystem": "^2.1.40",
@@ -25,6 +28,13 @@
     "reset-css": "^5.0.1"
   },
   "devDependencies": {
+    "postcss-calc": "^6.0.2",
+    "postcss-cssnext": "^3.1.0",
+    "postcss-discard-comments": "^4.0.1",
+    "postcss-import": "^12.0.1",
+    "postcss-nested": "^4.1.0",
+    "postcss-preset-env": "^6.5.0",
+    "postcss-reporter": "^6.0.0",
     "prettier": "^1.19.1"
   },
   "keywords": [

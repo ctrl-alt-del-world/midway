@@ -9,6 +9,7 @@ const IndexPage = () => {
 	return (
 		<Layout>
 			<SEO title="Home" />
+			tight
 		</Layout>
 	  )
 }

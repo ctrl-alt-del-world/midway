@@ -1,15 +1,15 @@
 const sanityClient = require('@sanity/client');
 
 const {
-  REACT_APP_SANITY_API_TOKEN,
-  REACT_APP_SANITY_PROJECT_ID,
-  REACT_APP_SANITY_DATASET,
+  SANITY_API_TOKEN,
+  SANITY_PROJECT_ID,
+  SANITY_DATASET,
 } = process.env;
 
 const client = sanityClient({
-  projectId: REACT_APP_SANITY_PROJECT_ID,
-  dataset: REACT_APP_SANITY_DATASET,
-  token: REACT_APP_SANITY_API_TOKEN,
+  projectId: SANITY_PROJECT_ID,
+  dataset: SANITY_DATASET,
+  token: SANITY_API_TOKEN,
   useCdn: true
 });
 

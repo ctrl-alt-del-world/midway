@@ -1,4 +1,6 @@
-require('dotenv').config()
+// require('dotenv').config()
+const path = require('path')
+
 module.exports = {
   siteMetadata: {
     title: `change me`,
@@ -31,12 +33,38 @@ module.exports = {
 	{
 		resolve: 'gatsby-source-sanity',
 		options: {
-			projectId: process.env.REACT_APP_SANITY_PROJECT_ID,
-      dataset: process.env.REACT_APP_SANITY_DATASET,
-      token: process.env.REACT_APP_SANITY_API_TOKEN
+			projectId: process.env.SANITY_PROJECT_ID,
+      dataset: process.env.SANITY_DATASET,
+      token: process.env.SANITY_API_TOKEN
 		}
-	},
-	`gatsby-plugin-sass`
+  },
+
+  {
+    resolve: `gatsby-plugin-create-client-paths`,
+    options: { prefixes: [`/account/*`] },
+  },
+  {
+    resolve: 'gatsby-plugin-root-import',
+    options: {
+      src: path.join(__dirname, 'src'),
+      pages: path.join(__dirname, 'src/pages')
+    }
+  },
+  {
+    resolve: `gatsby-plugin-postcss`,
+    options: {
+      postCssPlugins: [
+        require(`postcss-preset-env`)({ stage: 0 }),
+        require('postcss-import'),
+        require('postcss-nested'),
+        require('postcss-cssnext'),
+        require('postcss-calc'),
+        require('postcss-discard-comments'),
+        require('postcss-reporter')
+      ]
+    }
+  },
+  
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
