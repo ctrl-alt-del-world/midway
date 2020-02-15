@@ -2,6 +2,7 @@ export default {
   name: 'productVariant',
   title: 'Variant',
   type: 'document',
+  __experimental_actions: ['update', 'publish', 'delete'],
   fields: [
     {
       name: 'title',
