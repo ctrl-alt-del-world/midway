@@ -1,18 +1,13 @@
-import React, { useState } from "react"
-import { useStaticQuery, graphql } from "gatsby"
-import Layout from "../components/Layout/Layout"
-import Image from "../components/image"
-import SEO from "../components/seo"
+import React from "react"
 
 const About = () => {
-
   return ( 
-    <Layout>
+    <div>
       <main className='about'>
         This Explains how the repo is supposed to work and HELP!?
       </main>
-    </Layout>
-  )
+    </div>
+    )
   }
 
 export default About
