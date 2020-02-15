@@ -20,6 +20,7 @@ import variant from './types/variant'
 // Modules
 import externalLink from './modules/externalLink'
 import internalLink from './modules/internalLink'
+import metaCard from './modules/metaCard'
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -40,6 +41,7 @@ export default createSchema({
     // Modules
     externalLink,
     internalLink,
+    metaCard,
     blockContent,
     blockText,
 

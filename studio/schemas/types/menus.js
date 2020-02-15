@@ -1,6 +1,5 @@
-
-import Emoji from 'a11y-react-emoji'
 import React from 'react'
+import Emoji from 'a11y-react-emoji'
 
 const Icon = () => (<Emoji style={{ fontSize: '2rem' }} symbol='🖊️' />)
 

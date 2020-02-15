@@ -1,6 +1,5 @@
-
-import Emoji from 'a11y-react-emoji'
 import React from 'react'
+import Emoji from 'a11y-react-emoji'
 
 import Tabs from 'sanity-plugin-tabs'
 
@@ -20,7 +19,7 @@ export default {
       inputComponent: Tabs,
       fieldsets: [
         { name: "defaultMeta", title: "Meta" },
-        { name: "socail", title: "Social" }
+        { name: "social", title: "Social" }
       ],
       fields: [
         {
@@ -30,9 +29,31 @@ export default {
           fieldset: "defaultMeta",
           fields: [
             {
-              type: "string",
-              name: "metaTitle",
-              title: "Meta Title"
+              type: "metaCard",
+              name: "content"
+            }
+          ]
+        },
+        {
+          type: "object",
+          name: "socail",
+          description: "Handles the default meta information for all content types",
+          fieldset: "social",
+          fields: [
+            {
+              name: 'twitter',
+              type: 'url',
+              title: 'Twitter URL'
+            },
+            {
+              name: 'instagram',
+              type: 'url',
+              title: 'Instagram URL'
+            },
+            {
+              name: 'facebook',
+              type: 'url',
+              title: 'Facebook URL'
             }
           ]
         }
