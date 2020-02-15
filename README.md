@@ -1,6 +1,6 @@
 # Midway
 
-Named for the sake of being the middle component missing from your business. Think of this repo as a middlewear to anything and everything custom, ecom, DTC and headless.
+Named for the sake of being the middle component missing from your ecom business. Think of this repo as a middlewear to anything and everything custom, ecom, DTC and headless.
 
 ### Starter kit for [Gatsby](https://www.gatsbyjs.org/), [Sanity.io](https://www.sanity.io), & Shopify
 
@@ -54,6 +54,9 @@ You can alternatively run your webhook locally, you can do this with ngrok
   * 💻 Custom lambda function that will create/update products from Shopify, as well as flag deleted items
 
 **Sanity Studio with a schema for**
+  * 🖼️ Media Plugin
+  * 👨‍💻 Vision Plugin
+  * 🚀 Graphql Deployment Support
   * 🏢 Site settings
     * Menu configuration pattern
     * Basic Footer configuration pattner
