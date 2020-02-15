@@ -33,7 +33,9 @@
     "sanity-plugin-media": "^0.2.10",
     "sanity-plugin-seo-tools": "^1.0.6",
     "sanity-plugin-tabs": "^1.1.2",
-    "sanity-plugin-vision": "^2.0.7"
+    "sanity-plugin-vision": "^2.0.7",
+    "shopify-buy": "^2.9.0",
+    "svbstrate": "^4.1.1"
   },
   "devDependencies": {
     "eslint": "^6.8.0",

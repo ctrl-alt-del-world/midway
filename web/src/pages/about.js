@@ -8,13 +8,9 @@ const About = () => {
 
   return ( 
     <Layout>
-      <SEO 
-        title="About"
-        description="" />
       <main className='about'>
-      
+        This Explains how the repo is supposed to work and HELP!?
       </main>
-
     </Layout>
   )
   }
