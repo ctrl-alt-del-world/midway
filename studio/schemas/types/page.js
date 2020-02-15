@@ -10,53 +10,7 @@ export default {
   fields: [
     {
       name: "content",
-      type: "object",
-      inputComponent: Tabs,
-      fieldsets: [
-        { name: "main", title: "Main" },
-        { name: "defaultMeta", title: "Meta" }
-      ],
-      fields: [
-        {
-          type: "object",
-          name: "main",
-          description: "Handles page content",
-          fieldset: "main",
-          fields: [
-            {
-              name: 'title',
-              title: 'Title',
-              type: 'string'
-            },
-            {
-              name: 'slug',
-              title: 'Slug',
-              type: 'slug',
-              options: {
-                source: 'content.main.title',
-                maxLength: 96
-              },
-              validation: Rule => Rule.required()
-            },
-            {
-              name: 'body',
-              title: 'Body',
-              type: 'blockContent'
-            }
-          ]
-        },
-        {
-          type: "object",
-          name: "meta",
-          fieldset: "defaultMeta",
-          fields: [
-            {
-              name: "content",
-              type: "metaCard"
-            }
-          ]
-        }
-      ]
+      type: "pageContent",
     }
   ],
   preview: {

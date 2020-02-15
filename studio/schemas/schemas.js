@@ -1,3 +1,4 @@
+import React from 'react'
 // First, we must import the schema creator
 import createSchema from 'part:@sanity/base/schema-creator'
 
@@ -12,7 +13,7 @@ import siteSettings from './siteSettings'
 // Content Types
 import product from './types/product'
 import page from './types/page'
-import global from './types/global'
+import siteGlobal from './types/siteGlobal'
 import menus from './types/menus'
 import post from './types/post'
 import variant from './types/variant'
@@ -21,6 +22,13 @@ import variant from './types/variant'
 import externalLink from './modules/externalLink'
 import internalLink from './modules/internalLink'
 import metaCard from './modules/metaCard'
+import social from './modules/social'
+import pageModule from './modules/pageModule'
+
+// GraphQL Modules
+import globalContent from './tabs/globalContent'
+import pageContent from './tabs/pageContent'
+
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -32,7 +40,7 @@ export default createSchema({
     // The following are document types which will appear
     // in the studio.
     siteSettings,
-    global,
+    siteGlobal,
     page,
     post,
     menus,
@@ -41,9 +49,14 @@ export default createSchema({
     // Modules
     externalLink,
     internalLink,
+    pageModule,
+    social,
     metaCard,
     blockContent,
     blockText,
+    // Grapqhl things
+    globalContent,
+    pageContent
 
     // When added to this list, object types can be used as
     // { type: 'typename' } in other document schemas

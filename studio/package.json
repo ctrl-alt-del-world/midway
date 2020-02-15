@@ -24,6 +24,7 @@
     "@sanity/default-layout": "^1.148.1",
     "@sanity/default-login": "^1.148.1",
     "@sanity/desk-tool": "^1.148.1",
+    "a11y-react-emoji": "^1.1.2",
     "node-emoji": "^1.10.0",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
