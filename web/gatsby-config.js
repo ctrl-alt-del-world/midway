@@ -62,6 +62,8 @@ module.exports = {
         pages: path.join(__dirname, 'src/pages')
       }
     },
+    `gatsby-plugin-typescript`,
+    `gatsby-plugin-tslint`,
     {
       resolve: `gatsby-plugin-postcss`,
       options: {

@@ -7,3 +7,7 @@
 @import 'svbstrate/src/lib/buttons.css';
 @import 'svbstrate/src/lib/forms.css';
 @import 'svbstrate/src/lib/z-index.css';
+
+body {
+  background-color: gray;
+}
