@@ -1,6 +1,7 @@
 import React from "react"
 import cx from 'classnames'
 
+
 const Learn = ({ transitionStatus }) => {
   return ( 
     <div className={cx('midway container--m animate__page mxa outer p1', transitionStatus)}>
@@ -23,7 +24,7 @@ const Learn = ({ transitionStatus }) => {
       </ol>
       <p>From here, you're going to want to create some content. You will notice you have the ability to create <span className="pre">Pages</span> but not <span className="pre warning">Products</span>. My convention is that for <span className="pre">Products</span>  those should always be managed by Shopify. Not everyone agrees with that, but that is the system I follow. The clicent can create/edit/manage initial Products in Shopify. Then using the Sync which we will explain in a bit, that information is saved into Shopify. But we don't need to worry about that just yet.</p>
       <h3>Create a Home page that will serve as your Index file</h3>
-      <p>In the <span className="pre">gatsby-node.js</span> file you'll notice in my pageCreate I check for a slug of <span className="pre">home</span>. This creates a root file in our Gatsby build process. In order to get the Gatsby index running correctly I suggest you create a new page and give it a slug of <span className="pre">home</span> or whatever you'd like just make sure you udpate it in the <span className="pre">gatsby-node.js</span> file before running the dev process for Gatsby.</p>
+      <p>In the <span className="pre">gatsby-node.js</span> file you'll notice in my pageCreate I check for a slug of <span className="pre">home</span>. This creates a root file in our Gatsby build process. In order to get the Gatsby index running correctly I suggest you create a new page and give it a slug of <span className="pre">home</span> or whatever you'd like just make sure you udpate it in the <span className="pre">gatsby-node.js</span> file before running the dev process for Gatsby.</p> 
     </div>
     )
   }

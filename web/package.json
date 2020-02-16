@@ -26,6 +26,7 @@
     "gatsby-source-sanity": "^5.0.5",
     "gatsby-transformer-sharp": "^2.3.7",
     "js-cookie": "^2.2.1",
+    "markdown-it": "^10.0.0",
     "node-sass": "^4.13.1",
     "picostate": "^4.0.0",
     "prop-types": "^15.7.2",
