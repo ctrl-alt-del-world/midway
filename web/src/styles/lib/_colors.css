@@ -1,0 +1,15 @@
+:root {
+  --black: #000;
+  --white : #ffffff;
+  --red: #D8532E;
+}
+
+.error {
+  color: var(--red);
+}
+.cb {
+  color: var(--black);
+}
+.cw {
+  color: var(--white);
+}

@@ -1,6 +1,7 @@
 import React from 'react'
 
-import { PageLink } from "src/components/link"
+import { PageLink } from 'src/components/link'
+import { Github } from 'src/components/svgs'
 
 export const Header = () => {
   return (
@@ -10,6 +11,7 @@ export const Header = () => {
           <PageLink to="/" className="mr1">Index</PageLink>
           <PageLink to="/learn">Learn</PageLink>
         </div>
+        <a href="https://github.com/ctrl-alt-del-world/midway"><Github className="midway__logo" /></a>
       </div>
     </div>
   )

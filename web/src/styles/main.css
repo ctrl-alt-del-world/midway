@@ -14,6 +14,7 @@
 
 /* My generic Lib import, feel free to remove for vanilla styles */
 @import './lib/_breakpoints.css';
+@import './lib/_colors.css';
 @import './lib/_containers.css';
 @import './lib/_global.css';
 @import './lib/_functional.css';

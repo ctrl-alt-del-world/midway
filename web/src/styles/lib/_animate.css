@@ -24,6 +24,5 @@
 }
 
 .tl-wrapper {
-  border: 2px solid var(--black);
   min-height: 100vh;
 }

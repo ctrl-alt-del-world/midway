@@ -15,4 +15,7 @@
   .bold {
     font-weight: 600;
   }
+  &__logo {
+    width: 30px;
+  }
 }
