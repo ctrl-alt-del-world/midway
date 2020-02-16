@@ -1,0 +1,38 @@
+{% comment %}
+
+This file is basically not used. It serves to redirect the headless site
+
+Adding plugin or app scripts and snippets here will likely have no effect on the Prima site
+itself. Reach out a developer for help installing scripts and code snippets.
+
+{% endcomment %}
+
+<!DOCTYPE html>
+<html lang='{{ shop.locale }}'>
+  <head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width,initial-scale=1'>
+    <link rel='canonical' href='{{ canonical_url }}'>
+    <link rel='shortcut icon' href='' type='image/png'>
+
+     <script>
+      var l = window.location
+
+      /**
+       * allow app urls to pass through
+       */
+      if (/^\/a\//.test(l.pathname)) {
+        // do nothing
+      } else {    
+        var href = 'site.netlify.com'
+        if (l.pathname) href += '/' + l.pathname
+        if (l.hash) href += l.hash
+        if (l.search) href += l.search
+
+        href = href.replace('//', '/')
+
+        window.top.location.href = 'https://' + href
+      }
+    </script>
+  </body>
+</html>

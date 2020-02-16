@@ -28,6 +28,9 @@ Clone this repository to bootstrap a fresh Gatsby site, powered by Sanity CMS an
 3. Develop your front end, etc. (purposely left this ultra stripped-down)
 4. Create a repo specifically for your Gatsby build, host with Netlify or anywhere you can have a Lambda function.
 
+### Shopify/
+In the Shopify folder I provide an example theme.liquid file, this file is needed if you intend to add accounts to your headless environment (which this theme has functional components to support), shopify doesn't allow you to override the URL structure of the account information, so we redirect to where the headless experience lives. We also pass the hash/pathname etc so we can use that in our headless account system.
+
 ### Shopify 
 
 1. In your Netlify environment, go to your project and create a new Function.
@@ -51,6 +54,7 @@ You can alternatively run your webhook locally, you can do this with ngrok
   * 🧰 Full Render Control with Portable Text
   * 📸 gatsby-image support
   * 🔧 Minimal configuration
+  * 💆‍♀️ Headless Account Managements via `/accounts/*` 
   * 💻 Custom lambda function that will create/update products from Shopify, as well as flag deleted items
 
 **Sanity Studio with a schema for**
