@@ -1,0 +1,29 @@
+.a {
+  &-color {
+    transition: all 0.3s ease-in-out;
+  }
+}
+
+.animate {
+  &__page {
+    transition: opacity 0.3s ease-in-out;
+    min-height: 100vh;
+    opacity: 0;
+    &.entered {
+      opacity: 1;
+    }
+    &.POP {
+      opacity: 1;
+    }
+  }
+
+  &__element {
+    transition-property: all;
+    transition: .5s cubic-bezier(.36,-.64,.34,1.76)
+  }
+}
+
+.tl-wrapper {
+  border: 2px solid var(--black);
+  min-height: 100vh;
+}

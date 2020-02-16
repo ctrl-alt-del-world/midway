@@ -18,6 +18,9 @@
 @import './lib/_global.css';
 @import './lib/_functional.css';
 
+/* Page animations */
+@import './lib/_animate.css';
+
 
 body {
   background-color: #f4f4f4;

@@ -1,7 +1,7 @@
 import React from 'react'
 import TransitionLink from 'gatsby-plugin-transition-link'
 
-const PageLink = (props: {
+export const PageLink = (props: {
   className?: string
   to: string
   type?: string
@@ -25,5 +25,3 @@ const PageLink = (props: {
     {props.children}
   </TransitionLink>
 )
-
-export default PageLink

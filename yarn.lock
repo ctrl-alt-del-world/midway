@@ -2,7 +2,7 @@
 # yarn lockfile v1
 
 
-a11y-react-emoji@^1.1.2:
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/a11y-react-emoji/-/a11y-react-emoji-1.1.2.tgz#352a0802522d5a9e137c3239d10bc7b9a3416ed5"
-  integrity sha512-spdYr/mgaGAYOFD/a250CUQ1MIvybK1clZgSfkzO2nxLQQQZbM7FEQrisOQntqGVm6fm0Ye57H3euSUJYpX9NQ==
+classnames@^2.2.6:
+  version "2.2.6"
+  resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.2.6.tgz#43935bffdd291f326dad0a205309b38d00f650ce"
+  integrity sha512-JR/iSQOSt+LQIWwrwEzJ9uk0xfN3mTVYMwt1Ir5mUcSN6pU+V4zQFFaJsclJbPuAUQH+yfWef6tm7l1quW3C8Q==

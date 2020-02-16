@@ -3,8 +3,11 @@
 .midway {
   .pre {
     background-color: white;
-    padding: 0 0.4rem;
+    padding: 0 0.2rem;
     border: 1px solid gray;
+    &.warning {
+      background-color: lightgoldenrodyellow;
+    }
   }
   .callout {
     background-color: lightgrey;
