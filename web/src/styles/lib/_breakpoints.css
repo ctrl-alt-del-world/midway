@@ -1,0 +1,9 @@
+@custom-media --600 (min-width: 37.5em); /* 600 */
+@custom-media --800 (min-width: 800px);
+@custom-media --900 (min-width: 56.26em); /* 900 */
+@custom-media --1200 (min-width: 75em); /* 1200 */
+@custom-media --1100 (min-width: 1100px); /* 1100 */
+@custom-media --1300 (min-width: 81.25em); /* 1300 */
+@custom-media --1400 (min-width: 1400px); /* 1400 */
+@custom-media --1600 (min-width: 1600px); /* 1400 */
+

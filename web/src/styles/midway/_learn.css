@@ -1,0 +1,15 @@
+/* Custom Styles just for the Learn Page */
+
+.midway {
+  .pre {
+    background-color: white;
+    padding: 0 0.4rem;
+    border: 1px solid gray;
+  }
+  .callout {
+    background-color: lightgrey;
+  }
+  .bold {
+    font-weight: 600;
+  }
+}

@@ -1,0 +1,64 @@
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial,
+  sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 14px;
+  line-height: 1.5;
+  color: #24292e;
+  background-color: #fff;
+  
+}
+
+/* body, html {
+  cursor: url('../../static/black_cursor.png') 4 4, auto !important;
+
+  .cursor, a:hover, .button:hover {
+    cursor: url('../../static/black_cursor_small.png') 4 4, auto !important;
+  }
+  .bcb {
+    cursor: url('../../static/blue_cursor.png') 4 4, auto !important;
+
+    .cursor, a:hover, .button:hover {
+      cursor: url('../../static/blue_cursor_small.png') 4 4, auto !important;
+    }
+  }
+} */
+
+.s-desktop {
+  display: none;
+  @media (--800) {
+    display: block;
+  }
+}
+
+.s-f-desktop {
+  display: none;
+  @media (--800) {
+    display: flex;
+  }
+}
+
+.s-mobile {
+  @media (--800) {
+    display: none;
+  }
+}
+
+.cp {
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
+
+.nav-spacer {
+  min-height: 50px;
+}
+
+.cursor {
+  cursor: pointer;
+}
+
+.oh {
+  overflow: hidden;
+}

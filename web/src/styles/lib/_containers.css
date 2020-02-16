@@ -1,0 +1,28 @@
+
+.container--s {
+  max-width: 600px;
+}
+
+.container--m {
+  max-width: 800px;
+}
+
+.container--900 {
+  max-width: 900px;
+}
+
+.container--1000 {
+  max-width: 1000px;
+}
+
+.container--l {
+  max-width:  1224px;
+}
+
+.container--xl {
+  max-width: 1440px;
+}
+
+.container--xxl {
+  max-width: calc(100vw - 4rem);
+}

@@ -8,6 +8,17 @@
 @import 'svbstrate/src/lib/forms.css';
 @import 'svbstrate/src/lib/z-index.css';
 
+/* Midway Specific Styles, feel free to remove */
+@import './midway/_learn.css';
+
+
+/* My generic Lib import, feel free to remove for vanilla styles */
+@import './lib/_breakpoints.css';
+@import './lib/_containers.css';
+@import './lib/_global.css';
+@import './lib/_functional.css';
+
+
 body {
-  background-color: gray;
+  background-color: #f4f4f4;
 }
