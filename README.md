@@ -1,8 +1,6 @@
 # Midway
 
-```
-Disclaimer: The Gatsby theme is in active development as I work on documentation + extending the system, the studio is fairly ready for referenced use if you so desire. I will post a v1.0 once everything is in a better place hopefully very very soon :).
-```
+> Disclaimer: The Gatsby theme is in active development as I work on documentation + extending the system, the studio is fairly ready for referenced use if you so desire. I will post a v1.0 once everything is in a better place hopefully very very soon :).
 
 Named for the sake of being the middle component missing from your ecom business. Think of this repo as a middlewear to anything and everything custom, ecom, DTC and headless.
 
