@@ -5,6 +5,7 @@
   "version": "0.1.0",
   "author": "You <your-email@domain.com>",
   "dependencies": {
+    "@picostate/react": "^3.0.1",
     "@sanity/client": "^0.147.3",
     "classnames": "^2.2.6",
     "gatsby": "^2.18.12",
@@ -24,7 +25,9 @@
     "gatsby-source-filesystem": "^2.1.40",
     "gatsby-source-sanity": "^5.0.5",
     "gatsby-transformer-sharp": "^2.3.7",
+    "js-cookie": "^2.2.1",
     "node-sass": "^4.13.1",
+    "picostate": "^4.0.0",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
@@ -32,6 +35,7 @@
     "react-responsive": "^8.0.1",
     "reset-css": "^5.0.1",
     "shopify-buy": "^2.9.0",
+    "shopify-gid": "^1.0.1",
     "svbstrate": "^4.1.1"
   },
   "devDependencies": {
