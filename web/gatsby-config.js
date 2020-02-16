@@ -31,12 +31,6 @@ module.exports = {
       },
     },
     {
-      resolve: 'gatsby-plugin-robots-txt',
-      options: {
-        policy: [{ userAgent: '*', allow: ['/'] }]
-      }
-    },
-    {
       resolve: `gatsby-plugin-transition-link`,
       options: {
         layout: require.resolve(`./src/layouts/index.js`)
