@@ -5,11 +5,11 @@ import AuthWrapper from 'src/components/auth/authWrapper'
 // @ts-ignore
 // @ts-ignore
 // @ts-ignore
-import Forgot from 'src/components/auth/forgotPassword.js'
 // @ts-ignore
 // @ts-ignore
 import Activate from 'src/components/auth/activate'
 
+import { Forgot } from 'src/components/auth/forgotPassword'
 import { Register } from 'src/components/auth/register'
 import { Login } from 'src/components/auth/login'
 import { Reset } from 'src/components/auth/reset'

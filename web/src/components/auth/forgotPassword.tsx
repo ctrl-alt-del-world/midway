@@ -1,29 +1,45 @@
-import React, { useState } from "react"
+import React, { useState, useCallback } from "react"
 import Helmet from "react-helmet"
 import fetch from "unfetch"
 import { Link } from "gatsby"
+import { useLoads } from 'react-loads'
 
-const ForgotPassword = () => {
-  const [error, setError] = useState(null)
+export const ForgotPassword = () => {
   const [formSuccess, setFormSuccess] = useState(false)
-  const form = React.createRef()
-  const handleSubmit = e => {
+  const form = React.createRef() as React.RefObject<HTMLFormElement>
+
+  const handleForgot = useCallback(
+    (email) =>
+      fetch(`/.netlify/functions/forgotPassword`, {
+        method: "POST",
+        body: JSON.stringify({
+          email: email,
+        }),
+      })
+        .then(res => res.json())
+        .then(res => {
+          if (res.error) {
+            throw new Error(res.error)
+          }
+          setFormSuccess(true)
+        }),
+    []
+  )
+
+  const { error, isRejected, isPending, isReloading, load } = useLoads(
+    "handleForgot",
+    handleForgot as any,
+    {
+      defer: true,
+    }
+  )
+
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     const { email } = form.current.elements
-    fetch(`/.netlify/functions/forgotPassword`, {
-      method: "POST",
-      body: JSON.stringify({
-        email: email.value,
-      }),
-    })
-      .then(res => res.json())
-      .then(res => {
-        if (res.error) {
-          setError(res.error)
-        }
-        setFormSuccess(true)
-      })
+    load(email.value)
   }
+
   return (
     <div>
       <Helmet title="forgot password" />
@@ -86,5 +102,3 @@ const ForgotPassword = () => {
     </div>
   )
 }
-
-export default ForgotPassword
