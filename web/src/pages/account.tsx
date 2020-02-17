@@ -4,13 +4,13 @@ import { Router } from '@reach/router'
 import AuthWrapper from 'src/components/auth/authWrapper'
 // @ts-ignore
 // @ts-ignore
-import Register from 'src/components/auth/register.js'
 // @ts-ignore
 import Forgot from 'src/components/auth/forgotPassword.js'
 // @ts-ignore
 // @ts-ignore
 import Activate from 'src/components/auth/activate'
 
+import { Register } from 'src/components/auth/register'
 import { Login } from 'src/components/auth/login'
 import { Reset } from 'src/components/auth/reset'
 import { InvalidToken } from '../components/auth/invalid_token'

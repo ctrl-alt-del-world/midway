@@ -65,7 +65,7 @@ You can alternatively run your webhook locally, you can do this with ngrok
   * 🚀 Graphql Deployment Support
   * 🏢 Site settings
     * Menu configuration pattern
-    * Basic Footer configuration pattner
+    * Basic Footer configuration pattern
   * 📃 Pages
     * Meta Card support for SEO with Tabs
     * Common modularity patterns
@@ -76,9 +76,10 @@ You can alternatively run your webhook locally, you can do this with ngrok
     * The `web/functions/shopify` file will generate new Sanity documents with these default fields.
 
 
-## Orginal Credits from Lucas
+## More learning
 
-This entire repo is really just merged together from a stripped-down version of Sanity's [Sample company website built with Gatsby & Sanity.io](https://github.com/sanity-io/example-company-website-gatsby-sanity-combo) repo and a modified version of [Kevin Green](https://github.com/iamkevingreen)'s lambda function as discussed in the [Sanity + Shopify Roundtable: Headless ecommerce with Kevin Green & Joseph Thomas](https://www.youtube.com/watch?v=4mgI333aGvo) video.
+* [Sample company website built with Gatsby & Sanity.io](https://github.com/sanity-io/example-company-website-gatsby-sanity-combo)
+* [Sanity + Shopify Roundtable: Headless ecommerce with Kevin Green & Joseph Thomas](https://www.youtube.com/watch?v=4mgI333aGvo) 
 
 ## License
 

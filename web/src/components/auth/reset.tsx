@@ -1,15 +1,16 @@
 import React, { useState, useCallback } from 'react'
 import Helmet from 'react-helmet'
 import fetch from 'unfetch'
-import cookie from 'js-cookie'
 import { encode } from 'shopify-gid'
-import { useLoads, Loads } from 'react-loads'
+import { useLoads } from 'react-loads'
 import { Link, navigate } from 'gatsby'
 
-import store from 'src/state/store'
 import { UpdateCustomer } from "../../utils/updateCustomer"
 
-export const Reset = (props) => {
+export const Reset = (props: {
+  id?: string
+  token?: string
+}) => {
   const [submit, setSubmitting] = useState(false)
   const [formSuccess, setFormSucces] = useState(null)
   const form = React.createRef() as React.RefObject<HTMLFormElement>
