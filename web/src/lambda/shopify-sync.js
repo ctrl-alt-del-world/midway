@@ -150,7 +150,7 @@ exports.handler = async (event, context) => {
       });
   } else if (data.hasOwnProperty('id') && (!data.hasOwnProperty('title') && !data.hasOwnProperty('handle'))) {
     // this is triggered if Shopify sends a Product Deletion webhook that does NOT contain anything besides an ID
-  
+
     // sets the "deleted" boolean to true
     // you could likely use this value in Gatsby to decide whether to render the item or not
 

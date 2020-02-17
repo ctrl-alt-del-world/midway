@@ -1,15 +1,14 @@
-import React, { useCallback } from "react"
-import cookie from "js-cookie"
+import React, { useCallback, useEffect } from "react"
 import fetch from "unfetch"
 import { Link, navigate } from "gatsby"
 import Helmet from "react-helmet"
 import { useLoads } from "react-loads"
 import cx from "classnames"
 
-import store from "../../state/store.ts"
+import { UpdateCustomer } from "../../utils/updateCustomer"
 
-const Login = () => {
-  const form = React.createRef()
+export const Login = () => {
+  const form = React.createRef() as React.RefObject<HTMLFormElement>
 
   const handleLogin = useCallback(
     (email, password) =>
@@ -25,19 +24,7 @@ const Login = () => {
           if (res.error) {
             throw new Error(res.error)
           } else {
-            cookie.set("customer_token", res.token, { expires: 25 })
-            cookie.set("customer_firstName", res.customer.firstName, {
-              expires: 25,
-            })
-            console.log('login email', { email })
-            cookie.set("customer_email", email, { expires: 25 })
-            cookie.set("customer_defaultAddress", res.customer.defaultAddress)
-            store.hydrate({
-              customerToken: res.token,
-              email,
-              firstName: res.customer.firstName,
-              orders: res.customer.orders,
-            })()
+            UpdateCustomer(res, email)
             // re-hydrate the cart so it contains the email
             // checkout.hydrate()
             setTimeout(() => {
@@ -51,13 +38,13 @@ const Login = () => {
 
   const { error, isRejected, isPending, isReloading, load } = useLoads(
     "handleLogin",
-    handleLogin,
+    handleLogin as any,
     {
       defer: true,
     }
   )
 
-  const handleSubmit = e => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
 
     const { email, password } = form.current.elements
@@ -95,30 +82,15 @@ const Login = () => {
             )}
             <div className="pb1 pya">
               <div className="caps sans s14 ls my05">Email</div>
-              <input
-                name="email"
-                type="text"
-                required
-                className="accounts__input py1 s16 x"
-                placeholder="Enter Email"
-              />
+              <input name="email" type="text" required className="accounts__input py1 s16 x" placeholder="Enter Email" />
             </div>
             <div className="mb1 pb1 pya">
               <div className="caps sans s14 ls mt01 py05">Password</div>
-              <input
-                name="password"
-                type="password"
-                required
-                className="accounts__input py1 mb1 s16 x"
-                placeholder="Enter Password"
-              />
+              <input name="password" type="password" required className="accounts__input py1 mb1 s16 x" placeholder="Enter Password" />
             </div>
             <div className="caps sans ls my1"/>
             <div className="x mxa ac">
-              <button
-                type="submit"
-                className="button button--wide button--lg cg ac akz ls-s mt1 inline-block caps s14"
-              >
+              <button type="submit" className="button button--wide button--lg cg ac akz ls-s mt1 inline-block caps s14">
                 Log in
               </button>
             </div>
@@ -142,5 +114,3 @@ const Login = () => {
     </div>
   )
 }
-
-export default Login

@@ -10,10 +10,10 @@ export function create() {
     .then(checkout => {
 
       const checkoutId = checkout.id
-      cookie.set("midway_cart", checkoutId, { expires: 25 })
-      const customerToken = cookie.get("midway_token")
-      const customerEmail = cookie.get("midway_email")
-      const firstName = cookie.get("midway_firstName")
+      cookie.set("customer_cart", checkoutId, { expires: 25 })
+      const customerToken = cookie.get("customer_token")
+      const customerEmail = cookie.get("customer_email")
+      const firstName = cookie.get("customer_firstName")
 
       store.hydrate({
         checkoutId,
@@ -62,10 +62,10 @@ export function products() {
 }
 
 export function hydrate() {
-  const checkoutId = cookie.get("midway_cart")
-  const customerToken = cookie.get("midway_token")
-  const customerEmail = cookie.get("midway_email")
-  const firstName = cookie.get("midway_firstName")
+  const checkoutId = cookie.get("customer_cart")
+  const customerToken = cookie.get("customer_token")
+  const customerEmail = cookie.get("customer_email")
+  const firstName = cookie.get("customer_firstName")
 
   if (checkoutId && customerEmail) {
     store.hydrate({ checkoutId })()
@@ -227,7 +227,7 @@ export function updateEmail(email) {
     .then(checkout => {
       store.hydrate({ shopifyCart: checkout })()
       store.hydrate({ email })()
-      cookie.set("midway_email", email)
+      cookie.set("customer_email", email)
     })
     .catch(e => {
       console.log(e)
