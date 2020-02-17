@@ -14,10 +14,10 @@ export const Register = ({path}: {path: string}) => {
       fetch(`/.netlify/functions/newAccount`, {
         method: "POST",
         body: JSON.stringify({
-          email: email,
-          password: password,
-          firstName: firstName,
-          lastName: lastName,
+          email,
+          password,
+          firstName,
+          lastName
         }),
       })
         .then(res => res.json())
@@ -66,24 +66,24 @@ export const Register = ({path}: {path: string}) => {
           <div className="x container--s col">
             <div className="pya pb1">
               <div className="caps sans s14 ls mt1">First Name</div>
-              <input name="firstName" type="text" required className="accounts__input s16 mb0 x py1" placeholder="First Name" />
+              <input name="firstName" type="text" required={true} className="accounts__input s16 mb0 x py1" placeholder="First Name" />
             </div>
             <div className="pya pb1">
               <div className="caps sans s14 ls mt1">Last Name</div>
-              <input name="lastName" type="text" required className="accounts__input s16 mb0 x py1" placeholder="Last Name" />
+              <input name="lastName" type="text" required={true} className="accounts__input s16 mb0 x py1" placeholder="Last Name" />
             </div>
             <div className="pya pb1">
               <div className="caps sans s14 ls mt1">Email</div>
-              <input name="email" type="text" required className="accounts__input s16 mb0 x py1" placeholder="Enter Email" />
+              <input name="email" type="text" required={true} className="accounts__input s16 mb0 x py1" placeholder="Enter Email" />
             </div>
             <div className="pya pb1">
               <div className="caps sans s14 ls mt1 mb0 pb0">Password</div>
               <p className="mini mt0">(Must be at least 8 characters long and include a both a lowercase and uppercase letter).</p>
-              <input name="password" type="password" required className="accounts__input s16 mb0 x py1" placeholder="Password" />
+              <input name="password" type="password" required={true} className="accounts__input s16 mb0 x py1" placeholder="Password" />
             </div>
             <div className="pya pb1">
               <div className="caps sans s14 ls mt1">Confirm Password</div>
-              <input name="passwordConfirm" type="password" required className="accounts__input s16 mb1 x py1" placeholder="Verify Password" />
+              <input name="passwordConfirm" type="password" required={true} className="accounts__input s16 mb1 x py1" placeholder="Verify Password" />
             </div>
           </div>
 

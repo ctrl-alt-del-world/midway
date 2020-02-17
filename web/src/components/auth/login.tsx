@@ -44,7 +44,7 @@ export const Login = ({ path }: { path: string }) => {
     }
   )
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
     const { email, password } = form.current.elements
@@ -82,11 +82,11 @@ export const Login = ({ path }: { path: string }) => {
             )}
             <div className="pb1 pya">
               <div className="caps sans s14 ls my05">Email</div>
-              <input name="email" type="text" required className="accounts__input py1 s16 x" placeholder="Enter Email" />
+              <input name="email" type="text" required={true} className="accounts__input py1 s16 x" placeholder="Enter Email" />
             </div>
             <div className="mb1 pb1 pya">
               <div className="caps sans s14 ls mt01 py05">Password</div>
-              <input name="password" type="password" required className="accounts__input py1 mb1 s16 x" placeholder="Enter Password" />
+              <input name="password" type="password" required={true} className="accounts__input py1 mb1 s16 x" placeholder="Enter Password" />
             </div>
             <div className="caps sans ls my1"/>
             <div className="x mxa ac">

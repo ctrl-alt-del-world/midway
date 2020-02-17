@@ -80,11 +80,11 @@ export const Reset = (props: {
               )}
               <div className="pb1  x pya">
                 <div className="caps sans ls mt1">Password</div>
-                <input name='password' type='password' required className='accounts__input  py1 s16 x' placeholder='Password' />
+                <input name='password' type='password' required={true} className='accounts__input  py1 s16 x' placeholder='Password' />
               </div>
               <div className="pb1  x pya">
                 <div className="caps sans ls py05 mt1">Confirm Password</div>
-                <input name='password2' type='password' required className='accounts__input mb1 py1 s16 x' placeholder='Confirm Password' />
+                <input name='password2' type='password' required={true} className='accounts__input mb1 py1 s16 x' placeholder='Confirm Password' />
               </div>
               <div className="ac x mt1">
                 <button type='submit' className='button button--wide cg ac akz ls-s mt1 inline-block caps s14'>{submit ? 'Resetting' : 'Reset Password'}</button>

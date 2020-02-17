@@ -13,7 +13,7 @@ export const ForgotPassword = ({ path }: { path: string }) => {
       fetch(`/.netlify/functions/forgotPassword`, {
         method: "POST",
         body: JSON.stringify({
-          email: email,
+          email,
         }),
       })
         .then(res => res.json())
@@ -73,13 +73,7 @@ export const ForgotPassword = ({ path }: { path: string }) => {
           <div className="x container--s col aic jcc">
             <div className="pb1 mb1 pya">
               <div className="caps sans ls my05">Email</div>
-              <input
-                name="email"
-                type="text"
-                required
-                className="accounts__input py1 x s16 mb1"
-                placeholder="Enter Email"
-              />
+              <input name="email" type="text" required={true} className="accounts__input py1 x s16 mb1" placeholder="Enter Email" />
             </div>
             <div className="x mxa ac">
               <button
