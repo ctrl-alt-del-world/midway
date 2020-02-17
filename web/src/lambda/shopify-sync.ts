@@ -13,7 +13,7 @@ const client = sanityClient({
   useCdn: true
 });
 
-exports.handler = async (event: any) => {
+exports.handler = async (event) => {
   if (event.httpMethod !== 'POST' || !event.body) {
     return {
       statusCode: 400,

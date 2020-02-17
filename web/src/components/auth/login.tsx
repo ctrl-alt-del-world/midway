@@ -7,7 +7,7 @@ import cx from "classnames"
 
 import { UpdateCustomer } from "../../utils/updateCustomer"
 
-export const Login = () => {
+export const Login = ({ path }: { path: string }) => {
   const form = React.createRef() as React.RefObject<HTMLFormElement>
 
   const handleLogin = useCallback(

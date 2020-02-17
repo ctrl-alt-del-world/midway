@@ -6,7 +6,7 @@ import { useLoads } from 'react-loads'
 
 import { UpdateCustomer } from "../../utils/updateCustomer"
 
-export const Register = () => {
+export const Register = ({path}: {path: string}) => {
   const form = React.createRef() as React.RefObject<HTMLFormElement>
 
   const handleRegister = useCallback(

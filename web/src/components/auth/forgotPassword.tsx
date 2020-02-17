@@ -4,7 +4,7 @@ import fetch from "unfetch"
 import { Link } from "gatsby"
 import { useLoads } from 'react-loads'
 
-export const ForgotPassword = () => {
+export const ForgotPassword = ({ path }: { path: string }) => {
   const [formSuccess, setFormSuccess] = useState(false)
   const form = React.createRef() as React.RefObject<HTMLFormElement>
 

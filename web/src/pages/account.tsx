@@ -3,13 +3,9 @@ import { Router } from '@reach/router'
 
 import AuthWrapper from 'src/components/auth/authWrapper'
 // @ts-ignore
-// @ts-ignore
-// @ts-ignore
-// @ts-ignore
-// @ts-ignore
 import Activate from 'src/components/auth/activate'
 
-import { Forgot } from 'src/components/auth/forgotPassword'
+import { ForgotPassword } from 'src/components/auth/forgotPassword'
 import { Register } from 'src/components/auth/register'
 import { Login } from 'src/components/auth/login'
 import { Reset } from 'src/components/auth/reset'
@@ -17,14 +13,9 @@ import { InvalidToken } from '../components/auth/invalid_token'
 import { Portal } from '../components/auth/portal'
 
 const Account = ({
-  transitionStatus,
-  pageContext,
+  pageContext
 }: {
-  transitionStatus: string
-  pageContext: {
-    menus: []
-    footer: {}
-  }
+  pageContext: {}
 }) => {
   return (
     <div id='account__container' className='accounts__wrapper'>
@@ -39,7 +30,7 @@ const Account = ({
           />
           <InvalidToken path='/invalid_token' />
           <Register path='/register' />
-          <Forgot path='/forgot' />
+          <ForgotPassword path='/forgot' />
         </PublicRoute>
       </Router>
     </div>

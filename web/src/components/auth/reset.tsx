@@ -8,6 +8,7 @@ import { Link, navigate } from 'gatsby'
 import { UpdateCustomer } from "../../utils/updateCustomer"
 
 export const Reset = (props: {
+  path: string
   id?: string
   token?: string
 }) => {
