@@ -1,0 +1,8 @@
+body, html {
+  font-family: 'Space Mono'
+}
+
+p {
+  line-height: 1.5;
+  padding: 1.5rem 0;
+}
