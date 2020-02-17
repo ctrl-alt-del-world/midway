@@ -11,7 +11,10 @@ export const Header = () => {
           <PageLink to="/" className="mr1">Index</PageLink>
           <PageLink to="/learn">Learn</PageLink>
         </div>
-        <a href="https://github.com/ctrl-alt-del-world/midway"><Github className="midway__logo" /></a>
+        <div>
+          <a href="/account" className="mr1">Account</a>
+          <a href="https://github.com/ctrl-alt-del-world/midway"><Github className="midway__logo" /></a>
+        </div>
       </div>
     </div>
   )

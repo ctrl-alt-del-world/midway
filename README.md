@@ -48,7 +48,7 @@ You can alternatively run your webhook locally, you can do this with ngrok
 
 ## Features
 
-**A blank slate Gatsby site w custom webhook to create new Shopify products**
+**Gatsby site with real integrations into a Shopify Instance**
   * 📡 Real-time content preview in development
   * ⏱ Fast & frugal builds
   * 🗃 No accidental missing fields/types
@@ -56,6 +56,7 @@ You can alternatively run your webhook locally, you can do this with ngrok
   * 📸 gatsby-image support
   * 🔧 Minimal configuration
   * 💆‍♀️ Headless Account Managements via `/accounts/*` 
+  * 📹 Headless Preview via `/previews/*` 
   * 💻 Custom lambda function that will create/update products from Shopify, as well as flag deleted items
 
 **Sanity Studio with a schema for**
