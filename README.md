@@ -1,14 +1,16 @@
 # Midway
 
-> Disclaimer: The Gatsby theme is in active development as I work on documentation + extending the system, the studio is fairly ready for referenced use if you so desire. I will post a v1.0 once everything is in a better place hopefully very very soon :).
+> ⚠️ Disclaimer: The Gatsby theme is in active development as I work on documentation + extending the system, the studio is fairly ready for referenced use if you so desire. I will post a v1.0 once everything is in a better place hopefully very very soon :). I am working on creating a full shoppable/authed Shopify experience. The idea here is viewing products, adding them to a cart and getting to a real checkout, you will also be able to register, login, view orders, and also update your address (all traditional shopify experiences but in a headless environment).
+
+> Typescript Support: I am no TS expert, and am doing my best with the knowledge I have there are some places that still have issues, like react CreateRef stuff, not really sure what to do with those bits (mostly in the accounts area), if you have experience here I would love some insight into fix that or making it more robust.
 
 Named for the sake of being the middle component missing from your ecom business. Think of this repo as a middlewear to anything and everything custom, ecom, DTC and headless.
 
 ### Starter kit for [Gatsby](https://www.gatsbyjs.org/), [Sanity.io](https://www.sanity.io), & Shopify
 
-This repo was forked from the work that [Lucas](https://github.com/lucasvocos/gatsby-sanity-shopify) did on an initial Sanity/Gatsby/Shopify repo. I've extended it to include various patterns that I use in my builds, more functions for handling accounts, typescript, and functional CSS to name a few. I also incldue some common components in my Sanity & Gatsby instance that I don't believe we should rebuild over and over, things like a press module, general ctas etc. Use whatever you'd like or just use it as a baseplate.
+Thanks to [Lucas](https://github.com/lucasvocos/gatsby-sanity-shopify) for kicking this whole thing off. I've taken a relatively more opinionated approach and started to fully build out a complete expereince. The documentation is being written while the experience is created, please don't make issues/tickets just yet, if you have contributions around my TS linting/issues feel free to PR those aspects.  
 
-Clone this repository to bootstrap a fresh Gatsby site, powered by Sanity CMS and dynamically import Shopify products to Sanity with the help of a WebHook
+Clone this repository to bootstrap a fresh Typescript Gatsby site, powered by Sanity CMS and dynamically import Shopify products to Sanity with the help of a WebHook
 
 ## Basic Instructions
 
@@ -49,6 +51,8 @@ You can alternatively run your webhook locally, you can do this with ngrok
 ## Features
 
 **Gatsby site with real integrations into a Shopify Instance**
+  * 👨‍💻 TYPESCRIPT 
+  * 🛒 Shopping Cart create powered by Shopif Buy SDK
   * 📡 Real-time content preview in development
   * ⏱ Fast & frugal builds
   * 🗃 No accidental missing fields/types
@@ -56,13 +60,14 @@ You can alternatively run your webhook locally, you can do this with ngrok
   * 📸 gatsby-image support
   * 🔧 Minimal configuration
   * 💆‍♀️ Headless Account Managements via `/accounts/*` 
-  * 📹 Headless Preview via `/previews/*` 
+  * 📹 Headless Preview via `/previews/*` **coming soon**
   * 💻 Custom lambda function that will create/update products from Shopify, as well as flag deleted items
 
 **Sanity Studio with a schema for**
   * 🖼️ Media Plugin
   * 👨‍💻 Vision Plugin
   * 🚀 Graphql Deployment Support
+  * 📹 Preview via panes **coming soon**
   * 🏢 Site settings
     * Menu configuration pattern
     * Basic Footer configuration pattern
