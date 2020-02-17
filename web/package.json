@@ -8,7 +8,6 @@
     "@picostate/react": "^3.0.1",
     "@sanity/block-content-to-react": "^2.0.7",
     "@sanity/client": "^0.147.3",
-    "@types/react-helmet": "^5.0.15",
     "await-timeout": "^1.1.1",
     "classnames": "^2.2.6",
     "docz": "^2.3.0-alpha.13",
@@ -49,6 +48,9 @@
     "unfetch": "^4.1.0"
   },
   "devDependencies": {
+    "@types/react-helmet": "^5.0.15",
+    "@types/await-timeout": "^0.3.1",
+    "@types/classnames": "^2.2.9",
     "postcss-calc": "^6.0.2",
     "postcss-cssnext": "^3.1.0",
     "postcss-discard-comments": "^4.0.1",
