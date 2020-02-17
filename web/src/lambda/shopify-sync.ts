@@ -13,7 +13,7 @@ const client = sanityClient({
   useCdn: true
 });
 
-exports.handler = async (event, context) => {
+exports.handler = async (event: any) => {
   if (event.httpMethod !== 'POST' || !event.body) {
     return {
       statusCode: 400,
@@ -164,6 +164,13 @@ exports.handler = async (event, context) => {
       })
       .catch(error => {
         console.error(`Sanity error:`, error)
+        return {
+          statusCode: 500,
+          headers,
+          body: JSON.stringify({
+            error: error[0].message
+          })
+        }
       })
 
     // *~* OR *~*
