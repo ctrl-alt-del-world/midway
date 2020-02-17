@@ -2,6 +2,6 @@
 import shop from 'shopify-buy'
 
 export default shop.buildClient({
-  domain: "slater-demo.myshopify.com",
-  storefrontAccessToken: "192f24984c52fa744a2ebc1948ecee95",
+  domain: "slater.store",
+  storefrontAccessToken: "b37ccdd79ec9c25620bc9d60f3b4c066",
 })
