@@ -49,6 +49,14 @@ The studio is ready/useful, I'll more than likely further modify the structure, 
 ✖️ cart visible on the frontend  
 ✖️ Add/remove items from the cart  
 
+#### Feature roadmap
+✖️ 🍝 Add Analytics patterns (via get analytics)  
+✖️ 🍝 Add ability to do multi-variant selection  
+✖️ 🍝 Product carousel  
+✖️ 🍝 Example PDP with extended modularity  
+✖️ 🍝 Gatsby Create support for filling a sanity studio and getting a working frontend faster  
+✖️ 🍝 Docz website?  
+
 ### Shopify/
 In the Shopify folder I provide an example theme.liquid file, this file is needed if you intend to add accounts to your headless environment (which this theme has functional components to support), shopify doesn't allow you to override the URL structure of the account information, so we redirect to where the headless experience lives. We also pass the hash/pathname etc so we can use that in our headless account system.
 

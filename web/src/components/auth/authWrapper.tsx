@@ -12,7 +12,7 @@ const AuthWrapper = (props: Props) => {
   const [ready, setReady] = useState(false)
 
   useEffect(() => {
-    if (!cookie.get('midway_token') || !cookie.get('midway_email')) navigate('/account/login')
+    if (!cookie.get('customer_token') || !cookie.get('customer_email')) navigate('/account/login')
     setReady(true)
   }, [0]);
 
