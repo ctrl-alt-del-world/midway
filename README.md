@@ -35,19 +35,19 @@ The studio is ready/useful, I'll more than likely further modify the structure, 
 4. Create a repo specifically for your Gatsby build, host with Netlify or anywhere you can have a Lambda function.
 
 #### Current Feature Status
-✔️ Gatbsy Typescript style
-✔️ Fetching data and building pages from Sanity
-✔️ Cart object created via the buy-sdk
-✔️ Lambda functions being built from src->functions
-✖️ Ability to login
-✖️ Ability to register
-✖️ Ability to activate accounts
-✖️ Ability to forgot passwords
-✖️ view single product detail
-✖️ ability to add to cart
-✖️ Ability to quick add to cart
-✖️ cart visible on the frontend
-✖️ Add/remove items from the cart
+✔️ Gatbsy Typescript style  
+✔️ Fetching data and building pages from Sanity  
+✔️ Cart object created via the buy-sdk  
+✔️ Lambda functions being built from src->functions  
+✖️ Ability to login  
+✖️ Ability to register  
+✖️ Ability to activate accounts  
+✖️ Ability to forgot passwords  
+✖️ view single product detail  
+✖️ ability to add to cart  
+✖️ Ability to quick add to cart  
+✖️ cart visible on the frontend  
+✖️ Add/remove items from the cart  
 
 ### Shopify/
 In the Shopify folder I provide an example theme.liquid file, this file is needed if you intend to add accounts to your headless environment (which this theme has functional components to support), shopify doesn't allow you to override the URL structure of the account information, so we redirect to where the headless experience lives. We also pass the hash/pathname etc so we can use that in our headless account system.
