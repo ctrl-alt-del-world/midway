@@ -12,6 +12,7 @@ Thanks to [Lucas](https://github.com/lucasvocos/gatsby-sanity-shopify) for kicki
 
 Clone this repository to bootstrap a fresh Typescript Gatsby site, powered by Sanity CMS and dynamically import Shopify products to Sanity with the help of a WebHook
 
+
 ## Basic Instructions
 
 ### Initial Setup
@@ -24,12 +25,29 @@ Clone this repository to bootstrap a fresh Typescript Gatsby site, powered by Sa
 3. Edit schemas, add different content types, find out more here: [Sanity Docs](https://www.sanity.io/docs/sanity-studio)
 4. Include these schemas in the `deskStructure.js` export (include a fun icon!)
 
+The studio is ready/useful, I'll more than likely further modify the structure, like moving the default shopify items into a tab.
+
 ### Web/
 1. Rename `env.example` to `.env` by typing `mv env.example .env` in your terminal.
 2. Enter your Sanity API keys in the `.env` file.
 3. Modify `gatsby-config.js` and add your site title, etc.
 3. Develop your front end, etc. (purposely left this ultra stripped-down)
 4. Create a repo specifically for your Gatsby build, host with Netlify or anywhere you can have a Lambda function.
+
+#### Current Feature Status
+✔️ Gatbsy Typescript style
+✔️ Fetching data and building pages from Sanity
+✔️ Cart object created via the buy-sdk
+✔️ Lambda functions being built from src->functions
+✖️ Ability to login
+✖️ Ability to register
+✖️ Ability to activate accounts
+✖️ Ability to forgot passwords
+✖️ view single product detail
+✖️ ability to add to cart
+✖️ Ability to quick add to cart
+✖️ cart visible on the frontend
+✖️ Add/remove items from the cart
 
 ### Shopify/
 In the Shopify folder I provide an example theme.liquid file, this file is needed if you intend to add accounts to your headless environment (which this theme has functional components to support), shopify doesn't allow you to override the URL structure of the account information, so we redirect to where the headless experience lives. We also pass the hash/pathname etc so we can use that in our headless account system.
@@ -52,7 +70,7 @@ You can alternatively run your webhook locally, you can do this with ngrok
 
 **Gatsby site with real integrations into a Shopify Instance**
   * 👨‍💻 TYPESCRIPT 
-  * 🛒 Shopping Cart create powered by Shopif Buy SDK
+  * 🛒 Shopping Cart create powered by Shopify Buy SDK
   * 📡 Real-time content preview in development
   * ⏱ Fast & frugal builds
   * 🗃 No accidental missing fields/types
