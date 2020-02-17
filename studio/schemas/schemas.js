@@ -24,6 +24,9 @@ import internalLink from './modules/internalLink'
 import metaCard from './modules/metaCard'
 import social from './modules/social'
 import pageModule from './modules/pageModule'
+import imageModule from './modules/imageModule'
+import standardText from './modules/standardText'
+import moduleContent from './modules/moduleContent'
 
 // GraphQL Modules
 import globalContent from './tabs/globalContent'
@@ -51,6 +54,9 @@ export default createSchema({
     internalLink,
     pageModule,
     social,
+    standardText,
+    imageModule,
+    moduleContent,
     metaCard,
     blockContent,
     blockText,

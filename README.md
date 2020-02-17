@@ -18,8 +18,7 @@ Clone this repository to bootstrap a fresh Gatsby site, powered by Sanity CMS an
 
 ### Studio/
 1. In the `studio` folder run `sanity init` and create a new project.
-2. Update `studio/sanity.json` and update the Project ID.
-3. Update the studio name in `studio/package.json`.
+2. Update the studio name in `studio/package.json`.
 3. Edit schemas, add different content types, find out more here: [Sanity Docs](https://www.sanity.io/docs/sanity-studio)
 4. Include these schemas in the `deskStructure.js` export (include a fun icon!)
 

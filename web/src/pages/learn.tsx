@@ -1,7 +1,6 @@
 import React from "react"
 import cx from 'classnames'
 
-
 const Learn = ({ transitionStatus }) => {
   return ( 
     <div className={cx('midway container--m animate__page mxa outer p1', transitionStatus)}>
@@ -17,7 +16,6 @@ const Learn = ({ transitionStatus }) => {
       <p className="bold">For the best experinece, let's start with Sanity:</p>
       <ol>
         <li>In the <span className="pre">studio</span> folder run <span className="pre">sanity init</span> and create a new project.</li>
-        <li>Update <span className="pre">studio/sanity.json</span> and update the Project ID.</li>
         <li>Update the studio name in <span className="pre">studio/package.json</span>.</li>
         <li>Edit schemas, add different content types, find out more here: <a href="https://www.sanity.io/docs/sanity-studio">Sanity Docs</a></li>
         <li>Include these schemas in the <span className="pre">deskStructure.js</span> export (include a fun icon!)</li>

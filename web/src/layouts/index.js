@@ -1,5 +1,6 @@
 import React from 'react'
 import { Picostate } from '@picostate/react'
+import Helmet from 'react-helmet'
 
 import { Header } from "src/components/header"
 
@@ -11,6 +12,9 @@ const Layout = ({ children }) => {
   return (
     <Picostate store={store}>
       <div>
+        <Helmet>
+          <link href="https://fonts.googleapis.com/css?family=Space+Mono" rel="stylesheet" />
+        </Helmet>
         <Header />
         {children}
       </div>

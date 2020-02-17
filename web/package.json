@@ -8,6 +8,7 @@
     "@picostate/react": "^3.0.1",
     "@sanity/client": "^0.147.3",
     "classnames": "^2.2.6",
+    "docz": "^2.3.0-alpha.13",
     "gatsby": "^2.18.12",
     "gatsby-image": "^2.2.34",
     "gatsby-plugin-create-client-paths": "^2.1.22",

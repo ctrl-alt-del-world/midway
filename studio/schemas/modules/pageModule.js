@@ -3,6 +3,16 @@ export default {
   name: 'pageModule',
   type: 'object',
   hidden: true,
+  fieldsets: [
+    {
+      name: 'modules',
+      title: 'Page Modules',
+      options: {
+        collapsible: true,
+        collapsed: true
+      }
+    }
+  ],
   fields: [
     {
       name: 'title',
@@ -20,9 +30,10 @@ export default {
       validation: Rule => Rule.required()
     },
     {
-      name: 'body',
-      title: 'Body',
-      type: 'blockContent'
+      name: 'modules',
+      title: 'Modules',
+      type: 'moduleContent',
+      fieldset: 'modules'
     }
   ]
 }

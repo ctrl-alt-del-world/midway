@@ -18,6 +18,7 @@
 @import './lib/_containers.css';
 @import './lib/_global.css';
 @import './lib/_functional.css';
+@import './lib/_typography.css';
 
 /* Page animations */
 @import './lib/_animate.css';
