@@ -6,11 +6,9 @@
 
 // You can delete this file if you're not using it
 
-const checkout = require('./api/ecommerce/checkout')
-
-exports.onInitialClientRender = () => {
-  // Hydrate the checkout on client entry
-  checkout.hydrate()
-  // Fetches products, more on this later if we use it
-  // checkout.products()
-}
+  
+import React from "react"
+import { StoreContextProvider } from "src/context/siteContext"
+export const wrapRootElement = ({ element }) => (
+  <StoreContextProvider>{element}</StoreContextProvider>
+)
