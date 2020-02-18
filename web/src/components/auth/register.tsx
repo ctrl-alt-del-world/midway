@@ -11,7 +11,7 @@ export const Register = ({path}: {path: string}) => {
 
   const handleRegister = useCallback(
     (email, password, firstName, lastName) =>
-      fetch(`/.netlify/functions/newAccount`, {
+      fetch(`/.netlify/functions/register`, {
         method: "POST",
         body: JSON.stringify({
           email,

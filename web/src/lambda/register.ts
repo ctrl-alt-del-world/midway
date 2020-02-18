@@ -16,7 +16,7 @@ const shopifyConfig = {
   'X-Shopify-Storefront-Access-Token': SHOPIFY_TOKEN
 }
 
-exports.handler = (event, context, callback) => {
+exports.handler = async (event, context, callback) => {
   // TEST for POST request
   if (event.httpMethod !== 'POST' || !event.body) {
     return {
