@@ -41,6 +41,7 @@ exports.handler = async (event, context, callback) => {
     };
   }
 
+  console.log(process.env.SHOPIFY_GRAPHQL_URL)
   console.log(`[λ: new account]`, { email: data.email, password: data.password, firstName: data.firstName, lastName: data.lastName })
 
   const payload = {
@@ -75,6 +76,8 @@ exports.handler = async (event, context, callback) => {
       headers: shopifyConfig,
       data: JSON.stringify(payload)
     })
+
+    console.log(customer.data)
     const { customerCreate } = customer.data.data
 
     if (customer.data.errors) throw customer.data.errors[0]
@@ -117,11 +120,16 @@ exports.handler = async (event, context, callback) => {
         throw customerAccessTokenCreate.userErrors
       } else {
         token = customerAccessTokenCreate.customerAccessToken.accessToken
+        // customer = customer.data.customer
         let response = {
           statusCode: 200,
           headers,
           body: JSON.stringify({
-            token
+            token,
+            customer: {
+              firstName: data.firstName,
+              lastName: data.lastName
+            }
           })
         }
         return response

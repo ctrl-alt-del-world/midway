@@ -10,14 +10,9 @@ import Client from "shopify-buy"
 
 const SHOPIFY_CHECKOUT_STORAGE_KEY = "shopify_checkout_id"
 
-const {
-  SHOPIFY_TOKEN,
-  SHOPIFY_GRAPHQL_URL
-} = process.env
-
 const client = Client.buildClient({
-  storefrontAccessToken: SHOPIFY_TOKEN,
-  domain: SHOPIFY_GRAPHQL_URL,
+  storefrontAccessToken: 'b37ccdd79ec9c25620bc9d60f3b4c066',
+  domain: 'slater.store',
 })
 
 const initialStoreState = {

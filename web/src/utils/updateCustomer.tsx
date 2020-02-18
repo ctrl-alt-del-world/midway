@@ -6,8 +6,6 @@ export const UpdateCustomer = (res: {
   token: string
   customer: {
     firstName: string
-    defaultAddress: {}
-    orders: []
   }
 }, email: string) => {
   cookie.set("customer_token", res.token, { expires: 25 })
@@ -15,11 +13,9 @@ export const UpdateCustomer = (res: {
     expires: 25,
   })
   cookie.set("customer_email", email, { expires: 25 })
-  cookie.set("customer_defaultAddress", res.customer.defaultAddress)
   store.hydrate({
     customerToken: res.token,
     email,
-    firstName: res.customer.firstName,
-    orders: res.customer.orders
+    firstName: res.customer.firstName
   })()
 }

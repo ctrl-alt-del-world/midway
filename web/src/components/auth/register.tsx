@@ -23,8 +23,10 @@ export const Register = ({path}: {path: string}) => {
         .then(res => res.json())
         .then(res => {
           if (res.error) {
+            console.group('hey>', res)
             throw new Error(res.error)
           } else {
+            console.log('sup fam 1', res)
             UpdateCustomer(res, email)
             // re-hydrate the cart so it contains the email
             // checkout.hydrate()
