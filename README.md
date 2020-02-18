@@ -40,7 +40,8 @@ The studio is ready/useful, I'll more than likely further modify the structure, 
 ✔️ Cart object created via the buy-sdk  
 ✔️ Lambda functions being built from src->functions  
 ✖️ Ability to login  
-✖️ Ability to register  
+✔️ Ability to register  
+✖️ Better error handling for register  
 ✖️ Ability to activate accounts  
 ✖️ Ability to forgot passwords  
 ✖️ view single product detail  
