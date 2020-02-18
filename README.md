@@ -39,8 +39,9 @@ The studio is ready/useful, I'll more than likely further modify the structure, 
 ✔️ Fetching data and building pages from Sanity  
 ✔️ Cart object created via the buy-sdk  
 ✔️ Lambda functions being built from src->functions  
-✖️ Ability to login  
+✔️ Ability to login  
 ✔️ Ability to register  
+✔️ Ability to logout  
 ✖️ Better error handling for register  
 ✖️ Ability to activate accounts  
 ✖️ Ability to forgot passwords  
