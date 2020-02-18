@@ -12,7 +12,7 @@ export const Login = ({ path }: { path: string }) => {
 
   const handleLogin = useCallback(
     (email, password) =>
-      fetch(`/.netlify/functions/accounts`, {
+      fetch(`/.netlify/functions/login`, {
         method: "POST",
         body: JSON.stringify({
           email,
