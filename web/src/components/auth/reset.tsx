@@ -45,7 +45,7 @@ export const Reset = (props: {
         await Timeout.set(400)
         throw new Error("Passwords do not match.")
       }
-        fetch(`/.netlify/functions/resetPassword`, {
+        fetch(`/.netlify/functions/reset-password`, {
           method: 'POST',
           body: JSON.stringify({
             id: encode('Customer', props.id),
