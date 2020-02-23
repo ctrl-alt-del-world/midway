@@ -68,7 +68,10 @@ export const Register = ({path}: {path: string}) => {
   )
   const { error, isRejected, isPending, isReloading, load } = useLoads(
     'handleRegister',
-    handleRegister as any
+    handleRegister as any,
+    {
+      defer: true
+    }
   )
 
   const handleSubmit = (e: React.FormEvent) => {
