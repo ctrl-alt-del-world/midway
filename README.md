@@ -45,7 +45,7 @@ The studio is ready/useful, I'll more than likely further modify the structure, 
 ✔️ Better error handling for register  
 ✖️ Ability to activate accounts  
 ✔️ Ability to forgot passwords  
-✖️ Ability to reset passwords  
+✔️ Ability to reset passwords  
 ✖️ view single product detail  
 ✖️ ability to add to cart  
 ✖️ Ability to quick add to cart  

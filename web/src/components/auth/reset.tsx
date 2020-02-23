@@ -62,11 +62,11 @@ export const Reset = (props: {
               setSubmitting(false)
             } else {
               setFormSucces(true)
-              UpdateCustomer(res, res.customer.email)
+              // UpdateCustomer(res, res.customer.email)
               // re-hydrate the cart so it contains the email
               // checkout.hydrate()
               setTimeout(() => {
-                navigate('/')
+                navigate('/account/login')
               }, 400)
             }
           })
@@ -76,7 +76,10 @@ export const Reset = (props: {
 
   const { error, isRejected, isPending, isReloading, load } = useLoads(
     "handleReset",
-    handleReset as any
+    handleReset as any,
+    {
+      defer: true
+    }
   )
 
   const handleSubmit = (e: React.FormEvent) => {
