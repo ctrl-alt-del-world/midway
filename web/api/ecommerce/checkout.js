@@ -3,6 +3,16 @@ import shop from "../shopify"
 import store from "../../src/state/store"
 import { decode } from "shopify-gid"
 
+/*
+
+  NOT IN USE:
+
+    This file is a reference for myself, we're not actually using this.
+    I have decided to give the whole context way a shot, but I still want this file 
+    for additional reference use.
+
+    */
+
 export function create() {
   console.log('create')
   return shop.checkout

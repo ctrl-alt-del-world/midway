@@ -11,8 +11,8 @@ import Client from "shopify-buy"
 const SHOPIFY_CHECKOUT_STORAGE_KEY = "shopify_checkout_id"
 
 const client = Client.buildClient({
-  storefrontAccessToken: 'b37ccdd79ec9c25620bc9d60f3b4c066',
-  domain: 'slater.store',
+  storefrontAccessToken: '919118b51c64eb39f9627dd1fa0bd936',
+  domain: 'midway-sanity.myshopify.com',
 })
 
 const initialStoreState = {
