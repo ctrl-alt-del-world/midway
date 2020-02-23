@@ -2,7 +2,7 @@ import React, { useState, useCallback } from 'react'
 import Helmet from 'react-helmet'
 import fetch from 'unfetch'
 import { Link, navigate } from 'gatsby'
-import { useDeferredLoads } from 'react-loads'
+import { useLoads } from 'react-loads'
 import PasswordValidator from 'password-validator'
 import Timeout from 'await-timeout'
 
@@ -66,7 +66,7 @@ export const Register = ({path}: {path: string}) => {
         },
     [passwordField1, passwordField2, attempts]
   )
-  const { error, isRejected, isPending, isReloading, load } = useDeferredLoads(
+  const { error, isRejected, isPending, isReloading, load } = useLoads(
     'handleRegister',
     handleRegister as any
   )
@@ -85,9 +85,17 @@ export const Register = ({path}: {path: string}) => {
             <h5 className='pb0 caps sans ls'>Sign Up</h5>
           </div>
 
-          {error && !isReloading && (
-            <div className='small studio mt1 error mxa'>
-              <div>{error.message}</div>
+          {(isPending ||
+            isReloading) && (
+            <span>Loading</span>
+          )}
+
+          {isRejected && (
+            <div className="studio mt1 error">
+              <span role="img" aria-label="error">
+                ⚠️
+              </span>
+              : {error.message}
             </div>
           )}
 
@@ -117,7 +125,12 @@ export const Register = ({path}: {path: string}) => {
 
           <div className='container--m ac mya mt1'>
             <button type='submit' className='button button--full button--lg cg ac akz ls-s my1 inline-block caps s14'>
-              Submit
+              {(isPending ||
+                isReloading) ? (
+                <span>Loading</span>
+              ): (
+                <span>Submit</span>
+              )}
             </button>
             <p className='py1 s14'>
               Already have an account?{' '}

@@ -82,16 +82,21 @@ export const Login = ({ path }: { path: string }) => {
             )}
             <div className="pb1 pya">
               <div className="caps sans s14 ls my05">Email</div>
-              <input name="email" type="text" required={true} className="accounts__input py1 s16 x" placeholder="Enter Email" />
+              <input name="email" type="text" required={true} className="accounts__input py1 px1 s16 x" placeholder="Enter Email" />
             </div>
             <div className="mb1 pb1 pya">
               <div className="caps sans s14 ls mt01 py05">Password</div>
-              <input name="password" type="password" required={true} className="accounts__input py1 mb1 s16 x" placeholder="Enter Password" />
+              <input name="password" type="password" required={true} className="accounts__input py1 px1 mb1 s16 x" placeholder="Enter Password" />
             </div>
             <div className="caps sans ls my1"/>
             <div className="x mxa ac">
               <button type="submit" className="button button--wide button--lg cg ac akz ls-s mt1 inline-block caps s14">
-                Log in
+                {(isPending ||
+                  isReloading) ? (
+                  <span>Loading</span>
+                ): (
+                  <span>Log in</span>
+                )}
               </button>
             </div>
           </div>

@@ -80,7 +80,12 @@ export const ForgotPassword = ({ path }: { path: string }) => {
                 type="submit"
                 className="button button--wide cg ac akz ls-s mt1 inline-block caps s14 my1"
               >
-                Request Reset
+                {(isPending ||
+                  isReloading) ? (
+                  <span>Loading</span>
+                ): (
+                  <span>Request Reset</span>
+                )}
               </button>
             </div>
           </div>
