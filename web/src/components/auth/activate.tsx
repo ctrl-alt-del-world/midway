@@ -96,12 +96,11 @@ const Activate = (props: { id: string; token: string }) => {
           <div className="container--xl ma ac">
             <h5 className="pb0 caps sans ls">Activate Account</h5>
             <h2 className="my0">Almost there.</h2>
-            <h3 className="serif mt025">Your cats will thank you for it.</h3>
           </div>
           <div className="x container--s al mxa">
             {error && !isReloading && (
               <div className="studio mt1 error f col">
-                <span>Error bango</span>
+                <span>{error.message}</span>
               </div>
             )}
 
@@ -121,7 +120,7 @@ const Activate = (props: { id: string; token: string }) => {
               <div className="pb1  x pya">
                 <div className="caps sans ls my1">Password</div>
                 <input
-                  className="py1  x s16 s16"
+                  className="py1 px1  x s16 s16"
                   type="password"
                   value={passwordField1}
                   onChange={e => setPasswordField1(e.target.value)}
@@ -132,7 +131,7 @@ const Activate = (props: { id: string; token: string }) => {
               <div className="pb1 mb1 x pya">
                 <div className="caps sans ls mt1 py05">Confirm Password</div>
                 <input
-                  className="py1 x mb1 s16"
+                  className="py1 px1 x mb1 s16"
                   type="password"
                   value={passwordField2}
                   onChange={e => setPasswordField2(e.target.value)}
