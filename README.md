@@ -42,9 +42,10 @@ The studio is ready/useful, I'll more than likely further modify the structure, 
 ✔️ Ability to login  
 ✔️ Ability to register  
 ✔️ Ability to logout  
-✖️ Better error handling for register  
+✔️ Better error handling for register  
 ✖️ Ability to activate accounts  
-✖️ Ability to forgot passwords  
+✔️ Ability to forgot passwords  
+✖️ Ability to reset passwords  
 ✖️ view single product detail  
 ✖️ ability to add to cart  
 ✖️ Ability to quick add to cart  

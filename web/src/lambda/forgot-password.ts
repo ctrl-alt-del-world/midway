@@ -17,6 +17,7 @@ const shopifyConfig = {
 
 exports.handler = async (event, context, callback) => {
 
+  console.log('found?')
   if (event.httpMethod !== 'POST' || !event.body) {
     return {
       statusCode: 400,
@@ -25,7 +26,11 @@ exports.handler = async (event, context, callback) => {
     }
   }
 
-  let data;
+  let data: {
+    email?: string
+  };
+
+  console.log('data', event.body)
 
   try {
     data = JSON.parse(event.body)
@@ -83,7 +88,7 @@ exports.handler = async (event, context, callback) => {
   } catch (err) {
 
     return {
-      statusCode: 404,
+      statusCode: 500,
       headers,
       body: JSON.stringify({
         error: err[0].message

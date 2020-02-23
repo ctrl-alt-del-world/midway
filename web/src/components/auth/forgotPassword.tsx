@@ -10,18 +10,19 @@ export const ForgotPassword = ({ path }: { path: string }) => {
 
   const handleForgot = useCallback(
     (email) =>
-      fetch(`/.netlify/functions/forgotPassword`, {
+      fetch(`/.netlify/functions/forgot-password`, {
         method: "POST",
         body: JSON.stringify({
-          email,
+          email
         }),
       })
         .then(res => res.json())
         .then(res => {
           if (res.error) {
             throw new Error(res.error)
+          } else {
+            setFormSuccess(true)
           }
-          setFormSuccess(true)
         }),
     []
   )
@@ -45,24 +46,20 @@ export const ForgotPassword = ({ path }: { path: string }) => {
       <Helmet title="forgot password" />
       <div className="nav-spacer" />
       <div className="accounts__wrapper cg f jcc px1 outer aic">
-        <form
-          className="f col jcc x aic y"
-          onSubmit={e => handleSubmit(e)}
-          ref={form}
-        >
+        <form className="f col jcc x aic y" onSubmit={e => handleSubmit(e)} ref={form}>
           <div className="container--xl mya ac">
             <div className="m1"/>
             <h2 className="my0">Forgot your password?</h2>
           </div>
 
-          {error && (
-            <div className="small studio mt1 error">
-              <span role="img" aria-label="error">
-                ⚠️
-              </span>
-              : {error}
-            </div>
-          )}
+          {isRejected && (
+              <div className="studio mt1 error">
+                <span role="img" aria-label="error">
+                  ⚠️
+                </span>
+                : {error.message}
+              </div>
+            )}
 
           {formSuccess && (
             <div className="small studio mt1">
@@ -73,13 +70,10 @@ export const ForgotPassword = ({ path }: { path: string }) => {
           <div className="x container--s col aic jcc">
             <div className="pb1 mb1 pya">
               <div className="caps sans ls my05">Email</div>
-              <input name="email" type="text" required={true} className="accounts__input py1 x s16 mb1" placeholder="Enter Email" />
+              <input name="email" type="text" required={true} className="accounts__input py1 px1 x s16 mb1" placeholder="Enter Email" />
             </div>
             <div className="x mxa ac">
-              <button
-                type="submit"
-                className="button button--wide cg ac akz ls-s mt1 inline-block caps s14 my1"
-              >
+              <button type="submit" className="button button--wide cg ac akz ls-s mt1 inline-block caps s14 my1">
                 {(isPending ||
                   isReloading) ? (
                   <span>Loading</span>
