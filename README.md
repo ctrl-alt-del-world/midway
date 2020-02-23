@@ -51,6 +51,10 @@ The studio is ready/useful, I'll more than likely further modify the structure, 
 ✖️ Ability to quick add to cart  
 ✖️ cart visible on the frontend  
 ✖️ Add/remove items from the cart  
+✖️ Ability to see orders  
+✖️ Add/remove addresses  
+✖️ Ability to see/edit addresses  
+
 
 #### Feature roadmap
 ✖️ 🍝 Add Analytics patterns (via get analytics)  
@@ -62,6 +66,8 @@ The studio is ready/useful, I'll more than likely further modify the structure, 
 
 ### Shopify/
 In the Shopify folder I provide an example theme.liquid file, this file is needed if you intend to add accounts to your headless environment (which this theme has functional components to support), shopify doesn't allow you to override the URL structure of the account information, so we redirect to where the headless experience lives. We also pass the hash/pathname etc so we can use that in our headless account system.
+
+Please keep in mind I assume you are already familiar with the Shopify eco system, this repo assumes you've already crafted ecommerce experiences before.
 
 ### Shopify 
 
