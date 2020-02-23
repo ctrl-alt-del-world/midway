@@ -28,9 +28,15 @@ import imageModule from './modules/imageModule'
 import standardText from './modules/standardText'
 import moduleContent from './modules/moduleContent'
 
-// GraphQL Modules
+// Product Modules
+import productModule from './modules/productModule'
+import shopifyProductModule from './modules/shopifyProductModule'
+
+
+// GraphQL Tab Modules
 import globalContent from './tabs/globalContent'
 import pageContent from './tabs/pageContent'
+import productContent from './tabs/productContent'
 
 
 // Then we give our schema to the builder and provide the result to Sanity
@@ -60,9 +66,13 @@ export default createSchema({
     metaCard,
     blockContent,
     blockText,
-    // Grapqhl things
+    // Product Specific Modules
+    productModule,
+    shopifyProductModule,
+    // Grapqhl Tab sthings
     globalContent,
-    pageContent
+    pageContent,
+    productContent
 
     // When added to this list, object types can be used as
     // { type: 'typename' } in other document schemas
