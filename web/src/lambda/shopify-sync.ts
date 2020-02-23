@@ -114,7 +114,7 @@ exports.handler = async (event: APIGatewayEvent): Promise<any> => {
                 .transaction()
                 .createIfNotExists(product)
                 .patch(data.id.toString(), patch => patch.set({
-                  variants: data.variants.map(variant => ({
+                  "content.shopify.variants": data.variants.map(variant => ({
                     _type: 'reference',
                     _ref: variant.id.toString(),
                     _key: variant.id.toString(),
