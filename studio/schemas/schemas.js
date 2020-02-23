@@ -31,12 +31,15 @@ import moduleContent from './modules/moduleContent'
 // Product Modules
 import productModule from './modules/productModule'
 import shopifyProductModule from './modules/shopifyProductModule'
+import shopifyVariantModule from './modules/shopifyVariantModule'
+import variantModule from './modules/variantModule'
 import defaultVariant from './modules/defaultVariant'
 
 
 // GraphQL Tab Modules
 import globalContent from './tabs/globalContent'
 import pageContent from './tabs/pageContent'
+import variantContent from './tabs/variantContent'
 import productContent from './tabs/productContent'
 
 
@@ -70,11 +73,14 @@ export default createSchema({
     // Product Specific Modules
     productModule,
     shopifyProductModule,
+    shopifyVariantModule,
+    variantModule,
     defaultVariant,
     // Grapqhl Tab sthings
     globalContent,
     pageContent,
-    productContent
+    productContent,
+    variantContent
 
     // When added to this list, object types can be used as
     // { type: 'typename' } in other document schemas

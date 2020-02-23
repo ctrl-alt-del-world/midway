@@ -87,12 +87,19 @@ exports.handler = async (event: APIGatewayEvent): Promise<any> => {
             const variantData = {
               _type: 'productVariant',
               _id: variant.id.toString(),
-              productId: data.id,
-              variantId: variant.id,
-              title: data.title,
-              variantTitle: variant.title,
-              sku: variant.sku,
-              price: variant.price
+              content: {
+                main: {
+                  title: data.title,
+                },
+                shopify: {
+                  productId: data.id,
+                  variantId: variant.id,
+                  title: data.title,
+                  variantTitle: variant.title,
+                  sku: variant.sku,
+                  price: variant.price
+                }
+              }
             };
 
             return client

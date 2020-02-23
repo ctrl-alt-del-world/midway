@@ -17,7 +17,7 @@ export const ProductVariantParent = S.listItem()
       S.documentList()
         .title('Variants')
         .menuItems(S.documentTypeList('productVariant').getMenuItems())
-        .filter('_type == $type && productId == $productId')
+        .filter('_type == $type && content.shopify.productId == $productId')
         .params({ type: 'productVariant', productId: Number(productId) })
     )
 );
