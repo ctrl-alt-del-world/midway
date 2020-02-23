@@ -138,7 +138,7 @@ export const Register = ({path}: {path: string}) => {
             <p className='py1 s14'>
               Already have an account?{' '}
               <Link className='underline active' to='/account/login'>
-                Sign Up
+                Log in
               </Link>
             </p>
           </div>
