@@ -41,32 +41,30 @@ export const Register = ({path}: {path: string}) => {
         throw new Error("Passwords do not match.")
       }
 
-        // fetch(`/.netlify/functions/register`, {
-        //   method: 'POST',
-        //   body: JSON.stringify({
-        //     email,
-        //     password,
-        //     firstName,
-        //     lastName
-        //   }),
-        // })
-        //   .then(res => res.json())
-        //   .then(res => {
-        //     if (res.error) {
-        //       console.group('hey>', res)
-        //       throw new Error(res.error)
-        //     } else {
-        //       console.log('sup fam 1', res)
-        //       UpdateCustomer(res, email)
-        //       // re-hydrate the cart so it contains the email
-        //       // checkout.hydrate()
-        //       setTimeout(() => {
-        //         navigate('/')
-        //       }, 400)
-        //     }
-        //   })
+        fetch(`/.netlify/functions/register`, {
+          method: 'POST',
+          body: JSON.stringify({
+            email,
+            password,
+            firstName,
+            lastName
+          }),
+        })
+          .then(res => res.json())
+          .then(res => {
+            if (res.error) {
+              throw new Error(res.error)
+            } else {
+              UpdateCustomer(res, email)
+              // re-hydrate the cart so it contains the email
+              // checkout.hydrate()
+              setTimeout(() => {
+                navigate('/')
+              }, 400)
+            }
+          })
         },
-    []
+    [passwordField1, passwordField2, attempts]
   )
   const { error, isRejected, isPending, isReloading, load } = useDeferredLoads(
     'handleRegister',
@@ -96,28 +94,28 @@ export const Register = ({path}: {path: string}) => {
           <div className='x container--s col'>
             <div className='pya pb1'>
               <div className='caps sans s14 ls mt1'>First Name</div>
-              <input name='firstName' type='text' required={true} className='accounts__input s16 mb0 x py1' placeholder='First Name' />
+              <input name='firstName' type='text' required={true} className='accounts__input s16 mb0 x px1 py1' placeholder='First Name' />
             </div>
             <div className='pya pb1'>
               <div className='caps sans s14 ls mt1'>Last Name</div>
-              <input name='lastName' type='text' required={true} className='accounts__input s16 mb0 x py1' placeholder='Last Name' />
+              <input name='lastName' type='text' required={true} className='accounts__input s16 mb0 x px1 py1' placeholder='Last Name' />
             </div>
             <div className='pya pb1'>
               <div className='caps sans s14 ls mt1'>Email</div>
-              <input name='email' type='text' required={true} className='accounts__input s16 mb0 x py1' placeholder='Enter Email' />
+              <input name='email' type='text' required={true} className='accounts__input s16 mb0 x px1 py1' placeholder='Enter Email' />
             </div>
             <div className='pya pb1'>
               <div className='caps sans s14 ls mt1 mb0 pb0'>Password</div>
               <p className='mini mt0'>(Must be at least 8 characters long and include a both a lowercase and uppercase letter).</p>
-              <input name='password' value={passwordField1} onChange={e => setPasswordField1(e.target.value)} type='password' required={true} className='accounts__input s16 mb0 x py1' placeholder='Password' />
+              <input name='password' value={passwordField1} onChange={e => setPasswordField1(e.target.value)} type='password' required={true} className='accounts__input s16 mb0 x px1 py1' placeholder='Password' />
             </div>
             <div className='pya pb1'>
               <div className='caps sans s14 ls mt1'>Confirm Password</div>
-              <input name='passwordConfirm' value={passwordField2} onChange={e => setPasswordField2(e.target.value)}  type='password' required={true} className='accounts__input s16 mb1 x py1' placeholder='Verify Password' />
+              <input name='passwordConfirm' value={passwordField2} onChange={e => setPasswordField2(e.target.value)}  type='password' required={true} className='accounts__input s16 mb1 x px1 py1' placeholder='Verify Password' />
             </div>
           </div>
 
-          <div className='container--m mya mt1'>
+          <div className='container--m ac mya mt1'>
             <button type='submit' className='button button--full button--lg cg ac akz ls-s my1 inline-block caps s14'>
               Submit
             </button>
