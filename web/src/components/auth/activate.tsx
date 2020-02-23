@@ -50,7 +50,7 @@ const Activate = (props: { id: string; token: string }) => {
         },
       }
 
-      const res = await fetch(`/.netlify/functions/verify`, {
+      const res = await fetch(`/.netlify/functions/activate`, {
         method: "POST",
         body: JSON.stringify(body),
       })
