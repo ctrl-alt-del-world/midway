@@ -5,8 +5,8 @@ export default {
   hidden: true,
   fieldsets: [
     {
-      name: 'modules',
-      title: 'Page Modules',
+      name: 'default',
+      title: 'Default Variant',
       options: {
         collapsible: true,
         collapsed: true
@@ -36,7 +36,7 @@ export default {
     {
       name: 'productId',
       title: 'Product ID',
-      type: 'string',
+      type: 'number',
       description: 'This comes from Shopify and cannot be changed',
       readOnly: true,
       hidden: true
@@ -49,35 +49,14 @@ export default {
       readOnly: true
     },
     {
-      name: 'slug',
-      title: 'Slug',
-      type: 'slug',
-      description: 'This comes from Shopify and cannot be changed',
-      readOnly: true,
-      options: {
-        source: 'title',
-        maxLength: 96
-      },
-      validation: Rule => Rule.required()
-    },
-    {
-      name: 'mainImage',
-      title: 'Main image',
-      type: 'image',
-      options: {
-        hotspot: true
-      }
-    },
-    {
-      name: 'productDescription',
-      title: 'Product Description',
-      type: 'blockContent'
-    },
-    {
       name: 'variants',
       title: 'Variants',
       type: 'array',
       of: [{ type: 'reference', to: { type: 'productVariant' } }]
+    },
+    {
+      name: 'defaultVariant',
+      type: 'defaultVariant'
     }
   ]
 }

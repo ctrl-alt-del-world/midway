@@ -1,4 +1,5 @@
-const sanityClient = require('@sanity/client');
+import { APIGatewayEvent } from "aws-lambda"
+import sanityClient from '@sanity/client'
 
 const {
   SANITY_API_TOKEN,
@@ -10,10 +11,10 @@ const client = sanityClient({
   projectId: SANITY_PROJECT_ID,
   dataset: SANITY_DATASET,
   token: SANITY_API_TOKEN,
-  useCdn: true
+  useCdn: false
 });
 
-exports.handler = async (event) => {
+exports.handler = async (event: APIGatewayEvent): Promise<any> => {
   if (event.httpMethod !== 'POST' || !event.body) {
     return {
       statusCode: 400,
@@ -45,14 +46,31 @@ exports.handler = async (event) => {
     const product = {
       _type: 'product',
       _id: data.id.toString(),
-      productId: data.id,
-      title: data.title,
-      defaultPrice: data.variants[0].price,
-      slug: {
-        _type: 'slug',
-        current: data.handle
+      content: {
+        shopify: {
+          productId: data.id,
+          title: data.title,
+          defaultPrice: data.variants[0].price,
+          defaultVariant: {
+            title: data.variants[0].title,
+            price: data.variants[0].price,
+            sku: data.variants[0].sku,
+            variantId:  data.variants[0].id,
+            taxable: data.variants[0].taxable,
+            inventoryQuantity: data.variants[0].inventory_quantity,
+            inventoryPolicy: data.variants[0].inventory_policy,
+            barcode: data.variants[0].barcode
+          }
+        },
+        main: {
+          title: data.title,
+          slug: {
+            _type: 'slug',
+            current: data.handle
+          }
+        }
       }
-    };
+    }
 
     return client
       .transaction()
@@ -157,7 +175,7 @@ exports.handler = async (event) => {
     // tread carefully: 
     return client
       .patch(data.id.toString())
-      .set({ deleted: true })
+      .set({ 'content.shopify.deleted': true })
       .commit()
       .then(deletedObject => {
         console.log(`successfully marked ${data.id} as 'deleted'`)

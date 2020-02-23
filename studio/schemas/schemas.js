@@ -31,6 +31,7 @@ import moduleContent from './modules/moduleContent'
 // Product Modules
 import productModule from './modules/productModule'
 import shopifyProductModule from './modules/shopifyProductModule'
+import defaultVariant from './modules/defaultVariant'
 
 
 // GraphQL Tab Modules
@@ -69,6 +70,7 @@ export default createSchema({
     // Product Specific Modules
     productModule,
     shopifyProductModule,
+    defaultVariant,
     // Grapqhl Tab sthings
     globalContent,
     pageContent,
