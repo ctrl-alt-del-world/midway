@@ -18,6 +18,8 @@ const client = Client.buildClient({
 const initialStoreState = {
   client,
   isAdding: false,
+  cartIsOpen: false,
+  navIsOpen: false,
   checkout: { lineItems: [] },
 }
 
@@ -47,34 +49,39 @@ function setCheckoutInState(checkout, setStore) {
 
 const StoreContextProvider = ({ children }) => {
   const [store, setStore] = useState(initialStoreState)
+  const [initStore, setInitStore] = useState(false)
 
   useEffect(() => {
-    const initializeCheckout = async () => {
-      // Check for an existing cart.
-      const isBrowser = typeof window !== "undefined"
-      const existingCheckoutId = isBrowser
-        ? localStorage.getItem(SHOPIFY_CHECKOUT_STORAGE_KEY)
-        : null
+    if (initStore === false) {
+      const initializeCheckout = async () => {
+        // Check for an existing cart.
+        const isBrowser = typeof window !== "undefined"
+        const existingCheckoutId = isBrowser
+          ? localStorage.getItem(SHOPIFY_CHECKOUT_STORAGE_KEY)
+          : null
 
-      if (existingCheckoutId) {
-        try {
-          const checkout = await fetchCheckout(store, existingCheckoutId)
-          // Make sure this cart hasn’t already been purchased.
-          if (!checkout.completedAt) {
-            setCheckoutInState(checkout, setStore)
-            return
+        if (existingCheckoutId) {
+          try {
+            const checkout = await fetchCheckout(store, existingCheckoutId)
+            // Make sure this cart hasn’t already been purchased.
+            console.log('sup checkout?', checkout)
+            if (!checkout.completedAt) {
+              setCheckoutInState(checkout, setStore)
+              return
+            }
+          } catch (e) {
+            localStorage.setItem(SHOPIFY_CHECKOUT_STORAGE_KEY, null)
           }
-        } catch (e) {
-          localStorage.setItem(SHOPIFY_CHECKOUT_STORAGE_KEY, null)
         }
+
+        const newCheckout = await createNewCheckout(store)
+        setCheckoutInState(newCheckout, setStore)
       }
 
-      const newCheckout = await createNewCheckout(store)
-      setCheckoutInState(newCheckout, setStore)
+      initializeCheckout()
+      setInitStore(true)
     }
-
-    initializeCheckout()
-  }, [store, setStore, store.client.checkout])
+  }, [store, setStore, store.client.checkout, initStore])
 
   return (
     <StoreContext.Provider
@@ -138,7 +145,8 @@ function useAddItemToCart() {
     setStore,
   } = useContext(StoreContext)
 
-  async function addItemToCart(variantId, quantity) {
+  async function addItemToCart(variantId: string, quantity: number, attributes: []) {
+    console.log(variantId, quantity)
     if (variantId === "" || !quantity) {
       console.error("Both a size and quantity are required.")
       return
@@ -149,7 +157,7 @@ function useAddItemToCart() {
     })
 
     const checkoutId = checkout.id
-    const lineItemsToAdd = [{ variantId, quantity: parseInt(quantity, 10) }]
+    const lineItemsToAdd = [{ variantId, quantity, customAttributes: attributes }]
 
     const newCheckout = await client.checkout.addLineItems(
       checkoutId,
@@ -193,6 +201,21 @@ function useCheckout() {
   }
 }
 
+function useToggleCart() {
+  const {
+    store: { cartIsOpen },
+    setStore
+  } = useContext(StoreContext)
+
+  async function toggleCart() {
+    setStore(prevState => {
+      return { ...prevState, cartIsOpen: !cartIsOpen }
+    })
+  }
+
+  return toggleCart
+}
+
 export {
   StoreContextProvider,
   useAddItemToCart,
@@ -202,4 +225,5 @@ export {
   useCartTotals,
   useRemoveItemFromCart,
   useCheckout,
+  useToggleCart
 }
