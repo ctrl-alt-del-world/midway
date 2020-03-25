@@ -2,6 +2,8 @@
   --black: #000;
   --white : #ffffff;
   --red: #D8532E;
+
+  --blue: #041893;
 }
 
 .error {
@@ -12,4 +14,8 @@
 }
 .cw {
   color: var(--white);
+}
+
+.bcblue {
+  background-color: var(--blue);
 }
