@@ -17,8 +17,9 @@ module.exports = {
   },
   siteMetadata: {
     title: `Midway`,
-    description: `Gatsby Repo`,
+    description: `Gatsby + Sanity + Shopify Repo`,
     author: `iamkevingreen`,
+    password: true
   },
   plugins: [
     `gatsby-plugin-react-helmet`,

@@ -10,6 +10,7 @@
 
 /* Midway Specific Styles, feel free to remove */
 @import './midway/_learn.css';
+@import './midway/_password.css';
 
 
 /* My generic Lib import, feel free to remove for vanilla styles */

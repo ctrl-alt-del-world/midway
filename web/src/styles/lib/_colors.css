@@ -15,7 +15,14 @@
 .cw {
   color: var(--white);
 }
+.cblue {
+  color: var(--blue);
+}
 
 .bcblue {
   background-color: var(--blue);
+}
+
+.bcw {
+  background-color: var(--white);
 }
