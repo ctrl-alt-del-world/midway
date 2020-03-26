@@ -7,10 +7,16 @@ export const RenderModules = (modules: []) => {
       _key: string,
       _type: string
     }) => {
-      return <Modules
-        key={module._key}
-        type={module._type}
-        reactModule={module} />
+      return (
+        <React.Fragment 
+        key={module._key}>
+          {/* MIDWAY: This is just a helper, feel free to remove! */}
+          <div className='module__type p05 mb1'>module type: {module._type}</div>
+          <Modules
+            type={module._type}
+            reactModule={module} />
+        </React.Fragment>
+      )
     })
   }
 }

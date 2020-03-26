@@ -11,6 +11,7 @@
 /* Midway Specific Styles, feel free to remove */
 @import './midway/_learn.css';
 @import './midway/_password.css';
+@import './midway/_modules.css';
 
 
 /* My generic Lib import, feel free to remove for vanilla styles */
