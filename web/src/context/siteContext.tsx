@@ -2,10 +2,15 @@
 /*
   Orginal Author of this file: https://github.com/thetrevorharmon
   Orginal File: https://github.com/thetrevorharmon/sell-things-fast/blob/master/src/context/StoreContext.js
+
+  TYPED out by Issac: https://gist.github.com/isaac-martin
+
+  Extended by Kevin Green for ✨
 */
 }
 
 import React, { useState, useEffect, useContext } from "react"
+import { Checkout } from "shopify-storefront-api-typings"
 import Client from "shopify-buy"
 
 const SHOPIFY_CHECKOUT_STORAGE_KEY = "shopify_checkout_id"
@@ -15,13 +20,22 @@ const client = Client.buildClient({
   domain: 'midway-sanity.myshopify.com',
 })
 
+interface InitialStore {
+  client: Client
+  isAdding: boolean
+  cartIsOpen: boolean
+  navIsOpen: boolean
+  page: null
+  checkout: Checkout
+}
+
 const initialStoreState = {
   client,
   isAdding: false,
   cartIsOpen: false,
   page: null,
   navIsOpen: false,
-  checkout: { lineItems: [] },
+  checkout: {} as Checkout
 }
 
 const StoreContext = React.createContext({
@@ -29,21 +43,21 @@ const StoreContext = React.createContext({
   setStore: () => null,
 })
 
-function createNewCheckout(store) {
+const createNewCheckout = (store: InitialStore): Checkout => {
   return store.client.checkout.create()
 }
 
-function fetchCheckout(store, id) {
+const fetchCheckout = (store: InitialStore, id: string): Checkout => {
   return store.client.checkout.fetch(id)
 }
 
-function setCheckoutInState(checkout, setStore) {
+const setCheckoutInState = (checkout: Checkout, setStore: any) => {
   const isBrowser = typeof window !== "undefined"
   if (isBrowser) {
     localStorage.setItem(SHOPIFY_CHECKOUT_STORAGE_KEY, checkout.id)
   }
 
-  setStore(prevState => {
+  setStore((prevState: InitialStore) => {
     return { ...prevState, checkout }
   })
 }

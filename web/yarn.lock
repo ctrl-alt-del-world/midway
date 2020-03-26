@@ -14259,6 +14259,11 @@ shopify-gid@^1.0.1:
   resolved "https://registry.yarnpkg.com/shopify-gid/-/shopify-gid-1.0.1.tgz#4d237db3e57ab706f8dc3126f1a5634e727e21cc"
   integrity sha512-dasZjOduquRJmBaSpNgqEeo0WfeB7werAjfkzUHSvEI95xYtS65pn8whYRWI4cLDjaC74nnD8XYziGPefpyo5w==
 
+shopify-storefront-api-typings@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/shopify-storefront-api-typings/-/shopify-storefront-api-typings-1.1.1.tgz#f3a251f5d926aa1b166ebb81c42ba776ffc59eb7"
+  integrity sha512-JSkW0rad0J/D3aKqRSKlFYLUfkSMbB8XzdLHPvro8mxG9dS+FYxv0pjOgRw36LLVLycUEtFCMqj36FmpzeWUPw==
+
 side-channel@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/side-channel/-/side-channel-1.0.2.tgz#df5d1abadb4e4bf4af1cd8852bf132d2f7876947"
