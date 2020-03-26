@@ -53,7 +53,8 @@ export default {
       options: {
         hotspot: true
       },
-      fieldset: 'main'
+      fieldset: 'main',
+      validation: Rule => Rule.required()
     },
     {
       name: 'productDescription',

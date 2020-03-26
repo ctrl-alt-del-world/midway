@@ -1,0 +1,20 @@
+.grid__product {
+  .image__block {
+    height: 0;
+    padding-bottom: 125%;
+    overflow: hidden;
+    position: relative;
+    .gatsby-image-wrapper {
+      position: absolute !important;
+      height: 100%;
+      width: 100%;
+      top: 0;
+      left: 0;
+      > div {
+        height: 100%;
+        position: absolute;
+        padding-bottom: 0 !important;
+      }
+    }
+  }
+}
