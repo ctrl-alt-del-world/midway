@@ -2,7 +2,8 @@
 exports.createPages = async ({graphql, actions}) => {
   const {createPage} = actions
 
-  const results = await graphql(`
+  // Query Pages
+  const pagesQuery = await graphql(`
     {
       allSanityPage {
         edges {
@@ -14,11 +15,11 @@ exports.createPages = async ({graphql, actions}) => {
     }
   `)
 
-  if (results.errors) {
-    throw results.errors
+  if (pagesQuery.errors) {
+    throw pagesQuery.errors
   }
 
-  const pages = results.data.allSanityPage.edges || []
+  const pages = pagesQuery.data.allSanityPage.edges || []
   pages.forEach((edge, index) => {
     const path = `/${edge.node._rawContent.main.slug.current === 'home' ? '' : edge.node._rawContent.main.slug.current}`
 
@@ -28,4 +29,32 @@ exports.createPages = async ({graphql, actions}) => {
       context: {...edge.node._rawContent},
     })
   })
+
+  // Query Products
+  const productsQuery = await graphql(`
+  {
+    allSanityProduct {
+      edges {
+        node {
+          _rawContent
+        }
+      }
+    }
+  }
+`)
+
+if (productsQuery.errors) {
+  throw productsQuery.errors
+}
+
+const products = productsQuery.data.allSanityProduct.edges || []
+products.forEach((edge, index) => {
+  const path = `/products/${edge.node._rawContent.main.slug.current}`
+
+  createPage({
+    path,
+    component: require.resolve('./src/templates/product.tsx'),
+    context: {...edge.node._rawContent},
+  })
+})
 }

@@ -19,6 +19,7 @@ const initialStoreState = {
   client,
   isAdding: false,
   cartIsOpen: false,
+  page: null,
   navIsOpen: false,
   checkout: { lineItems: [] },
 }
@@ -201,6 +202,20 @@ function useCheckout() {
   }
 }
 
+function useSetPage() {
+  const {
+    store: { page },
+    setStore
+  } = useContext(StoreContext)
+  async function setPage(page) {
+    setStore(prevState => {
+      return { ...prevState, page }
+    })
+  }
+  return setPage
+}
+
+
 function useToggleCart() {
   const {
     store: { cartIsOpen },
@@ -223,6 +238,7 @@ export {
   useCartCount,
   useCartItems,
   useCartTotals,
+  useSetPage,
   useRemoveItemFromCart,
   useCheckout,
   useToggleCart

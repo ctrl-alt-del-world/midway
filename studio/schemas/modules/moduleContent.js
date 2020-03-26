@@ -9,6 +9,9 @@ export default {
     },
     {
       type: 'standardText'
+    },
+    {
+      type: 'productGrid'
     }
   ]
 }

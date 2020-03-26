@@ -25,6 +25,7 @@ import metaCard from './modules/metaCard'
 import social from './modules/social'
 import pageModule from './modules/pageModule'
 import imageModule from './modules/imageModule'
+import productGrid from './modules/productGrid'
 import standardText from './modules/standardText'
 import moduleContent from './modules/moduleContent'
 
@@ -62,6 +63,7 @@ export default createSchema({
     // Modules
     externalLink,
     internalLink,
+    productGrid,
     pageModule,
     social,
     standardText,
