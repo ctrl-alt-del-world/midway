@@ -13,7 +13,7 @@ export interface StandardTextProps {
 export const StandardText = ({ data }: StandardTextProps) => {
   const { text } = data
   return (
-    <div className="container--xl outer mxa py2 al p x">
+    <div className="container--xl outer mxa py2 p1 al p x">
       <BlockContent blocks={text} serializers={Serializer} />
     </div>
   )

@@ -8,7 +8,7 @@ exports.createPages = async ({graphql, actions}) => {
       allSanityPage {
         edges {
           node {
-            _rawContent
+            _rawContent(resolveReferences: {maxDepth: 9})
           }
         }
       }
@@ -36,7 +36,7 @@ exports.createPages = async ({graphql, actions}) => {
     allSanityProduct {
       edges {
         node {
-          _rawContent
+          _rawContent(resolveReferences: {maxDepth: 9})
         }
       }
     }
