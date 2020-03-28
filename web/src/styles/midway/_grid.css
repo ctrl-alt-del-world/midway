@@ -4,3 +4,9 @@
     width: calc(33.33% - 10px);
   }
 }
+
+.c50 {
+  @media (--800) {
+    width: calc(50% - 20px);
+  }
+}

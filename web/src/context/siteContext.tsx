@@ -11,11 +11,11 @@
 
 import React, { useState, useEffect, useContext } from "react"
 import { Checkout } from "shopify-storefront-api-typings"
-import Client from "shopify-buy"
+import ShopifyClient from "shopify-buy"
 
 const SHOPIFY_CHECKOUT_STORAGE_KEY = "shopify_checkout_id"
 
-const client = Client.buildClient({
+const client = ShopifyClient.buildClient({
   storefrontAccessToken: '919118b51c64eb39f9627dd1fa0bd936',
   domain: 'midway-sanity.myshopify.com',
 })
@@ -246,6 +246,7 @@ function useToggleCart() {
 }
 
 export {
+  client,
   StoreContextProvider,
   useAddItemToCart,
   useStore,
