@@ -47,8 +47,8 @@ The studio is ready/useful, I'll more than likely further modify the structure, 
 ✔️ Ability to forgot passwords  
 ✔️ Ability to reset passwords  
 ✖️ account status in the header + logout  
-✖️ view single product detail  
-✖️ ability to add to cart  
+✔️ view single product detail  
+✔️ ability to add to cart  
 ✖️ Ability to quick add to cart  
 ✖️ cart visible on the frontend  
 ✖️ Add/remove items from the cart  
