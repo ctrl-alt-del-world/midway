@@ -120,10 +120,13 @@ function useCartCount() {
     store: { checkout },
   } = useContext(StoreContext)
 
-  const count = checkout.lineItems.reduce(
-    (runningTotal, item) => item.quantity + runningTotal,
-    0
-  )
+  let count = 0
+  if (checkout.lineItems) {
+    count = checkout.lineItems.reduce(
+      (runningTotal, item) => item.quantity + runningTotal,
+      0
+    )
+  }
 
   return count
 }

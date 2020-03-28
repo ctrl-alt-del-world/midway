@@ -3,7 +3,11 @@ import React from 'react'
 import { PageLink } from 'src/components/link'
 import { Github } from 'src/components/svgs'
 
+import { useCartCount, useToggleCart } from 'src/context/siteContext'
+
 export const Header = () => {
+  const count = useCartCount()
+  const toggleCart = useToggleCart()
   return (
     <div className='container--xl mxa p1 outer'>
       <div className='f x jcb aic'>
@@ -13,6 +17,9 @@ export const Header = () => {
         </div>
         <div>
           <a href='/account' className='mr1'>Account</a>
+          <button aria-label='cart' className='p0 a mr1 s1' onClick={() => toggleCart()}>
+              Cart (<span className='s1'>{count}</span>)
+            </button>
           <a href='https://github.com/ctrl-alt-del-world/midway'><Github className='midway__logo' /></a>
         </div>
       </div>
