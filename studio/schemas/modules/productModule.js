@@ -12,7 +12,6 @@ export default {
         collapsed: true
       }
     },
-
     {
       name: 'main',
       title: 'Product Main Content',
@@ -45,6 +44,12 @@ export default {
       title: 'Linked Site Url',
       description: 'This is a fake product so link to the real site!',
       type: 'url'
+    },
+    {
+      name: 'linkedSiteName',
+      title: 'Linked Site Name',
+      description: 'Linked Site Title',
+      type: 'string'
     },
     {
       name: 'mainImage',

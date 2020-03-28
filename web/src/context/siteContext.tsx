@@ -21,7 +21,7 @@ const client = ShopifyClient.buildClient({
 })
 
 interface InitialStore {
-  client: Client
+  client: ShopifyClient
   isAdding: boolean
   cartIsOpen: boolean
   navIsOpen: boolean
@@ -62,7 +62,7 @@ const setCheckoutInState = (checkout: Checkout, setStore: any) => {
   })
 }
 
-const StoreContextProvider = ({ children }) => {
+const StoreContextProvider = ({ children }: { children: any }) => {
   const [store, setStore] = useState(initialStoreState)
   const [initStore, setInitStore] = useState(false)
 

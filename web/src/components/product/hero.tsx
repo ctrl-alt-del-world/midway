@@ -6,13 +6,15 @@ import { Serializer } from "src/utils/serializer"
 import { Image } from 'src/components/image'
 import { ProductForm } from './form'
 
-export const ProductHero = ({ product, main: { title, subTitle, productDescription, slug, mainImage, cerealImage }}: {
+export const ProductHero = ({ product, main: { title, productDescription, linkedSite, linkedSiteName, mainImage }}: {
   main: {
     title?: string
     subTitle?: string
     slug: {}
     productDescription?: []
     mainImage: {}
+    linkedSite: string
+    linkedSiteName: string
     cerealImage: {}
   }
   product: {
@@ -29,8 +31,14 @@ export const ProductHero = ({ product, main: { title, subTitle, productDescripti
             <Image className='x' imageId={mainImage.asset._id} alt={title} />
           </div>
           <div className='c50 container--s mxa'>
+      
             <h1>{title}</h1>
             <BlockContent blocks={productDescription} serializers={Serializer} />
+            {linkedSite && linkedSiteName && (
+              <div className='callout bcblue cw p1 my1'>
+                Shop the real product on the <a href={linkedSite} className='cw' target='_blank'>{linkedSiteName}</a> Website.
+              </div>
+            )}
             <ProductForm {...product} />
           </div>
         </div>
