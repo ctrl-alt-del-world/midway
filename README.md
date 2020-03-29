@@ -50,8 +50,8 @@ The studio is ready/useful, I'll more than likely further modify the structure, 
 ✔️ view single product detail  
 ✔️ ability to add to cart  
 ✖️ Ability to quick add to cart  
-✖️ cart visible on the frontend  
-✖️ Add/remove items from the cart  
+✔️ cart visible on the frontend  
+✔️ Add/remove items from the cart  
 ✖️ Ability to see orders  
 ✖️ Add/remove addresses  
 ✖️ Ability to see/edit addresses  

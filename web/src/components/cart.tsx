@@ -25,7 +25,7 @@ export const Cart = () => {
           ))}
         </div>
       ) : (
-        <div>
+        <div className='ac'>
           Cart is Empty
         </div>
       )}
