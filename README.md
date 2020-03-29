@@ -61,7 +61,7 @@ The studio is ready/useful, I'll more than likely further modify the structure, 
 ✖️ 🍝 Add Analytics patterns (via get analytics)  
 ✖️ 🍝 Add ability to do multi-variant selection  
 ✖️ 🍝 Product carousel   
-✖️ 🍝 Seo Meta out of the Box
+✖️ 🍝 Seo Meta out of the Box  
 ✖️ 🍝 Example PDP with extended modularity  
 ✖️ 🍝 Gatsby Create support for filling a sanity studio and getting a working frontend faster  
 ✖️ 🍝 Docz website?  
