@@ -1,0 +1,16 @@
+.cart {
+  &__drawer {
+    display: none;
+    top: 180px;
+    max-width: 400px;
+    &.is-open {
+      display: block;
+    }
+    &-header {
+      border-bottom: 1px solid black;
+    }
+    &-close {
+      right: 1rem;
+    }
+  }
+}

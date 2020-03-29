@@ -39,6 +39,7 @@
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
+    "react-focus-lock": "^2.2.1",
     "react-helmet": "^5.2.1",
     "react-loads": "^9.0.4",
     "react-responsive": "^8.0.1",
