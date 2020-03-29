@@ -35,7 +35,9 @@ const initialStoreState = {
   cartIsOpen: false,
   page: null,
   navIsOpen: false,
-  checkout: {} as Checkout
+  checkout: {
+    lineItems: []
+  } as Checkout
 }
 
 const StoreContext = React.createContext({
@@ -209,6 +211,25 @@ function useRemoveItemFromCart() {
   return removeItemFromCart
 }
 
+function useUpdateItemsFromCart() {
+  const {
+    store: { client, checkout },
+    setStore,
+  } = useContext(StoreContext)
+
+  async function updateItemsFromCart(items) {
+    console.log('fucntion?')
+    items = [].concat(items)
+    const newCheckout = await client.checkout.updateLineItems(checkout.id, items)
+
+    setStore(prevState => {
+      return { ...prevState, checkout: newCheckout }
+    })
+  }
+
+  return updateItemsFromCart
+}
+
 function useCheckout() {
   const {
     store: { checkout },
@@ -258,6 +279,7 @@ export {
   useCartTotals,
   useSetPage,
   useRemoveItemFromCart,
+  useUpdateItemsFromCart,
   useCheckout,
   useToggleCart
 }
