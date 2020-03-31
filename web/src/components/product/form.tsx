@@ -11,12 +11,12 @@ export const ProductForm = ({ defaultPrice, productId, showQuantity, addText }: 
   addText?: string
 }) => {
   const addItemToCart = useAddItemToCart()
-  const toggleCart = useToggleCart()
 
   const [quantity, setQuantity] = useState(1 as number)
   const [adding, setAdding] = useState(false as boolean)
   const [available, setAvailable] = useState(false)
   const [activeVariantId, setActiveVariantId] = useState(null as string | null)
+  const [compareAtPrice, setCompareAtPrice] = useState(null as string | null)
   const [check, setCheck] = useState(true)
 
   const form = React.createRef()
@@ -37,6 +37,8 @@ export const ProductForm = ({ defaultPrice, productId, showQuantity, addText }: 
         })
         setActiveVariantId(decodedVariants[0].id as string)
         setAvailable(decodedVariants[0].available)
+        console.log(decodedVariants[0])
+        if (decodedVariants[0].compareAtPrice) setCompareAtPrice(decodedVariants[0].compareAtPrice)
 
         setCheck(false)
       })
@@ -70,7 +72,12 @@ export const ProductForm = ({ defaultPrice, productId, showQuantity, addText }: 
             )}
             <button type='submit' className='p1 x s1 bcblue cw button--h-black s20 button'>
               <span>{adding ? 'Adding' : addText ? addText : 'Add to Cart'}</span>
-              <span className='bold s20 ml1'>${parseFloat(defaultPrice * quantity)}</span>
+              {compareAtPrice && (
+                <span className='bold s20 ml1 strikethrough'>${parseFloat(compareAtPrice * quantity)}</span>
+              )}
+              <span className='bold s20 ml1'>
+                ${parseFloat(defaultPrice * quantity)}
+              </span>
             </button>
           </div>
         ): (

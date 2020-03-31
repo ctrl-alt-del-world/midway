@@ -8,6 +8,7 @@
     "@picostate/react": "^3.0.1",
     "@sanity/block-content-to-react": "^2.0.7",
     "@sanity/client": "^0.147.3",
+    "@types/node": "^13.9.8",
     "await-timeout": "^1.1.1",
     "aws-lambda": "^1.0.5",
     "classnames": "^2.2.6",

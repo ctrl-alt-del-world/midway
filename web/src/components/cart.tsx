@@ -18,6 +18,7 @@ export const Cart = () => {
         <div className='bcw p1'>
           {lineItems.map((item: { id: string, quantity: number }) => (
             <React.Fragment key={item.id + item.quantity}>
+              {console.log(lineItems)}
               <LineItem {...item} />
             </React.Fragment>
           ))}

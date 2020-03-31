@@ -12,12 +12,14 @@ import {
   client
 } from 'src/context/siteContext'
 
-export const LineItem = ({ id, title, quantity, variant: { price, image }, customAttributes }: {
+export const LineItem = ({ id, title, quantity, variant: { price, compareAtPrice, image }, customAttributes }: {
   id: string
   title: string
   quantity: number
   variant: {
     price: string
+    image: string
+    compareAtPrice: string
   }
   customAttributes: Array<{
     value: string
@@ -51,7 +53,14 @@ export const LineItem = ({ id, title, quantity, variant: { price, image }, custo
           <input type='number' value={stateQuantity} onChange={e => updateQuantity(parseInt(e.currentTarget.value, 10))} name='quantity' min='1' className='cb founders card-qty bn ac' />
           <button className='qty__control no-style s1 block f jcc aic founders s24 cursor rel py05 jcc aic' onClick={() => updateQuantity(stateQuantity + 1)}><Plus /></button>
           <div className='abs right cart__single-price s16 bottom p1'>
-            ${parseFloat(price) * stateQuantity} ({stateQuantity})
+            {compareAtPrice && (
+              <span className='strikethrough'>
+                ${parseFloat(compareAtPrice) * stateQuantity} ({stateQuantity})
+              </span>
+            )}
+            <span>
+              ${parseFloat(price) * stateQuantity} ({stateQuantity})
+            </span>
           </div>
         </div>
         <button type='reset' className='p05 abs no-style close right top cb' onClick={() => removeFromCart(id)}>

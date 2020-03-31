@@ -21,7 +21,6 @@ h3 {
   }
 }
 
-
 a, .a {
   background-color: transparent;
   font-size: 14px;
@@ -29,6 +28,10 @@ a, .a {
   line-height: 20px;
   color: var(--blue);
   text-decoration: none;
+}
+
+.strikethrough {
+  text-decoration: line-through;
 }
 
 .underline {
