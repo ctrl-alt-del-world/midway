@@ -3,6 +3,7 @@ import { PageLink } from 'src/components/link'
 
 export interface NestedPagesProps {
   data: {
+    title: string
     page: Array<{
       _key: string
       description?: string
@@ -21,9 +22,10 @@ export interface NestedPagesProps {
 }
 
 export const NestedPages = ({ data }: NestedPagesProps) => {
-  const { page } = data
+  const { page, title } = data
   return (
     <div className="container--xl outer mxa py2 p1 al p x">
+      <h5 className='caps ls1'>{title}</h5>
       <div className='f fw jcb ais'>
         {page.map(({ title, _key, description, linkedPage }) => (
           <div key={_key} className='x col50 doc__block'>
