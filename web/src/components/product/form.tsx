@@ -50,7 +50,6 @@ export const ProductForm = ({ defaultPrice, productId, showQuantity, addText }: 
     if (available) {
       addItemToCart(activeVariantId, quantity).then(() => {
         setAdding(false)
-        toggleCart()
       })
     }
   }

@@ -3,9 +3,10 @@ import React from 'react'
 import { PageLink } from 'src/components/link'
 import { Github } from 'src/components/svgs'
 
-import { useCartCount, useToggleCart } from 'src/context/siteContext'
+import { useCartCount, useToggleCart, useStore } from 'src/context/siteContext'
 
 export const Header = () => {
+
   const count = useCartCount()
   const toggleCart = useToggleCart()
   return (

@@ -165,7 +165,7 @@ function useAddItemToCart() {
     setStore,
   } = useContext(StoreContext)
 
-  async function addItemToCart(variantId: string, quantity: number, attributes: []) {
+  async function addItemToCart(variantId: string, quantity: number, attributes?: []) {
     console.log(variantId, quantity)
     if (variantId === "" || !quantity) {
       console.error("Both a size and quantity are required.")
@@ -185,7 +185,7 @@ function useAddItemToCart() {
     )
 
     setStore(prevState => {
-      return { ...prevState, checkout: newCheckout, isAdding: false }
+      return { ...prevState, checkout: newCheckout, cartIsOpen: true, isAdding: false }
     })
   }
 
