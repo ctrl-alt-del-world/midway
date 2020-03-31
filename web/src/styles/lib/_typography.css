@@ -6,6 +6,9 @@ p {
   font-family: 'Space Mono';
   line-height: 1.5;
   padding: 1rem 0;
+  a {
+    text-decoration: underline;
+  }
 }
 
 h1, h2, h3, h4 {
