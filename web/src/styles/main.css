@@ -10,11 +10,11 @@
 
 /* Midway Specific Styles, feel free to remove */
 @import './midway/_learn.css';
+@import './midway/_button.css';
 @import './midway/_password.css';
 @import './midway/_modules.css';
 @import './midway/_grid.css';
 @import './midway/_code.css';
-@import './midway/_button.css';
 @import './midway/_text.css';
 @import './midway/_nested-pages.css';
 @import './midway/_cart.css';

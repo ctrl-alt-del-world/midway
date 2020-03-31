@@ -15,7 +15,7 @@ export const CartDrawer = () => {
     <div className='cart__drawer-inner'>
       <div className='ac rel cart__drawer-header'>
         <h4>Your Cart</h4>
-        <button type='reset' className='p05 abs cart__drawer-close close right top cb' onClick={() => toggleCart()}>
+        <button type='reset' className='p05 abs no-style cart__drawer-close close right top cb' onClick={() => toggleCart()}>
           <Close className='block' />
         </button>
       </div>

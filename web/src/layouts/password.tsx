@@ -50,7 +50,7 @@ export const PasswordWrapper = ({ children }: {
                     <input aria-label='password' onChange={() => setError(false)} className={cx('p1 x bcw cblue caps mb1 founders cw ls1 password__input ac', {
                       'error': error
                     })} type='password' name='password' placeholder='Enter Password' />
-                    <button type='submit' aria-label='submit' className='p1 mt1'>
+                    <button type='submit' aria-label='submit' className='p1 no-style cblue button button--w button--h-black bcw mt1'>
                       Submit
                     </button>
                   </div>

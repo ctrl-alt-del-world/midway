@@ -1,10 +1,19 @@
+button.no-style {
+  background-color: transparent;
+  border: none;
+}
+
 .button {
   cursor: pointer;
   transition: all 0.3s ease-in-out;
   &.button--h-black {
     &:hover {
       background-color: black;
+      color: white;
     }
+  }
+  &.button--w {
+    background-color: white;
   }
 }
 
@@ -12,7 +21,3 @@ button {
   cursor: pointer;
 }
 
-button.no-style {
-  background-color: transparent;
-  border: none;
-}

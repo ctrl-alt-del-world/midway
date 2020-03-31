@@ -44,7 +44,7 @@ export const Cart = () => {
             <PageLink className='s24 m05'  onClick={() => toggleCart()} to='/'>Let's Go Shooooping</PageLink>
           </div>
         ): (
-          <button onClick={() => openCheckout()} type='submit' className='button x bcb p1'>
+          <button onClick={() => openCheckout()} type='submit' className='button bcblue cw button--h-black x bcb p1'>
             <span className='s24 block p1'>Checkout</span>
           </button>
         )}

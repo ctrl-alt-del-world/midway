@@ -54,7 +54,7 @@ export const LineItem = ({ id, title, quantity, variant: { price, image }, custo
             ${parseFloat(price) * stateQuantity} ({stateQuantity})
           </div>
         </div>
-        <button type='reset' className='p05 abs close right top cb' onClick={() => removeFromCart(id)}>
+        <button type='reset' className='p05 abs no-style close right top cb' onClick={() => removeFromCart(id)}>
           <Close className='block' />
         </button>
       </div>
