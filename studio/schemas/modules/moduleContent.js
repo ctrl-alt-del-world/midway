@@ -12,6 +12,9 @@ export default {
     },
     {
       type: 'productGrid'
+    },
+    {
+      type: 'nestedPages'
     }
   ]
 }

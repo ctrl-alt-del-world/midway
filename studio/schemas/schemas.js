@@ -23,6 +23,8 @@ import externalLink from './modules/externalLink'
 import internalLink from './modules/internalLink'
 import metaCard from './modules/metaCard'
 import social from './modules/social'
+import nestedPages from './modules/nestedPages'
+import pageItem from './modules/pageItem'
 import pageModule from './modules/pageModule'
 import imageModule from './modules/imageModule'
 import productGrid from './modules/productGrid'
@@ -65,6 +67,8 @@ export default createSchema({
     internalLink,
     productGrid,
     pageModule,
+    nestedPages,
+    pageItem,
     social,
     standardText,
     imageModule,

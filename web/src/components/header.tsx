@@ -13,7 +13,7 @@ export const Header = () => {
       <div className='f x jcb aic'>
         <div>
           <PageLink to='/' className='mr1'>Index</PageLink>
-          <PageLink to='/learn'>Learn</PageLink>
+          <PageLink to='/documentation'>Docs</PageLink>
         </div>
         <div>
           <a href='/account' className='mr1'>Account</a>
