@@ -12,7 +12,8 @@ export default {
     {
       name: 'description',
       title: 'Page Description',
-      type: 'string'
+      type: 'text',
+      rows: 3
     },
     {
       name: 'linkedPage',

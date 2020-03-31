@@ -14,5 +14,5 @@ a, .a {
   padding: 0;
   line-height: 20px;
   color: var(--blue);
-  text-decoration: underline;
+  text-decoration: none;
 }
