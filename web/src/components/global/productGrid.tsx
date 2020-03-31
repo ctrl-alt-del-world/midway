@@ -22,6 +22,7 @@ export interface ProductGridProps {
         }
         shopify: {
           defaultPrice: string
+          productId: number
         }
       }
     }>
