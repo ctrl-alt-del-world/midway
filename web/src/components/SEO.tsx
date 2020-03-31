@@ -1,7 +1,7 @@
 import React from "react"
 import Helmet from "react-helmet"
 
-const siteRoute = `https://midway-starter.netlify.com`
+const siteRoute = "https://midway-starter.netlify.com"
 
 export const SEO = ({
   pagePath,
