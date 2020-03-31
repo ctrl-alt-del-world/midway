@@ -62,7 +62,6 @@ export const ProductForm = ({ defaultPrice, productId, showQuantity, addText }: 
           <div className='s24 product__form f jcs aist'>
             {showQuantity && (
               <div className='product__form-qty bcw cb bb f jcb aic'>
-                <p className='bold s20 s-mobile'>${parseFloat(defaultPrice * quantity)}</p>
                 <div className='f jcc p1 aic product__form-qty-wrapper mxa'>
                   <button type='button' className='block rel mr05 qty__control no-style s24 founders cursor p05 aic' onClick={() => quantity === 1 ? null : setQuantity(quantity - 1)}>-</button>
                   <input type='number' value={quantity} onChange={e => setQuantity(parseInt(e.currentTarget.value, 10))} name='quantity' min='1' className='cb founders card-qty bn ac' />
@@ -70,7 +69,10 @@ export const ProductForm = ({ defaultPrice, productId, showQuantity, addText }: 
                 </div>
               </div>
             )}
-            <button type='submit' className='p1 x s1 button--black button--border s20 button'><span>{adding ? 'Adding' : addText ? addText : 'Add to Cart'}</span></button>
+            <button type='submit' className='p1 x s1 bcblue cw button--h-black s20 button'>
+              <span>{adding ? 'Adding' : addText ? addText : 'Add to Cart'}</span>
+              <span className='bold s20 ml1'>${parseFloat(defaultPrice * quantity)}</span>
+            </button>
           </div>
         ): (
           <div>

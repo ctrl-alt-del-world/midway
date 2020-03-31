@@ -4,7 +4,7 @@
 @import 'svbstrate/src/lib/flexbox.css';
 @import 'svbstrate/src/lib/align.css';
 @import 'svbstrate/src/lib/spacing.css';
-@import 'svbstrate/src/lib/buttons.css';
+/* @import 'svbstrate/src/lib/buttons.css'; */
 @import 'svbstrate/src/lib/forms.css';
 @import 'svbstrate/src/lib/z-index.css';
 
@@ -14,6 +14,7 @@
 @import './midway/_modules.css';
 @import './midway/_grid.css';
 @import './midway/_code.css';
+@import './midway/_button.css';
 @import './midway/_text.css';
 @import './midway/_nested-pages.css';
 @import './midway/_cart.css';

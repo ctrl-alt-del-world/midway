@@ -1,0 +1,18 @@
+.button {
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  &.button--h-black {
+    &:hover {
+      background-color: black;
+    }
+  }
+}
+
+button {
+  cursor: pointer;
+}
+
+button.no-style {
+  background-color: transparent;
+  border: none;
+}

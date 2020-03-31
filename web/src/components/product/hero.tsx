@@ -39,7 +39,7 @@ export const ProductHero = ({ product, main: { title, productDescription, linked
                 Shop the real product on the <a href={linkedSite} className='cw underline' target='_blank'>{linkedSiteName}</a> Website.
               </div>
             )}
-            <ProductForm {...product} />
+            <ProductForm {...product} showQuantity={true} />
           </div>
         </div>
       </div>

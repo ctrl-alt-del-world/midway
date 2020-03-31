@@ -17,7 +17,7 @@ export const Header = () => {
         </div>
         <div>
           <a href='/account' className='mr1'>Account</a>
-          <button aria-label='cart' className='p0 a mr1 s1' onClick={() => toggleCart()}>
+          <button aria-label='cart' className='p0 no-style a mr1 s1' onClick={() => toggleCart()}>
               Cart (<span className='s1'>{count}</span>)
             </button>
           <a href='https://github.com/ctrl-alt-del-world/midway'><Github className='midway__logo' /></a>
