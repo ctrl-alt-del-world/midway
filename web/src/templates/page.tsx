@@ -1,8 +1,7 @@
 import React from 'react'
-import cx from 'classnames'
 
 import { RenderModules } from 'src/utils/renderModules'
-import { SEO } from "src/components/SEO"
+import { SEO } from 'src/components/SEO'
 
 export interface PageProps {
   pageContext: {
@@ -15,7 +14,6 @@ export interface PageProps {
     },
     meta: {}
   }
-  transitionStatus: string
 }
 
 const Page = ({
@@ -32,9 +30,9 @@ const Page = ({
   } = pageContext
   const url = slug.current === 'home' ? '' : slug.current
   return (
-    <div className={cx("animate__page mt1 ac", transitionStatus)}>
+    <div className='mt1 ac'>
       <SEO metaInfo={meta} pagePath={url} />
-      <div className="container--m mxa x al">
+      <div className='container--m mxa x al'>
         {RenderModules(modules)}
       </div>
     </div>

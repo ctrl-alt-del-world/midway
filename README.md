@@ -8,7 +8,7 @@ Named for the sake of being the middle component missing from your ecom business
 
 ### Starter kit for [Gatsby](https://www.gatsbyjs.org/), [Sanity.io](https://www.sanity.io), & Shopify
 
-Thanks to [Lucas](https://github.com/lucasvocos/gatsby-sanity-shopify) for kicking this whole thing off. I've taken a relatively more opinionated approach and started to fully build out a complete expereince. The documentation is being written while the experience is created, please don't make issues/tickets just yet, if you have contributions around my TS linting/issues feel free to PR those aspects.  
+I've taken a relatively more opinionated approach and started to fully build out a complete expereince. The documentation is being written while the experience is created, please don't make issues/tickets just yet, if you have contributions around my TS linting/issues feel free to PR those aspects.  
 
 Clone this repository to bootstrap a fresh Typescript Gatsby site, powered by Sanity CMS and dynamically import Shopify products to Sanity with the help of a WebHook
 
@@ -117,6 +117,11 @@ You can alternatively run your webhook locally, you can do this with ngrok
     * Products have default settings for `title`, `slug`, `defaultPrice`, `id`, `productId`.
     * Variants have default settings for `id`, `productId`, `variantId`, `title`, `variantTitle`, `sku`, and `price`.
     * The `web/functions/shopify` file will generate new Sanity documents with these default fields.
+
+## Credits 
+Thanks to [Lucas](https://github.com/lucasvocos/gatsby-sanity-shopify) for kicking this whole thing off.  
+[Ian](https://github.com/dictions) with the smooth react-transition-group page transitions  
+[Trevor](https://github.com/thetrevorharmon) for the siteContext component from his [Gatsby-Shopify-Starter](https://github.com/thetrevorharmon/sell-things-fast/blob/master/src/context/StoreContext.js)  
 
 
 ## More learning

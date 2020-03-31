@@ -47,7 +47,7 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-plugin-transition-link`,
+      resolve: `gatsby-plugin-layout`,
       options: {
         layout: require.resolve(`./src/layouts/index.tsx`)
       }

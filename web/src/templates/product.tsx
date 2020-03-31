@@ -21,12 +21,10 @@ export interface ProductProps {
     meta: {}
     shopify: {}
   }
-  transitionStatus: string
 }
 
 const Product = ({
-  pageContext,
-  transitionStatus
+  pageContext
 }: ProductProps) => {
   const setPage = useSetPage()
   const { main } = pageContext
@@ -45,7 +43,7 @@ const Product = ({
 
   const url = `products/${slug.current}`
   return (
-    <div className={cx("animate__page ac", transitionStatus)}>
+    <div className='ac'>
       <SEO metaInfo={meta} pagePath={url} />
       <div className={cx('mxa x al site__main', pageContext.main.slug.current, colorAssociation)}>
         <ProductHero main={pageContext.main} product={shopify} />

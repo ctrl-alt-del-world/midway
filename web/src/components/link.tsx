@@ -1,5 +1,5 @@
 import React from 'react'
-import TransitionLink from 'gatsby-plugin-transition-link'
+import { Link } from 'gatsby'
 
 export const PageLink = (props: {
   className?: string
@@ -11,9 +11,7 @@ export const PageLink = (props: {
   onMouseOver?: () => void
   children?: any
 }) => (
-  <TransitionLink
-    entry={{ delay: 0.2 }}
-    exit={{ length: 1 }}
+  <Link
     type={props.type}
     className={props.className}
     activeClassName='active'
@@ -23,5 +21,5 @@ export const PageLink = (props: {
     onMouseOver={props.onMouseOver}
     to={props.to}>
     {props.children}
-  </TransitionLink>
+  </Link>
 )
