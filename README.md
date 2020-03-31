@@ -61,7 +61,7 @@ The studio is ready/useful, I'll more than likely further modify the structure, 
 ✖️ 🍝 Add Analytics patterns (via get analytics)  
 ✖️ 🍝 Add ability to do multi-variant selection  
 ✖️ 🍝 Product carousel   
-✖️ 🍝 Seo Meta out of the Box  
+✔️ 🍝 Seo Meta out of the Box  
 ✖️ 🍝 Focus Trap the cart for ADA  
 ✖️ 🍝 Example PDP with extended modularity  
 ✖️ 🍝 Gatsby Create support for filling a sanity studio and getting a working frontend faster  
@@ -81,9 +81,9 @@ Please keep in mind I assume you are already familiar with the Shopify eco syste
 <details>
 <summary>Local Development of Functions</summary>
 You can alternatively run your webhook locally, you can do this with ngrok
-1. npm install ngrok -g
-2. ngrok [:PORT] http
-3. Point Shopify webhook to the above url +  /.netlify/functions/shopify
+1. npm install ngrok -g  
+2. ngrok [:PORT] http  
+3. Point Shopify webhook to the above url +  /.netlify/functions/shopify  
 </details>
 
 ## Features

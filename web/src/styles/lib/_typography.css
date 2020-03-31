@@ -31,6 +31,10 @@ a, .a {
   text-decoration: none;
 }
 
+.underline {
+  text-decoration: underline;
+}
+
 .caps {
   text-transform: uppercase;
 }

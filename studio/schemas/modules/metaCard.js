@@ -48,7 +48,7 @@ export default {
       fieldset: 'opengraph'
     },
     {
-      name: 'title',
+      name: 'openTitle',
       title: 'Open Graph Title',
       type: 'string',
       fieldset: 'opengraph'

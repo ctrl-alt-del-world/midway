@@ -7,6 +7,6 @@
 
 .c50 {
   @media (--800) {
-    width: calc(50% - 20px);
+    width: calc(50% - 10px);
   }
 }

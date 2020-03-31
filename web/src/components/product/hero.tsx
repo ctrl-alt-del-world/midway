@@ -36,7 +36,7 @@ export const ProductHero = ({ product, main: { title, productDescription, linked
             <BlockContent blocks={productDescription} serializers={Serializer} />
             {linkedSite && linkedSiteName && (
               <div className='callout bcblue cw p1 my1'>
-                Shop the real product on the <a href={linkedSite} className='cw' target='_blank'>{linkedSiteName}</a> Website.
+                Shop the real product on the <a href={linkedSite} className='cw underline' target='_blank'>{linkedSiteName}</a> Website.
               </div>
             )}
             <ProductForm {...product} />
