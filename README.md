@@ -49,7 +49,7 @@ The studio is ready/useful, I'll more than likely further modify the structure, 
 ✖️ account status in the header + logout  
 ✔️ view single product detail  
 ✔️ ability to add to cart  
-✖️ Ability to quick add to cart  
+✔️ Ability to quick add to cart  
 ✔️ cart visible on the frontend  
 ✔️ Add/remove items from the cart  
 ✖️ Ability to see orders  
