@@ -12,7 +12,7 @@ const Layout = ({ children, siteMetadata }: { children: any }) => {
   return (
     <React.Fragment>
       <Helmet>
-        <link href='https://fonts.googleapis.com/css?family=Space+Mono' rel='stylesheet' />
+        <link href='https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap' rel='stylesheet' />
       </Helmet>
       <PasswordWrapper>
         <div>

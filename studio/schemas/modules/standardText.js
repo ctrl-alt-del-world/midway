@@ -25,7 +25,6 @@ export default {
             {title: 'H6', value: 'h6'},
             {title: 'Quote', value: 'blockquote'}
           ],
-          lists: [{title: 'Bullet', value: 'bullet'}, {title: 'Numbered', value: 'numbered'}],
           // Marks let you mark up inline text in the block editor.
           marks: {
             // Annotations can be any object structure – e.g. a link or a footnote.

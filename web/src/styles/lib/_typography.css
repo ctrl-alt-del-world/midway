@@ -8,6 +8,10 @@ p {
   padding: 1rem 0;
 }
 
+h1, h2, h3, h4 {
+  font-weight: 700;
+}
+
 a, .a {
   background-color: transparent;
   font-size: 14px;
