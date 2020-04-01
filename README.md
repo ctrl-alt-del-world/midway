@@ -61,6 +61,7 @@ The studio is ready/useful, I'll more than likely further modify the structure, 
 ✖️ 🍝 Add Analytics patterns (via get analytics)  
 ✖️ 🍝 Add ability to do multi-variant selection  
 ✖️ 🍝 Product carousel   
+✖️ 🍝 Product schema json-ld     
 ✔️ 🍝 Seo Meta out of the Box (this works but i have a no-follow on robots.txt)  
 ✖️ 🍝 Mock Blog  
 ✖️ 🍝 Focus Trap the cart for ADA  
