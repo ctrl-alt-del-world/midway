@@ -3,7 +3,10 @@ import { Link, navigate } from 'gatsby'
 import cookie from 'js-cookie'
 import fetch from 'unfetch'
 
+import { setCustomerInState } from 'src/context/siteContext'
+
 export const Portal = () => {
+  const updateCustomerInState = setCustomerInState()
   const logout = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault()
     const customerToken = cookie.get('customer_token')
@@ -16,11 +19,11 @@ export const Portal = () => {
     .then(() => {
       cookie.remove('customer_token')
       cookie.remove('customer_email')
-      // this should remove the email from the cart
-      // checkout.hydrate()
+      cookie.remove('customer_name')
       setTimeout(() => {
+        updateCustomerInState()
         navigate('/')
-      })
+      }, 300)
     })
   }
   return (

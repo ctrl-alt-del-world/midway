@@ -61,7 +61,8 @@ The studio is ready/useful, I'll more than likely further modify the structure, 
 ✖️ 🍝 Add Analytics patterns (via get analytics)  
 ✖️ 🍝 Add ability to do multi-variant selection  
 ✖️ 🍝 Product carousel   
-✔️ 🍝 Seo Meta out of the Box  
+✔️ 🍝 Seo Meta out of the Box (this works but i have a no-follow on robots.txt)  
+✖️ 🍝 Mock Blog  
 ✖️ 🍝 Focus Trap the cart for ADA  
 ✖️ 🍝 Example PDP with extended modularity  
 ✖️ 🍝 Gatsby Create support for filling a sanity studio and getting a working frontend faster  
@@ -116,7 +117,7 @@ You can alternatively run your webhook locally, you can do this with ngrok
   * 🛍 Products & Variants
     * Products have default settings for `title`, `slug`, `defaultPrice`, `id`, `productId`.
     * Variants have default settings for `id`, `productId`, `variantId`, `title`, `variantTitle`, `sku`, and `price`.
-    * The `web/functions/shopify` file will generate new Sanity documents with these default fields.
+    * The `web/src/lambda/shopify` file will generate new Sanity documents with these default fields.
 
 ## Credits 
 Thanks to [Lucas](https://github.com/lucasvocos/gatsby-sanity-shopify) for kicking this whole thing off.  

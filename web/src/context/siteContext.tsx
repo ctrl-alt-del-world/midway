@@ -9,11 +9,12 @@
 */
 }
 
-import React, { useState, useEffect, useContext } from "react"
-import { Checkout } from "shopify-storefront-api-typings"
-import ShopifyClient from "shopify-buy"
+import React, { useState, useEffect, useContext } from 'react'
+import { Checkout } from 'shopify-storefront-api-typings'
+import ShopifyClient from 'shopify-buy'
+import cookie from 'js-cookie'
 
-const SHOPIFY_CHECKOUT_STORAGE_KEY = "shopify_checkout_id"
+const SHOPIFY_CHECKOUT_STORAGE_KEY = 'shopify_checkout_id'
 
 const client = ShopifyClient.buildClient({
   storefrontAccessToken: '919118b51c64eb39f9627dd1fa0bd936',
@@ -26,6 +27,10 @@ interface InitialStore {
   cartIsOpen: boolean
   navIsOpen: boolean
   page: null
+  orders: any[]
+  customerEmail: string | null
+  customerName: string | null
+  customerToken: string | null
   checkout: Checkout
 }
 
@@ -34,6 +39,10 @@ const initialStoreState = {
   isAdding: false,
   cartIsOpen: false,
   page: null,
+  customerEmail: null,
+  customerName: null,
+  customerToken: null,
+  orders: [],
   navIsOpen: false,
   checkout: {
     lineItems: []
@@ -54,7 +63,7 @@ const fetchCheckout = (store: InitialStore, id: string): Checkout => {
 }
 
 const setCheckoutInState = (checkout: Checkout, setStore: any) => {
-  const isBrowser = typeof window !== "undefined"
+  const isBrowser = typeof window !== 'undefined'
   if (isBrowser) {
     localStorage.setItem(SHOPIFY_CHECKOUT_STORAGE_KEY, checkout.id)
   }
@@ -62,6 +71,18 @@ const setCheckoutInState = (checkout: Checkout, setStore: any) => {
   setStore((prevState: InitialStore) => {
     return { ...prevState, checkout }
   })
+}
+
+const initCustomer = (setStore: any) => {
+  const customerEmail = cookie.get('customer_email')
+  const customerToken = cookie.get('customer_token')
+  const customerName = cookie.get('customer_firstName')
+
+  if (customerEmail && customerToken && customerName) {
+    setStore((prevState: InitialStore) => {
+      return { ...prevState, customerEmail, customerToken, customerName }
+    })
+  }
 }
 
 const StoreContextProvider = ({ children }: { children: any }) => {
@@ -72,7 +93,7 @@ const StoreContextProvider = ({ children }: { children: any }) => {
     if (initStore === false) {
       const initializeCheckout = async () => {
         // Check for an existing cart.
-        const isBrowser = typeof window !== "undefined"
+        const isBrowser = typeof window !== 'undefined'
         const existingCheckoutId = isBrowser
           ? localStorage.getItem(SHOPIFY_CHECKOUT_STORAGE_KEY)
           : null
@@ -94,7 +115,7 @@ const StoreContextProvider = ({ children }: { children: any }) => {
         const newCheckout = await createNewCheckout(store)
         setCheckoutInState(newCheckout, setStore)
       }
-
+      initCustomer(setStore)
       initializeCheckout()
       setInitStore(true)
     }
@@ -125,12 +146,29 @@ function useCartCount() {
   let count = 0
   if (checkout.lineItems) {
     count = checkout.lineItems.reduce(
-      (runningTotal, item) => item.quantity + runningTotal,
+      (runningTotal: number, item: any) => item.quantity + runningTotal,
       0
     )
   }
 
   return count
+}
+
+const setCustomerInState = () => {
+  const {
+    setStore
+  }: { setStore: any } = useContext(StoreContext)
+
+  async function updateCustomerInState() {
+    const customerEmail = cookie.get('customer_email')
+    const customerToken = cookie.get('customer_token')
+    const customerName = cookie.get('customer_firstName')
+    setStore((prevState: InitialStore) => {
+      return { ...prevState, customerEmail, customerToken, customerName }
+    })
+  }
+
+  return updateCustomerInState
 }
 
 function useCartTotals() {
@@ -140,10 +178,10 @@ function useCartTotals() {
 
   const tax = checkout.totalTaxV2
     ? `$${Number(checkout.totalTaxV2.amount).toFixed(2)}`
-    : "-"
+    : '-'
   const total = checkout.totalPriceV2
     ? `$${Number(checkout.totalPriceV2.amount).toFixed(2)}`
-    : "-"
+    : '-'
 
   return {
     tax,
@@ -159,20 +197,27 @@ function useCartItems() {
   return checkout.lineItems
 }
 
+function useCustomer() {
+  const {
+    store: { customerEmail, customerName, customerToken }
+  } = useContext(StoreContext)
+
+  return { customerEmail, customerName, customerToken }
+}
+
 function useAddItemToCart() {
   const {
     store: { checkout, client },
     setStore,
-  } = useContext(StoreContext)
+  }: { store: InitialStore, setStore: any } = useContext(StoreContext)
 
   async function addItemToCart(variantId: string, quantity: number, attributes?: []) {
-    console.log(variantId, quantity)
-    if (variantId === "" || !quantity) {
-      console.error("Both a size and quantity are required.")
+    if (variantId === '' || !quantity) {
+      console.error('Both a size and quantity are required.')
       return
     }
 
-    setStore(prevState => {
+    setStore((prevState: InitialStore) => {
       return { ...prevState, isAdding: true }
     })
 
@@ -184,7 +229,7 @@ function useAddItemToCart() {
       lineItemsToAdd
     )
 
-    setStore(prevState => {
+    setStore((prevState: InitialStore) => {
       return { ...prevState, checkout: newCheckout, cartIsOpen: true, isAdding: false }
     })
   }
@@ -194,8 +239,11 @@ function useAddItemToCart() {
 
 function useRemoveItemFromCart() {
   const {
-    store: { client, checkout },
+    store: { checkout },
     setStore,
+  }: {
+    store: InitialStore
+    setStore: any
   } = useContext(StoreContext)
 
   async function removeItemFromCart(itemId) {
@@ -203,7 +251,7 @@ function useRemoveItemFromCart() {
       itemId,
     ])
 
-    setStore(prevState => {
+    setStore((prevState: InitialStore) => {
       return { ...prevState, checkout: newCheckout }
     })
   }
@@ -213,16 +261,18 @@ function useRemoveItemFromCart() {
 
 function useUpdateItemsFromCart() {
   const {
-    store: { client, checkout },
+    store: { checkout },
     setStore,
+  }: {
+    store: InitialStore
+    setStore: any
   } = useContext(StoreContext)
 
-  async function updateItemsFromCart(items) {
-    console.log('fucntion?')
+  async function updateItemsFromCart(items: any) {
     items = [].concat(items)
     const newCheckout = await client.checkout.updateLineItems(checkout.id, items)
 
-    setStore(prevState => {
+    setStore((prevState: InitialStore) => {
       return { ...prevState, checkout: newCheckout }
     })
   }
@@ -233,6 +283,8 @@ function useUpdateItemsFromCart() {
 function useCheckout() {
   const {
     store: { checkout },
+  }: {
+    store: InitialStore
   } = useContext(StoreContext)
 
   return () => {
@@ -242,11 +294,12 @@ function useCheckout() {
 
 function useSetPage() {
   const {
-    store: { page },
     setStore
+  }: {
+    setStore: any
   } = useContext(StoreContext)
-  async function setPage(page) {
-    setStore(prevState => {
+  async function setPage(page: string) {
+    setStore((prevState: InitialStore) => {
       return { ...prevState, page }
     })
   }
@@ -258,10 +311,13 @@ function useToggleCart() {
   const {
     store: { cartIsOpen },
     setStore
+  }: {
+    store: InitialStore
+    setStore: any
   } = useContext(StoreContext)
 
   async function toggleCart() {
-    setStore(prevState => {
+    setStore((prevState: InitialStore) => {
       return { ...prevState, cartIsOpen: !cartIsOpen }
     })
   }
@@ -272,8 +328,10 @@ function useToggleCart() {
 export {
   client,
   StoreContextProvider,
+  setCustomerInState,
   useAddItemToCart,
   useStore,
+  useCustomer,
   useCartCount,
   useCartItems,
   useCartTotals,

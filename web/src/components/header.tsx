@@ -6,9 +6,10 @@ import { Github } from 'src/components/svgs'
 import { useCartCount, useToggleCart, useStore } from 'src/context/siteContext'
 
 export const Header = () => {
-
+  const {customerName} = useStore()
   const count = useCartCount()
   const toggleCart = useToggleCart()
+
   return (
     <div className='container--xl mxa p1 outer'>
       <div className='f x jcb aic'>
@@ -17,7 +18,7 @@ export const Header = () => {
           <PageLink to='/documentation'>Docs</PageLink>
         </div>
         <div>
-          <a href='/account' className='mr1'>Account</a>
+          <a href='/account' className='mr1'>{customerName ? `Hi, ${customerName}` : 'Account'}</a>
           <button aria-label='cart' className='p0 no-style a mr1 s1' onClick={() => toggleCart()}>
               Cart (<span className='s1'>{count}</span>)
             </button>

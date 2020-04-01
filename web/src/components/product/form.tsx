@@ -37,7 +37,7 @@ export const ProductForm = ({ defaultPrice, productId, showQuantity, addText }: 
         })
         setActiveVariantId(decodedVariants[0].id as string)
         setAvailable(decodedVariants[0].available)
-        console.log(decodedVariants[0])
+
         if (decodedVariants[0].compareAtPrice) setCompareAtPrice(decodedVariants[0].compareAtPrice)
 
         setCheck(false)
