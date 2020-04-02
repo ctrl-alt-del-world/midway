@@ -19,11 +19,13 @@ export const Portal = () => {
     .then(() => {
       cookie.remove('customer_token')
       cookie.remove('customer_email')
-      cookie.remove('customer_name')
+      cookie.remove('customer_firstName')
       setTimeout(() => {
         updateCustomerInState()
-        navigate('/')
       }, 300)
+      setTimeout(() => {
+        navigate('/')
+      }, 500)
     })
   }
   return (
