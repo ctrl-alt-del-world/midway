@@ -74,7 +74,7 @@ export const Login = ({ path }: { path: string }) => {
             )}
 
             {isRejected && (
-              <div className='studio mt1 error'>
+              <div className='mt1 error'>
                 <span role='img' aria-label='error'>
                   ⚠️
                 </span>

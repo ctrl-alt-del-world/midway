@@ -20,7 +20,10 @@ export const Orders = () => {
           if (res.error) {
             throw new Error(res.error.message)
           } else {
-            setOrders(res.customer.orders)
+            console.log(res)
+            if (res.customer.orders.edges) {
+              setOrders(res.customer.orders.edges)
+            }
             return null
           }
         }),
@@ -43,15 +46,31 @@ export const Orders = () => {
   return (
     <div>
       <h2 className='mb0 pb0'>Orders</h2>
-      {orders.length > 0 ? (
-        <div>
-          ORDERS
-        </div>
-      ) : (
-        <div>
-          <p>Sorry you don't have any orders yet!</p>
-        </div>
-      )}
+      <div className='x al mya'>
+        {(isPending ||
+          isReloading) && (
+          <span>Loading</span>
+        )}
+
+        {isRejected && (
+          <div className='mt1 error'>
+            <span role='img' aria-label='error'>
+              ⚠️
+            </span>
+            : {error.message}
+          </div>
+        )}
+
+        {orders.length > 0 ? (
+          <div>
+            ORDERS
+          </div>
+        ) : (
+          <div>
+            <p>Sorry you don't have any orders yet!</p>
+          </div>
+        )}
+      </div>
     </div>
   )
 }

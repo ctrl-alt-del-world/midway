@@ -31,6 +31,7 @@ export const Portal = () => {
   }
   return (
     <div className='container--l mxa p1 ac'>
+      <h1>Account Portal</h1>
       <a href="#logout" onClick={e => logout(e)}>Logout</a>
       <div className='x al mt1'>
         <Orders />
