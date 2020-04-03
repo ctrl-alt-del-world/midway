@@ -12,7 +12,11 @@ export const ProductHero = ({ product, main: { title, productDescription, linked
     subTitle?: string
     slug: {}
     productDescription?: []
-    mainImage: {}
+    mainImage: {
+      asset: {
+        _id: string
+      }
+    }
     linkedSite: string
     linkedSiteName: string
     cerealImage: {}
@@ -31,7 +35,7 @@ export const ProductHero = ({ product, main: { title, productDescription, linked
           </div>
           <div className='c50 container--s mxa'>
             <h1>{title}</h1>
-            <BlockContent blocks={productDescription} serializers={Serializer} />
+            {productDescription && (<BlockContent blocks={productDescription} serializers={Serializer} />)}
             {linkedSite && linkedSiteName && (
               <div className='callout bcblue cw p1 my1'>
                 Shop the real product on the <a href={linkedSite} className='cw underline' target='_blank'>{linkedSiteName}</a> Website.

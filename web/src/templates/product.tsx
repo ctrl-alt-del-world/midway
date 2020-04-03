@@ -4,6 +4,7 @@ import cx from 'classnames'
 import { RenderModules } from 'src/utils/renderModules'
 
 import { ProductHero } from 'src/components/product/hero'
+import { ProductSchema } from 'src/components/product/schema'
 
 import { useSetPage } from 'src/context/siteContext'
 import { SEO } from 'src/components/SEO'
@@ -44,6 +45,13 @@ const Product = ({
   const url = `products/${slug.current}`
   return (
     <div className='ac'>
+      <div dangerouslySetInnerHTML={{
+          __html: `
+            <script type="application/ld+json">
+              ${JSON.stringify(ProductSchema(main, shopify))}
+            </script>
+          `
+        }} />
       <SEO metaInfo={meta} pagePath={url} />
       <div className={cx('mxa x al site__main', pageContext.main.slug.current, colorAssociation)}>
         <ProductHero main={pageContext.main} product={shopify} />
