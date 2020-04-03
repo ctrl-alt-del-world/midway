@@ -64,7 +64,7 @@ The studio is ready/useful, I'll more than likely further modify the structure, 
 ✔️ 🍝 Product schema json-ld     
 ✔️ 🍝 Seo Meta out of the Box (this works but i have a no-follow on robots.txt)  
 ✖️ 🍝 Mock Blog  
-✖️ 🍝 Focus Trap the cart for ADA  
+✔️ 🍝 Focus States & Tab Index for ADA  
 ✖️ 🍝 Example PDP with extended modularity  
 ✖️ 🍝 Gatsby Create support for filling a sanity studio and getting a working frontend faster  
 ✖️ 🍝 Docz website?  

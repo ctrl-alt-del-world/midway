@@ -2,6 +2,7 @@ import React from 'react'
 import Helmet from 'react-helmet'
 
 import { Header } from 'src/components/header'
+import { Footer } from 'src/components/footer'
 import { SwitchTransition, Transition } from 'react-transition-group'
 import { Disclaimer } from 'src/components/disclaimer'
 import { CartDrawer } from 'src/components/cartDrawer'
@@ -58,6 +59,7 @@ const Layout = ({ children, siteMetadata, location }: { children: any }) => {
                     ...TRANSITION_STYLES[status],
                   }}>
                   {children}
+                  <Footer />
                 </div>
               )}
             </Transition>

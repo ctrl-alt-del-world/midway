@@ -30,6 +30,22 @@ a, .a {
   text-decoration: none;
 }
 
+a, button {
+  position: relative;
+  &:focus {
+    outline: none;
+    &:before {
+      border: 2px dashed currentColor;
+      width: calc(100% + 8px);
+      left: -4px;
+      position: absolute;
+      content: '';
+      height: calc(100% + 8px);
+      top: -4px;
+    }
+  }
+}
+
 .strikethrough {
   text-decoration: line-through;
 }

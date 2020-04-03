@@ -16,8 +16,8 @@ export const ProductCard = ({
 }: Product ) => {
   return (
     <div className='grid__product c30 x' key={_id}>
-      <PageLink to={`/products/${main.slug.current}`}>
-        {main.mainImage && (<Image className='x' imageId={main.mainImage.asset._ref} alt={main.title} />)}
+      <PageLink className='block' to={`/products/${main.slug.current}`}>
+        {main.mainImage && (<Image className='block x' imageId={main.mainImage.asset._ref} alt={main.title} />)}
         <div className='f jcb aic'>
           <span>{main.title}</span>
           <span>${shopify.defaultPrice}</span>
