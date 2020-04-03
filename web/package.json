@@ -50,6 +50,7 @@
     "shopify-buy": "^2.9.0",
     "shopify-gid": "^1.0.1",
     "shopify-storefront-api-typings": "^1.1.1",
+    "spacetime": "^6.4.2",
     "svbstrate": "^4.1.1",
     "unfetch": "^4.1.0"
   },

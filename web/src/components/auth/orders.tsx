@@ -1,6 +1,7 @@
 import React, { useEffect, useCallback, useState } from 'react'
 import cookie from 'js-cookie'
 import { useLoads } from 'react-loads'
+import spacetime from 'spacetime'
 
 import { useStore } from 'src/context/siteContext'
 
@@ -44,7 +45,7 @@ export const Orders = () => {
   }, [])
 
   return (
-    <div>
+    <div className='container--m mxa x'>
       <h2 className='mb0 pb0'>Orders</h2>
       <div className='x al mya'>
         {(isPending ||
@@ -63,7 +64,20 @@ export const Orders = () => {
 
         {orders.length > 0 ? (
           <div>
-            ORDERS
+            <div className='x accounts__orders-wrapper'>
+              {orders.map(order => (
+                <div key={order.node.orderNumber} className='x bct py1 f jcb aic'>
+                  <div className='al'>
+                    <h3 className='m0 p0'>{order.node.orderNumber}</h3>
+                    <span>Processed: {spacetime(order.node.processedAt).unixFmt('dd.MM.yyyy')}</span>
+                  </div>
+                  <div className='ar'>
+                    <h5 className='m0 p0'>${order.node.totalPrice}</h5>
+                    <a href={order.node.statusUrl} target='_blank' rel='noopener noreferrer'>Order Status</a>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         ) : (
           <div>

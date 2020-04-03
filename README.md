@@ -52,7 +52,7 @@ The studio is ready/useful, I'll more than likely further modify the structure, 
 ✔️ Ability to quick add to cart  
 ✔️ cart visible on the frontend  
 ✔️ Add/remove items from the cart  
-✖️ Ability to see orders  
+✔️ Ability to see orders  
 ✖️ Add/remove addresses  
 ✖️ Ability to see/edit addresses  
 

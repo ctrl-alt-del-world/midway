@@ -14596,6 +14596,11 @@ space-separated-tokens@^1.0.0:
   resolved "https://registry.yarnpkg.com/space-separated-tokens/-/space-separated-tokens-1.1.5.tgz#85f32c3d10d9682007e917414ddc5c26d1aa6899"
   integrity sha512-q/JSVd1Lptzhf5bkYm4ob4iWPjx0KiRe3sRFBNrVqbJkFaBm5vbbowy1mymoPNLRa52+oadOhJ+K49wsSeSjTA==
 
+spacetime@^6.4.2:
+  version "6.4.2"
+  resolved "https://registry.yarnpkg.com/spacetime/-/spacetime-6.4.2.tgz#1d7a0e65b36170aa64b0ab4f896ae6deb5abe197"
+  integrity sha512-CWLPqJxhGBcQNE1cXmcppHVKxW/oqZjakKDtyrYL7yRROWmdjyyZ7ypLkJOX20yq6bHt7O88xZPa2zAkXuc/EA==
+
 spdx-correct@^3.0.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/spdx-correct/-/spdx-correct-3.1.0.tgz#fb83e504445268f154b074e218c87c003cd31df4"
