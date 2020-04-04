@@ -43,18 +43,46 @@ exports.createPages = async ({graphql, actions}) => {
   }
 `)
 
-if (productsQuery.errors) {
-  throw productsQuery.errors
-}
+  if (productsQuery.errors) {
+    throw productsQuery.errors
+  }
 
-const products = productsQuery.data.allSanityProduct.edges || []
-products.forEach((edge, index) => {
+  const products = productsQuery.data.allSanityProduct.edges || []
+  products.forEach((edge, index) => {
   const path = `/products/${edge.node._rawContent.main.slug.current}`
 
-  createPage({
-    path,
-    component: require.resolve('./src/templates/product.tsx'),
-    context: {...edge.node._rawContent},
+    createPage({
+      path,
+      component: require.resolve('./src/templates/product.tsx'),
+      context: {...edge.node._rawContent},
+    })
   })
-})
+
+  // Query Collections
+  const collectionsQuery = await graphql(`
+  {
+    allSanityCollection {
+      edges {
+        node {
+          _rawContent(resolveReferences: {maxDepth: 9})
+        }
+      }
+    }
+  }
+`)
+
+  if (collectionsQuery.errors) {
+    throw collectionsQuery.errors
+  }
+
+  const collections = collectionsQuery.data.allSanityCollection.edges || []
+  collections.forEach((edge, index) => {
+    const path = `/collection/${edge.node._rawContent.main.slug.current}`
+
+    createPage({
+      path,
+      component: require.resolve('./src/templates/page.tsx'),
+      context: {...edge.node._rawContent},
+    })
+  })
 }

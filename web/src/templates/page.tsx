@@ -14,21 +14,22 @@ export interface PageProps {
     },
     meta: {}
   }
+  path: string
 }
 
 const Page = ({
-  pageContext,
-  transitionStatus
+  path,
+  pageContext
 }: PageProps) => {
   const {
     main: {
       modules,
-      slug,
-      title
+      slug
     },
     meta
   } = pageContext
-  const url = slug.current === 'home' ? '' : slug.current
+
+  const url = slug.current === 'home' ? '' : path
   return (
     <div className='mt1 ac'>
       <SEO metaInfo={meta} pagePath={url} />

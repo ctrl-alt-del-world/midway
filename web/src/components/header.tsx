@@ -14,7 +14,8 @@ export const Header = () => {
       <div className='f x jcb aic'>
         <div>
           <PageLink to='/' className='mr1'>Index</PageLink>
-          <PageLink to='/documentation'>Docs</PageLink>
+          <PageLink to='/documentation' className='mr1'>Docs</PageLink>
+          <PageLink to='/collection/all'>Shop All</PageLink>
         </div>
         <div>
           <a href='/account' className='mr1'>{customerName ? `Hi, ${customerName}` : 'Account'}</a>

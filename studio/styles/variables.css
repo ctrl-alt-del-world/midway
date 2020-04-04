@@ -24,5 +24,9 @@
 
   
   --default-button-color: var(--brand-primary);
-
+  
+  --default-button-color: white;
+  --default-button-color--inverted: var(--white);
+  --default-button-color--hover: white;
+  --default-button-color--active: white;
 }
