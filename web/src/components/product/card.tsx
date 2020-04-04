@@ -24,7 +24,7 @@ export const ProductCard = ({
         </div>
       </PageLink>
       <div className='x mt05'>
-        <ProductForm {...shopify} showQuantity={false} addText={'Quick Add'} />
+        <ProductForm {...shopify} showQuantity={false} waitlist={false} addText={'Quick Add'} />
       </div>
     </div>
   )

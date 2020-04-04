@@ -32,6 +32,7 @@
     "highlight.js": "^9.18.1",
     "http-proxy-middleware": "^0.21.0",
     "js-cookie": "^2.2.1",
+    "klaviyo-subscribe": "^1.0.0",
     "markdown-it": "^10.0.0",
     "netlify-lambda": "^1.6.3",
     "node-sass": "^4.13.1",

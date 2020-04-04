@@ -6,6 +6,7 @@ button.no-style {
 .button {
   cursor: pointer;
   transition: all 0.3s ease-in-out;
+  border: 0px;
   &.button--h-black {
     &:hover {
       background-color: black;

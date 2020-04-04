@@ -9208,6 +9208,11 @@ kind-of@^6.0.0, kind-of@^6.0.2:
   resolved "https://registry.yarnpkg.com/kind-of/-/kind-of-6.0.3.tgz#07c05034a6c349fa06e24fa35aa76db4580ce4dd"
   integrity sha512-dcS1ul+9tmeD95T+x28/ehLgd9mENa3LsvDTtzm3vyBEO7RPptvAD+t44WVXaUjTBRcrpFeFlC8WCruUR456hw==
 
+klaviyo-subscribe@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/klaviyo-subscribe/-/klaviyo-subscribe-1.0.0.tgz#e908fe03851bca5cf8d998fcc1d3d281f16be64f"
+  integrity sha512-7CJvKYU3fV8xfJ6hyafUJhUGupHL39IDpzpqn8i4fMmYCR1OW4Yi5p5mfE+oJW/UEbwg0U90lQsX6CiCXQ6zww==
+
 klaw@^1.0.0:
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/klaw/-/klaw-1.3.1.tgz#4088433b46b3b1ba259d78785d8e96f73ba02439"

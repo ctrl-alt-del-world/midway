@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { encode, decode } from 'shopify-gid'
 
-
+import { Newsletter } from 'src/components/newsletter'
 import { client, useAddItemToCart, useToggleCart } from 'src/context/siteContext'
 
-export const ProductForm = ({ defaultPrice, productId, showQuantity, addText }: {
+export const ProductForm = ({ title, defaultPrice, productId, showQuantity, waitlist = true, addText }: {
+  title: string
   defaultPrice: string
   productId: number
+  waitlist?: boolean | true
   showQuantity?: boolean | true
   addText?: string
 }) => {
@@ -15,7 +17,7 @@ export const ProductForm = ({ defaultPrice, productId, showQuantity, addText }: 
   const [quantity, setQuantity] = useState(1 as number)
   const [adding, setAdding] = useState(false as boolean)
   const [available, setAvailable] = useState(false)
-  const [activeVariantId, setActiveVariantId] = useState(undefined as string | undefined)
+  const [activeVariantId, setActiveVariantId] = useState('' as string)
   const [compareAtPrice, setCompareAtPrice] = useState(undefined as string | undefined)
   const [check, setCheck] = useState(true)
 
@@ -84,9 +86,27 @@ export const ProductForm = ({ defaultPrice, productId, showQuantity, addText }: 
           <div>
             {available ? (
               <span>Checking Stock</span>
-            ): (
-              <span>Unavailable</span>
-            )}
+            ): 
+              waitlist ? (
+                <div className='mt1 pt1'>
+                  <h5>Get notifed when stock is replenished</h5>
+                  <Newsletter
+                    listId='LfipJz'
+                    message="Got it! We'll update you when it's back"
+                    buttonText='Notify Me'
+                    customFields={{
+                      $fields: ["ProductName", "ProductId"],
+                      ProductName: title,
+                      ProductId: productId
+                    }} />
+                </div>
+              ) : (
+                // Left empty for now
+                <div className='ac x bold'>
+                  <span className='small' />
+                </div>
+              )
+            }
           </div>
         )}
       </form>

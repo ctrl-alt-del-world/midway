@@ -46,6 +46,10 @@ a, button {
   }
 }
 
+.small {
+  font-size: 12px;
+}
+
 input:focus {
   border: 1px dashed currentColor;
 }
