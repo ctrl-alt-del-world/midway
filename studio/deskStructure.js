@@ -5,7 +5,7 @@ import {
   ConfigMenu,
   ProductMenuItem,
   ProductVariantParent,
-  // CollectionMenuItem,
+  CollectionMenuItem,
   PageMenuItem
 } from './structure/index'
 
@@ -19,7 +19,7 @@ export default () =>
     .items([
       ConfigMenu,
       PageMenuItem,
+      CollectionMenuItem,
       ProductMenuItem,
       ProductVariantParent,
-      // CollectionMenuItem
     ])

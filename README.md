@@ -61,6 +61,8 @@ The studio is ready/useful, I'll more than likely further modify the structure, 
 ✖️ 🍝 Add Analytics patterns (via get analytics)  
 ✖️ 🍝 Add ability to do multi-variant selection  
 ✖️ 🍝 Product carousel   
+✖️ 🍝 Klaviyo Newsletter  
+✖️ 🍝 Klaviyo Waitlisting for out of stock products   
 ✔️ 🍝 Product schema json-ld     
 ✔️ 🍝 Seo Meta out of the Box (this works but i have a no-follow on robots.txt)  
 ✖️ 🍝 Mock Blog  

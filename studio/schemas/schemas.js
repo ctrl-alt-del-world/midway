@@ -13,6 +13,7 @@ import siteSettings from './siteSettings'
 // Content Types
 import product from './types/product'
 import page from './types/page'
+import collection from './types/collection'
 import siteGlobal from './types/siteGlobal'
 import menus from './types/menus'
 import post from './types/post'
@@ -60,6 +61,7 @@ export default createSchema({
     page,
     post,
     menus,
+    collection,
     product,
     variant,
     // Modules
