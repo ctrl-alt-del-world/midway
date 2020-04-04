@@ -3,11 +3,12 @@ import { navigate } from 'gatsby'
 import cookie from 'js-cookie'
 import fetch from 'unfetch'
 
-import { setCustomerInState } from 'src/context/siteContext'
+import { setCustomerInState, useStore } from 'src/context/siteContext'
 import { Orders } from 'src/components/auth/orders'
 
 export const Portal = () => {
   const updateCustomerInState = setCustomerInState()
+  const { customerToken } = useStore()
   const logout = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault()
     const customerToken = cookie.get('customer_token')
@@ -34,7 +35,9 @@ export const Portal = () => {
       <h1>Account Portal</h1>
       <a href="#logout" onClick={e => logout(e)}>Logout</a>
       <div className='x al mt1'>
-        <Orders />
+        {customerToken && (
+          <Orders />
+        )}
       </div>
     </div>
   )
