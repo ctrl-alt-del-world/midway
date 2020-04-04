@@ -1,4 +1,4 @@
-# Midway
+# Midway v 0.8
 
 > ⚠️ Disclaimer: The Gatsby theme is in active development as I work on documentation + extending the system, the studio is fairly ready for referenced use if you so desire. I will post a v1.0 once everything is in a better place hopefully very very soon :). I am working on creating a full shoppable/authed Shopify experience. The idea here is viewing products, adding them to a cart and getting to a real checkout, you will also be able to register, login, view orders, and also update your address (all traditional shopify experiences but in a headless environment).
 

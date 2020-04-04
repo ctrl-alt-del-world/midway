@@ -46,6 +46,10 @@ a, button {
   }
 }
 
+input:focus {
+  border: 1px dashed currentColor;
+}
+
 .strikethrough {
   text-decoration: line-through;
 }

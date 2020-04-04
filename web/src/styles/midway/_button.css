@@ -15,6 +15,9 @@ button.no-style {
   &.button--w {
     background-color: white;
   }
+  &.button--b {
+    background-color: black;
+  }
 }
 
 button {

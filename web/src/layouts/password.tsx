@@ -45,12 +45,14 @@ export const PasswordWrapper = ({ children }: {
               <div className='x'>
 
                 <form className='x ac password__form mxa' onSubmit={(e) => handleSubmit(e)} ref={form}>
-                  <p className='cw p1'>Please enter the password (it's spaghetti)</p>
                   <div className='mt1 x rel'>
-                    <input aria-label='password' onChange={() => setError(false)} className={cx('p1 x bcw cblue caps mb1 founders cw ls1 password__input ac', {
-                      'error': error
-                    })} type='password' name='password' placeholder='Enter Password' />
-                    <button type='submit' aria-label='submit' className='p1 no-style cblue button button--w button--h-black bcw mt1'>
+                    <label className='cw p1'>
+                      <span className='mb1 inline-block'>Please enter the password (it's spaghetti)</span>
+                      <input aria-label='password' onChange={() => setError(false)} className={cx('p1 x bcw cblue caps mb1 founders cw ls1 password__input ac', {
+                        'error': error
+                      })} type='password' name='password' placeholder='Enter Password' />
+                    </label>
+                    <button type='submit' aria-label='submit' className='p1 no-style cw button button--b bcw mt1'>
                       Submit
                     </button>
                   </div>
