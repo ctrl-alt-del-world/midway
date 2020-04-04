@@ -26,11 +26,11 @@ interface InitialStore {
   isAdding: boolean
   cartIsOpen: boolean
   navIsOpen: boolean
-  page: null
+  page: undefined
   orders: any[]
-  customerEmail: string | null
-  customerName: string | null
-  customerToken: string | null
+  customerEmail: string | undefined
+  customerName: string | undefined
+  customerToken: string | undefined
   checkout: Checkout
 }
 
@@ -38,10 +38,10 @@ const initialStoreState = {
   client,
   isAdding: false,
   cartIsOpen: false,
-  page: null,
-  customerEmail: null,
-  customerName: null,
-  customerToken: null,
+  page: undefined,
+  customerEmail: undefined,
+  customerName: undefined,
+  customerToken: undefined,
   orders: [],
   navIsOpen: false,
   checkout: {

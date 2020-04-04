@@ -15,8 +15,8 @@ export const ProductForm = ({ defaultPrice, productId, showQuantity, addText }: 
   const [quantity, setQuantity] = useState(1 as number)
   const [adding, setAdding] = useState(false as boolean)
   const [available, setAvailable] = useState(false)
-  const [activeVariantId, setActiveVariantId] = useState(null as string | null)
-  const [compareAtPrice, setCompareAtPrice] = useState(null as string | null)
+  const [activeVariantId, setActiveVariantId] = useState(undefined as string | undefined)
+  const [compareAtPrice, setCompareAtPrice] = useState(undefined as string | undefined)
   const [check, setCheck] = useState(true)
 
   const form = React.createRef()
