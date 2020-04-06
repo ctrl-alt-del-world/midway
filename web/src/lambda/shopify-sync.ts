@@ -45,37 +45,34 @@ exports.handler = async (event: APIGatewayEvent): Promise<any> => {
     // Build our initial product
     const product = {
       _type: 'product',
-      _id: data.id.toString(),
-      content: {
-        shopify: {
-          productId: data.id,
-          title: data.title,
-          defaultPrice: data.variants[0].price,
-          defaultVariant: {
-            title: data.variants[0].title,
-            price: data.variants[0].price,
-            sku: data.variants[0].sku,
-            variantId:  data.variants[0].id,
-            taxable: data.variants[0].taxable,
-            inventoryQuantity: data.variants[0].inventory_quantity,
-            inventoryPolicy: data.variants[0].inventory_policy,
-            barcode: data.variants[0].barcode
-          }
-        },
-        main: {
-          title: data.title,
-          slug: {
-            _type: 'slug',
-            current: data.handle
-          }
-        }
-      }
+      _id: data.id.toString()
     }
+
+    /*
+    /    Because of the nested structure of the products (with tabs)
+    /    we need select the fields we want to update specifically in Shopify
+    /    Syncs to prevent erasing other modular/custom data
+    */
+   const productObject = {
+    "content.shopify.productId": data.id,
+    "content.shopify.title": data.title,
+    "content.shopify.defaultPrice": data.variants[0].price,
+    "content.shopify.defaultVariant.title": data.variants[0].title,
+    "content.shopify.defaultVariant.price": data.variants[0].price,
+    "content.shopify.defaultVariant.sku": data.variants[0].sku,
+    "content.shopify.defaultVariant.variantId": data.variants[0].id,
+    "content.shopify.defaultVariant.taxable": data.variants[0].taxable,
+    "content.shopify.defaultVariant.inventoryQuantity": data.variants[0].inventory_quantity,
+    "content.shopify.defaultVariant.inventoryPolicy": data.variants[0].inventory_policy,
+    "content.shopify.defaultVariant.barcode": data.variants[0].barcode,
+    "content.main.title": data.title,
+    "content.main.slug.current": data.handle
+  }
 
     return client
       .transaction()
       .createIfNotExists(product)
-      .patch(data.id.toString(), patch => patch.set(product))
+      .patch(data.id.toString(), patch => patch.set(productObject))
       .commit()
       .then(res => {
         console.log(`Successfully updated/patched Product ${data.id} in Sanity`);
