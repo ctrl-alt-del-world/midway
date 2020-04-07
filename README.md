@@ -81,14 +81,14 @@ Please keep in mind I assume you are already familiar with the Shopify eco syste
 
 1. In your Netlify environment, go to your project and create a new Function.
 2. Set the functions directory to be the `functions/` folder in your project.
-3. In Shopify, go to `Settings -> Notifications -> Webhooks` and create webhooks for Product Creation, Updates, & Deletions (⚠️ Be careful with how you implement this, see more [here](https://github.com/lucasvocos/gatsby-sanity-shopify/blob/d69ed053dfa3e21b17a1c10e1b5697044774f70d/web/functions/shopify.js#L171)). Set the webhook's Callback URL to `[https://YOUR_URL.DOMAIN/.netlify/functions/shopify]` (if using Netlify, otherwise point to your provider's Lambda location)
+3. In Shopify, go to `Settings -> Notifications -> Webhooks` and create webhooks for Product Creation, Updates, & Deletions (⚠️ Be careful with how you implement this, see more [here](https://github.com/lucasvocos/gatsby-sanity-shopify/blob/d69ed053dfa3e21b17a1c10e1b5697044774f70d/web/functions/shopify.js#L171)). Set the webhook's Callback URL to `[https://YOUR_URL.DOMAIN/.netlify/functions/shopify-sync]` (if using Netlify, otherwise point to your provider's Lambda location)
 
 <details>
 <summary>Local Development of Functions</summary>
 You can alternatively run your webhook locally, you can do this with ngrok
-1. npm install ngrok -g  
-2. ngrok [:PORT] http  
-3. Point Shopify webhook to the above url +  /.netlify/functions/shopify  
+  1. npm install ngrok -g  
+  2. ngrok [:PORT] http  
+  3. Point Shopify webhook to the above url +  /.netlify/functions/shopify  
 </details>
 
 ## Features
