@@ -4,6 +4,7 @@
 # Dependency directories
 /node_modules
 /studio/node_modules
+/studio/sanity.json
 /web/node_modules
 
 # Ignore hidden files as default

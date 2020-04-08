@@ -1,5 +1,9 @@
 {
   "root": true,
+  "api": {
+    "projectId": "hinqmch5",
+    "dataset": "production"
+  },
   "project": {
     "name": "Midway",
     "basePath": "/"

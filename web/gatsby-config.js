@@ -1,6 +1,4 @@
-// require("dotenv").config({
-//   path: `.env.${process.env.NODE_ENV}`,
-// })
+require("dotenv").config()
 const path = require('path')
 const proxy = require('http-proxy-middleware')
 
