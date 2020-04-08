@@ -12,6 +12,9 @@ I've taken a relatively more opinionated approach and started to fully build out
 
 Clone this repository to bootstrap a fresh Typescript Gatsby site, powered by Sanity CMS and dynamically import Shopify products to Sanity with the help of a WebHook
 
+## Advanced Instructions
+
+### [Getting started](https://midway.ctrlaltdel.world/getting-started)
 
 ## Basic Instructions
 
