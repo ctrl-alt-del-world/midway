@@ -39,26 +39,27 @@ The studio is ready/useful, I'll more than likely further modify the structure, 
 
 <details>
 <summary>Current Feature Status</summary>
-✔️ Gatbsy Typescript style  
-✔️ Fetching data and building pages from Sanity  
-✔️ Cart object created via the buy-sdk  
-✔️ Lambda functions being built from src->functions  
-✔️ Ability to login  
-✔️ Ability to register  
-✔️ Ability to logout  
-✔️ Better error handling for register  
-✔️ Ability to activate accounts  
-✔️ Ability to forgot passwords  
-✔️ Ability to reset passwords  
-✔️ account status in the header + logout  
-✔️ view single product detail  
-✔️ ability to add to cart  
-✔️ Ability to quick add to cart  
-✔️ cart visible on the frontend  
-✔️ Add/remove items from the cart  
-✔️ Ability to see orders  
-✖️ Add/remove addresses  
-✖️ Ability to see/edit addresses  
+
+✔️ Gatbsy Typescript style   
+✔️ Fetching data and building pages from Sanity   
+✔️ Cart object created via the buy-sdk   
+✔️ Lambda functions being built from src->functions   
+✔️ Ability to login   
+✔️ Ability to register   
+✔️ Ability to logout   
+✔️ Better error handling for register   
+✔️ Ability to activate accounts   
+✔️ Ability to forgot passwords   
+✔️ Ability to reset passwords   
+✔️ account status in the header + logout   
+✔️ view single product detail   
+✔️ ability to add to cart   
+✔️ Ability to quick add to cart   
+✔️ cart visible on the frontend   
+✔️ Add/remove items from the cart    
+✔️ Ability to see orders   
+✖️ Add/remove addresses   
+✖️ Ability to see/edit addresses   
 </details>
 
 
