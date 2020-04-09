@@ -71,6 +71,7 @@ The studio is ready/useful, I'll more than likely further modify the structure, 
 ✔️ 🍝 Seo Meta out of the Box (this works but i have a no-follow on robots.txt)  
 ✖️ 🍝 Add Analytics patterns (via get analytics)  
 ✖️ 🍝 Add ability to do multi-variant selection  
+✖️ 🍝 Add a single sync function via sane-sanity!!   
 ✖️ 🍝 Product carousel   
 ✖️ 🍝 Promo Bar in the schema  
 ✖️ 🍝 Mock Blog  
@@ -138,8 +139,9 @@ You can alternatively run your webhook locally, you can do this with ngrok
 ## Credits 
 Thanks to [Lucas](https://github.com/lucasvocos/gatsby-sanity-shopify) for kicking this whole thing off.  
 [Ian](https://github.com/dictions) with the smooth react-transition-group page transitions  
-[Trevor](https://github.com/thetrevorharmon) for the siteContext component from his [Gatsby-Shopify-Starter](https://github.com/thetrevorharmon/sell-things-fast/blob/master/src/context/StoreContext.js)  
-
+[Trevor](https://github.com/thetrevorharmon) for the siteContext component from his [Gatsby-Shopify-Starter](https://github.com/thetrevorharmon/sell-things-fast/blob/master/src/context/StoreContext.js)   
+[David](https://github.com/blimpmason) for fixing the scrollTop on page transition   
+ 
 
 ## More learning
 
