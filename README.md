@@ -79,10 +79,10 @@ The studio is ready/useful, I'll more than likely further modify the structure, 
 ✖️ 🍝 Docz website?  
 
 #### Bonus Features?
-✖️ ✨ netlify plugins (a11y/gatsby booster)
-✖️ ✨ Sentry pattern 
-✖️ ✨ Logrocket pattern
-✖️ ✨ jest testing
+✖️ ✨ netlify plugins (a11y/gatsby booster)   
+✖️ ✨ Sentry pattern   
+✖️ ✨ Logrocket pattern   
+✖️ ✨ jest testing   
 
 ### Shopify/
 In the Shopify folder I provide an example theme.liquid file, this file is needed if you intend to add accounts to your headless environment (which this theme has functional components to support), shopify doesn't allow you to override the URL structure of the account information, so we redirect to where the headless experience lives. We also pass the hash/pathname etc so we can use that in our headless account system.
