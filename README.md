@@ -12,11 +12,10 @@ I've taken a relatively more opinionated approach and started to fully build out
 
 Clone this repository to bootstrap a fresh Typescript Gatsby site, powered by Sanity CMS and dynamically import Shopify products to Sanity with the help of a WebHook
 
-## Advanced Instructions
+## [Getting Started Guide](https://midway.ctrlaltdel.world/getting-started)
 
-### [Getting started](https://midway.ctrlaltdel.world/getting-started)
-
-## Basic Instructions
+<details>
+<summary>Basic Instructions</summary>
 
 ### Initial Setup
 1. Remove remote repo by entering `rm -rf .git`
@@ -36,8 +35,10 @@ The studio is ready/useful, I'll more than likely further modify the structure, 
 3. Modify `gatsby-config.js` and add your site title, etc.
 3. Develop your front end, etc. (purposely left this ultra stripped-down)
 4. Create a repo specifically for your Gatsby build, host with Netlify or anywhere you can have a Lambda function.
+</details>
 
-#### Current Feature Status
+<details>
+<summary>Current Feature Status</summary>
 ✔️ Gatbsy Typescript style  
 ✔️ Fetching data and building pages from Sanity  
 ✔️ Cart object created via the buy-sdk  
@@ -58,22 +59,29 @@ The studio is ready/useful, I'll more than likely further modify the structure, 
 ✔️ Ability to see orders  
 ✖️ Add/remove addresses  
 ✖️ Ability to see/edit addresses  
+</details>
 
 
 #### Feature roadmap
+✔️ 🍝 Klaviyo Newsletter  
+✔️ 🍝 Klaviyo Waitlisting for out of stock products   
+✔️ 🍝 Product schema json-ld     
+✔️ 🍝 Focus States & Tab Index for ADA  
+✔️ 🍝 Seo Meta out of the Box (this works but i have a no-follow on robots.txt)  
 ✖️ 🍝 Add Analytics patterns (via get analytics)  
 ✖️ 🍝 Add ability to do multi-variant selection  
 ✖️ 🍝 Product carousel   
 ✖️ 🍝 Promo Bar in the schema  
-✔️ 🍝 Klaviyo Newsletter  
-✔️ 🍝 Klaviyo Waitlisting for out of stock products   
-✔️ 🍝 Product schema json-ld     
-✔️ 🍝 Seo Meta out of the Box (this works but i have a no-follow on robots.txt)  
 ✖️ 🍝 Mock Blog  
-✔️ 🍝 Focus States & Tab Index for ADA  
 ✖️ 🍝 Example PDP with extended modularity  
 ✖️ 🍝 Gatsby Create support for filling a sanity studio and getting a working frontend faster  
 ✖️ 🍝 Docz website?  
+
+#### Bonus Features?
+✖️ ✨ netlify plugins (a11y/gatsby booster)
+✖️ ✨ Sentry pattern 
+✖️ ✨ Logrocket pattern
+✖️ ✨ jest testing
 
 ### Shopify/
 In the Shopify folder I provide an example theme.liquid file, this file is needed if you intend to add accounts to your headless environment (which this theme has functional components to support), shopify doesn't allow you to override the URL structure of the account information, so we redirect to where the headless experience lives. We also pass the hash/pathname etc so we can use that in our headless account system.
