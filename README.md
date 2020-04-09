@@ -4,6 +4,8 @@
 
 > Typescript Support: I am no TS expert, and am doing my best with the knowledge I have there are some places that still have issues, like react CreateRef stuff, not really sure what to do with those bits (mostly in the accounts area), if you have experience here I would love some insight into fix that or making it more robust.
 
+[![Maintainability](https://api.codeclimate.com/v1/badges/b3740045b486ca07badc/maintainability)](https://codeclimate.com/github/ctrl-alt-del-world/midway/maintainability)
+
 Named for the sake of being the middle component missing from your ecom business. Think of this repo as a middlewear to anything and everything custom, ecom, DTC and headless.
 
 ### Starter kit for [Gatsby](https://www.gatsbyjs.org/), [Sanity.io](https://www.sanity.io), & Shopify
