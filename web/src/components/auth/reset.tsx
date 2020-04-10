@@ -4,10 +4,10 @@ import fetch from 'unfetch'
 import { encode } from 'shopify-gid'
 import { useLoads } from 'react-loads'
 import { navigate } from 'gatsby'
-import PasswordValidator from 'password-validator'
 import Timeout from 'await-timeout'
 
 import { ErrorHandling } from 'src/utils/error'
+import { PasswordSchema } from 'src/utils/schema'
 import { UpdateCustomer } from "src/utils/updateCustomer"
 
 export const Reset = (props: {
@@ -18,25 +18,13 @@ export const Reset = (props: {
   const [passwordField1, setPasswordField1] = useState("")
   const [passwordField2, setPasswordField2] = useState("")
   const [submit, setSubmitting] = useState(false)
-  const [formSuccess, setFormSucces] = useState(null)
+  const [formSuccess, setFormSucces] = useState(false)
   const form = React.createRef() as React.RefObject<HTMLFormElement>
-
-  const schema = new PasswordValidator()
-
-  schema
-    .is()
-    .min(8)
-    .is()
-    .max(100)
-    .has()
-    .lowercase()
-    .has()
-    .uppercase()
 
   const handleReset = useCallback(
     async (password) =>  {
 
-      if (!schema.validate(passwordField1)) {
+      if (!PasswordSchema.validate(passwordField1)) {
         throw new Error(
           "Your password should be between 8 and 100 characters, and have at least one lowercase and one uppercase letter."
         )
@@ -86,7 +74,7 @@ export const Reset = (props: {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     setSubmitting(true)
-    const { password } = form.current.elements
+    const { password } = form!.current!.elements
     load(password.value)
   }
   return (
