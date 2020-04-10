@@ -7,7 +7,6 @@ import {
   SHOPIFY_GRAPHQL_URL,
   CUSTOMER_ACTIVATE_QUERY
 } from './requestConfig'
-}
 
 exports.handler = async (event: APIGatewayEvent): Promise<any> => {
   // TEST for POST request
