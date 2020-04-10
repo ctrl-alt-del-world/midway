@@ -4,7 +4,9 @@ import axios from 'axios'
 import {
   headers,
   shopifyConfig,
-  SHOPIFY_GRAPHQL_URL
+  SHOPIFY_GRAPHQL_URL,
+  CUSTOMER_TOKEN_QUERY,
+  CUSTOMER_RESET_QUERY
 } from './requestConfig'
 
 exports.handler = async (event: APIGatewayEvent): Promise<any> => {
@@ -34,19 +36,7 @@ exports.handler = async (event: APIGatewayEvent): Promise<any> => {
   }
 
   const payload = {
-    query: `
-      mutation customerReset($id: ID!, $input: CustomerResetInput!) {
-        customerReset(id: $id, input: $input) {
-          userErrors {
-            field
-            message
-          }
-          customer {
-            email
-          }
-        }
-      }
-    `,
+    query: CUSTOMER_RESET_QUERY,
     variables: {
       id: data.id,
       input: data.input
@@ -81,19 +71,7 @@ exports.handler = async (event: APIGatewayEvent): Promise<any> => {
   }
 
   const loginPayload = {
-    query: `mutation customerAccessTokenCreate($input: CustomerAccessTokenCreateInput!) {
-        customerAccessTokenCreate(input: $input) {
-          userErrors {
-            field
-            message
-          }
-          customerAccessToken {
-            accessToken
-            expiresAt
-          }
-        }
-      }
-    `,
+    query: CUSTOMER_TOKEN_QUERY,
     variables: {
       input: {
         email: customer.email,

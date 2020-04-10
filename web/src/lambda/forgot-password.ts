@@ -4,7 +4,8 @@ import axios from 'axios'
 import {
   headers,
   shopifyConfig,
-  SHOPIFY_GRAPHQL_URL
+  SHOPIFY_GRAPHQL_URL,
+  CUSTOMER_RECOVERY_QUERY
 } from './requestConfig'
 
 exports.handler = async (event: APIGatewayEvent): Promise<any> => {
@@ -35,16 +36,7 @@ exports.handler = async (event: APIGatewayEvent): Promise<any> => {
     };
   }
   const payload = {
-    query: `
-      mutation customerRecover($email: String!) {
-        customerRecover(email: $email) {
-          userErrors {
-            field
-            message
-          }
-        }
-      }
-    `,
+    query: CUSTOMER_RECOVERY_QUERY,
     variables: {
       email: data.email
     }

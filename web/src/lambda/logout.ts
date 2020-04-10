@@ -4,11 +4,11 @@ import axios from 'axios'
 import {
   headers,
   shopifyConfig,
-  SHOPIFY_GRAPHQL_URL
+  SHOPIFY_GRAPHQL_URL,
+  CUSTOMER_LOGOUT_QUERY
 } from './requestConfig'
 
 exports.handler = async (event: APIGatewayEvent): Promise<any> => {
-
   if (event.httpMethod !== "POST" || !event.body) {
     return {
       statusCode: 400,
@@ -17,7 +17,7 @@ exports.handler = async (event: APIGatewayEvent): Promise<any> => {
     }
   }
 
-  let data;
+  let data
 
   try {
     data = JSON.parse(event.body)
@@ -33,17 +33,7 @@ exports.handler = async (event: APIGatewayEvent): Promise<any> => {
   }
 
   const payload = {
-    query: `mutation customerAccessTokenDelete($customerAccessToken: String!) {
-        customerAccessTokenDelete(customerAccessToken: $customerAccessToken) {
-          userErrors {
-            field
-            message
-          }
-          deletedAccessToken
-          deletedCustomerAccessTokenId
-        }
-      }
-    `,
+    query: CUSTOMER_LOGOUT_QUERY,
     variables: {
       customerAccessToken: data.accessToken,
     },
@@ -53,23 +43,21 @@ exports.handler = async (event: APIGatewayEvent): Promise<any> => {
       url: SHOPIFY_GRAPHQL_URL,
       method: "POST",
       headers: shopifyConfig,
-      data: JSON.stringify(payload),
+      data: JSON.stringify(payload)
     })
-    let response = {
+    return {
       statusCode: 200,
       headers,
-      body: "",
+      body: ""
     }
-    return response
   } catch (err) {
 
-    let response = {
+    return {
       statusCode: 500,
       headers,
       body: JSON.stringify({
-        error: err[0],
-      }),
+        error: err[0]
+      })
     }
-    return response
   }
 }

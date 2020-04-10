@@ -4,11 +4,11 @@ import axios from 'axios'
 import {
   headers,
   shopifyConfig,
-  SHOPIFY_GRAPHQL_URL
+  SHOPIFY_GRAPHQL_URL,
+  CUSTOMER_QUERY
 } from './requestConfig'
 
 exports.handler = async (event: APIGatewayEvent): Promise<any> => {
-
   if (event.httpMethod !== 'POST' || !event.body) {
     return {
       statusCode: 400,
@@ -35,46 +35,7 @@ exports.handler = async (event: APIGatewayEvent): Promise<any> => {
   }
 
   const payloadCustomer = {
-    query: `query customerQuery($customerAccessToken: String!){
-      customer(customerAccessToken: $customerAccessToken) {
-        firstName
-        lastName
-        acceptsMarketing
-        phone
-        email
-        orders(first:100){
-          edges{
-            node{
-              orderNumber
-              totalPrice
-              processedAt
-              statusUrl
-              successfulFulfillments(first: 100){
-                trackingInfo(first: 100){
-                  number
-                  url
-                }
-              }
-              lineItems(first:100){
-                edges{
-                  node{
-                    quantity
-                    title
-                    variant{
-                      title
-                      price
-                      image{
-                        originalSrc
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }`,
+    query: CUSTOMER_QUERY,
     variables: {
       customerAccessToken: data.token
     }
@@ -88,25 +49,23 @@ exports.handler = async (event: APIGatewayEvent): Promise<any> => {
       data: JSON.stringify(payloadCustomer)
     })
     customer = customer.data.data.customer
-    let response = {
+    return {
       statusCode: 200,
       headers,
       body: JSON.stringify({
-        token,
+        token: data.token,
         customer
       })
     }
-    return response
   } catch (err) {
     console.log(err)
-    let response = {
+    return {
       statusCode: 500,
       headers,
       body: JSON.stringify({
         error: err.message
       })
     }
-    return response
   }
 
 

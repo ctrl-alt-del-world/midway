@@ -4,7 +4,9 @@ import axios from 'axios'
 import {
   headers,
   shopifyConfig,
-  SHOPIFY_GRAPHQL_URL
+  SHOPIFY_GRAPHQL_URL,
+  CUSTOMER_TOKEN_QUERY,
+  CUSTOMER_CREATE_QUERY
 } from './requestConfig'
 
 exports.handler = async (event: APIGatewayEvent): Promise<any> => {
@@ -35,21 +37,7 @@ exports.handler = async (event: APIGatewayEvent): Promise<any> => {
   console.log(`[λ: new account]`, { email: data.email, password: data.password, firstName: data.firstName, lastName: data.lastName })
 
   const payload = {
-    query: `mutation customerCreate($input: CustomerCreateInput!) {
-      customerCreate(input: $input) {
-        userErrors {
-          field
-          message
-        }
-        customer {
-          id
-        }
-        customerUserErrors {
-          field
-          message
-        }
-      }
-    }`,
+    query: CUSTOMER_CREATE_QUERY,
     variables: {
       input: {
         email: data.email,
@@ -74,19 +62,7 @@ exports.handler = async (event: APIGatewayEvent): Promise<any> => {
 
     // If that was successful lets log our new user in
     const loginPayload = {
-      query: `mutation customerAccessTokenCreate($input: CustomerAccessTokenCreateInput!) {
-          customerAccessTokenCreate(input: $input) {
-            userErrors {
-              field
-              message
-            }
-            customerAccessToken {
-              accessToken
-              expiresAt
-            }
-          }
-        }
-      `,
+      query: CUSTOMER_TOKEN_QUERY,
       variables: {
         input: {
           email: data.email,
@@ -110,7 +86,7 @@ exports.handler = async (event: APIGatewayEvent): Promise<any> => {
       } else {
         token = customerAccessTokenCreate.customerAccessToken.accessToken
         // Manipulate the response and send some customer info back down that we can use later
-        let response = {
+        return {
           statusCode: 200,
           headers,
           body: JSON.stringify({
@@ -121,28 +97,23 @@ exports.handler = async (event: APIGatewayEvent): Promise<any> => {
             }
           })
         }
-        return response
       }
     } catch (err) {
-
-      let response = {
+      return {
         statusCode: 404,
         headers,
         body: JSON.stringify({
           error: err[0].message
         })
       }
-      return response
     }
   } catch (err) {
-
-    let response = {
+    return {
       statusCode: 404,
       headers,
       body: JSON.stringify({
         error: err.message
       })
     }
-    return response
   }
 }
