@@ -1,20 +1,11 @@
-const axios = require('axios')
+import { APIGatewayEvent } from 'aws-lambda'
+import axios from 'axios'
 
-const {
-  SHOPIFY_TOKEN,
+import {
+  headers,
+  shopifyConfig,
   SHOPIFY_GRAPHQL_URL
-} = process.env;
-
-let token
-const headers = {
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Headers': 'Content-Type',
-  'Content-Type': 'application/json'
-}
-const shopifyConfig = {
-  'Content-Type': 'application/json',
-  'X-Shopify-Storefront-Access-Token': SHOPIFY_TOKEN
-}
+} from './requestConfig'
 
 const CUSTOMER_ADDRESS = `
   firstName
@@ -29,7 +20,52 @@ const CUSTOMER_ADDRESS = `
   zip
 `
 
-exports.handler = async (event: any) => {
+const CUSTOMER_QUERY = `
+query customerQuery($customerAccessToken: String!){
+  customer(customerAccessToken: $customerAccessToken) {
+    firstName
+    lastName
+    acceptsMarketing
+    phone
+    email
+    defaultAddress {
+      ${CUSTOMER_ADDRESS}
+    }
+    orders(first:100){
+      edges{
+        node{
+          orderNumber
+          totalPrice
+          processedAt
+          statusUrl
+          successfulFulfillments(first: 100){
+            trackingInfo(first: 100){
+              number
+              url
+            }
+          }
+          lineItems(first:100){
+            edges{
+              node{
+                quantity
+                title
+                variant{
+                  title
+                  price
+                  image{
+                    originalSrc
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}`
+
+exports.handler = async (event: APIGatewayEvent): Promise<any> => {
 
   if (event.httpMethod !== 'POST' || !event.body) {
     return {
@@ -102,50 +138,7 @@ exports.handler = async (event: any) => {
   }
 
   const payloadCustomer = {
-    query: `query customerQuery($customerAccessToken: String!){
-      customer(customerAccessToken: $customerAccessToken) {
-        firstName
-        lastName
-        acceptsMarketing
-        phone
-        email
-        defaultAddress {
-          ${CUSTOMER_ADDRESS}
-        }
-        orders(first:100){
-          edges{
-            node{
-              orderNumber
-              totalPrice
-              processedAt
-              statusUrl
-              successfulFulfillments(first: 100){
-                trackingInfo(first: 100){
-                  number
-                  url
-                }
-              }
-              lineItems(first:100){
-                edges{
-                  node{
-                    quantity
-                    title
-                    variant{
-                      title
-                      price
-                      image{
-                        originalSrc
-                      }
-                    }
-                  }
-                }
-              }
-
-            }
-          }
-        }
-      }
-    }`,
+    query: CUSTOMER_QUERY,
     variables: {
       customerAccessToken: token
     }

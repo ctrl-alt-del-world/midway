@@ -1,23 +1,14 @@
-import { APIGatewayEvent } from "aws-lambda"
-const axios = require('axios')
+import { APIGatewayEvent } from 'aws-lambda'
+import axios from 'axios'
 
-const headers = {
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Headers': 'Content-Type'
-}
-
-const {
-  SHOPIFY_TOKEN,
+import {
+  headers,
+  shopifyConfig,
   SHOPIFY_GRAPHQL_URL
-} = process.env;
-
-const shopifyConfig = {
-  'Content-Type': 'application/json',
-  'X-Shopify-Storefront-Access-Token': SHOPIFY_TOKEN
+} from './requestConfig'
 }
 
 exports.handler = async (event: APIGatewayEvent): Promise<any> => {
-
   // TEST for POST request
   if (event.httpMethod !== 'POST' || !event.body) {
     return {
