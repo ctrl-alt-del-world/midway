@@ -3,6 +3,7 @@ import axios from 'axios'
 
 import {
   statusReturn,
+  preparePayload,
   shopifyConfig,
   SHOPIFY_GRAPHQL_URL,
   CUSTOMER_ACTIVATE_QUERY
@@ -10,7 +11,7 @@ import {
 
 let data
 
-exports.handler = async (event: APIGatewayEvent): Promise<any> => {
+export const handler = async (event: APIGatewayEvent): Promise<any> => {
   if (event.httpMethod !== 'POST' || !event.body) return statusReturn(400, '')
 
   try {
@@ -20,18 +21,13 @@ exports.handler = async (event: APIGatewayEvent): Promise<any> => {
     return statusReturn(400, { error: 'Bady Request Body' })
   }
 
-  const payload = {
-    query: CUSTOMER_ACTIVATE_QUERY,
-    variables: {
-      id: data.id,
-      input: data.input
-    }
-  }
-
-  let customer
+  const payload = preparePayload(CUSTOMER_ACTIVATE_QUERY, {
+    id: data.id,
+    input: data.input
+  })
 
   try {
-    customer = await axios({
+    const customer = await axios({
       url: SHOPIFY_GRAPHQL_URL,
       method: 'POST',
       headers: shopifyConfig,
@@ -40,8 +36,8 @@ exports.handler = async (event: APIGatewayEvent): Promise<any> => {
     if (customer.data.data.customerActivate.userErrors.length > 0) {
       throw customer.data.data.customerActivate.userErrors
     } else {
-      customer = customer.data.data.customerActivate
-      return statusReturn(200, { data: customer })
+      const cusRes = customer.data.data.customerActivate
+      return statusReturn(200, { data: cusRes })
     }
   } catch (err) {
     return statusReturn(500, { error: err[0].message })

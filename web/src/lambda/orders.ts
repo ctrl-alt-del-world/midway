@@ -3,12 +3,13 @@ import axios from 'axios'
 
 import {
   statusReturn,
+  preparePayload,
   shopifyConfig,
   SHOPIFY_GRAPHQL_URL,
   CUSTOMER_QUERY
 } from './requestConfig'
 
-exports.handler = async (event: APIGatewayEvent): Promise<any> => {
+export const handler = async (event: APIGatewayEvent): Promise<any> => {
   if (event.httpMethod !== 'POST' || !event.body) return statusReturn(400, '')
   let data: {
     token: string
@@ -21,19 +22,16 @@ exports.handler = async (event: APIGatewayEvent): Promise<any> => {
     return statusReturn(400, { error: 'Bad request body' })
   }
 
-  const payloadCustomer = {
-    query: CUSTOMER_QUERY,
-    variables: {
-      customerAccessToken: data.token
-    }
-  }
+  const payload = preparePayload(CUSTOMER_QUERY, {
+    customerAccessToken: data.token
+  })
 
   try {
     let customer = await axios({
       url: SHOPIFY_GRAPHQL_URL,
       method: 'POST',
       headers: shopifyConfig,
-      data: JSON.stringify(payloadCustomer)
+      data: JSON.stringify(payload)
     })
     customer = customer.data.data.customer
 
@@ -45,6 +43,4 @@ exports.handler = async (event: APIGatewayEvent): Promise<any> => {
     console.log(err)
     return statusReturn(500, { error: err.message })
   }
-
-
 }

@@ -152,10 +152,18 @@ const statusReturn = (code: number, body: {}) => {
   }
 }
 
+const preparePayload = (query, v: {}) => {
+  return {
+    query,
+    variables: v
+  }
+}
+
 export {
   headers,
   shopifyConfig,
   statusReturn,
+  preparePayload,
   SHOPIFY_GRAPHQL_URL,
   CUSTOMER_QUERY,
   CUSTOMER_RECOVERY_QUERY,

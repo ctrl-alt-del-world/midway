@@ -3,6 +3,7 @@ import axios from 'axios'
 
 import {
   statusReturn,
+  preparePayload,
   shopifyConfig,
   SHOPIFY_GRAPHQL_URL,
   CUSTOMER_LOGOUT_QUERY
@@ -10,7 +11,7 @@ import {
 
 let data
 
-exports.handler = async (event: APIGatewayEvent): Promise<any> => {
+export const handler = async (event: APIGatewayEvent): Promise<any> => {
   if (event.httpMethod !== "POST" || !event.body) return statusReturn(400, '')
   
   try {
@@ -18,12 +19,9 @@ exports.handler = async (event: APIGatewayEvent): Promise<any> => {
   } catch (error) {
     return statusReturn(400, { error: 'Bad Request Body' })
   }
-  const payload = {
-    query: CUSTOMER_LOGOUT_QUERY,
-    variables: {
-      customerAccessToken: data.accessToken,
-    },
-  }
+  const payload = preparePayload(CUSTOMER_LOGOUT_QUERY, {
+    customerAccessToken: data.accessToken,
+  })
   try {
     let logout = await axios({
       url: SHOPIFY_GRAPHQL_URL,

@@ -3,13 +3,14 @@ import axios from 'axios'
 
 import {
   statusReturn,
+  preparePayload,
   shopifyConfig,
   SHOPIFY_GRAPHQL_URL,
   CUSTOMER_TOKEN_QUERY,
   CUSTOMER_CREATE_QUERY
 } from './requestConfig'
 
-exports.handler = async (event: APIGatewayEvent): Promise<any> => {
+export const handler = async (event: APIGatewayEvent): Promise<any> => {
   // TEST for POST request
   if (event.httpMethod !== 'POST' || !event.body) {
     return statusReturn(400, '')
@@ -25,18 +26,15 @@ exports.handler = async (event: APIGatewayEvent): Promise<any> => {
   }
 
   console.log(`[λ: new account]`, { email: data.email, password: data.password, firstName: data.firstName, lastName: data.lastName })
-
-  const payload = {
-    query: CUSTOMER_CREATE_QUERY,
-    variables: {
-      input: {
-        email: data.email,
-        password: data.password,
-        firstName: data.firstName,
-        lastName: data.lastName
-      }
+  const payload = preparePayload(CUSTOMER_CREATE_QUERY, {
+    input: {
+      email: data.email,
+      password: data.password,
+      firstName: data.firstName,
+      lastName: data.lastName
     }
-  }
+  })
+
   try {
     let customer = await axios({
       url: SHOPIFY_GRAPHQL_URL,
@@ -51,15 +49,13 @@ exports.handler = async (event: APIGatewayEvent): Promise<any> => {
     if (customerCreate.userErrors.length > 0) throw customerCreate.userErrors[0]
 
     // If that was successful lets log our new user in
-    const loginPayload = {
-      query: CUSTOMER_TOKEN_QUERY,
-      variables: {
-        input: {
-          email: data.email,
-          password: data.password
-        }
+    const loginPayload = preparePayload(CUSTOMER_TOKEN_QUERY, {
+      input: {
+        email: data.email,
+        password: data.password
       }
-    }
+    })
+    
 
     try {
       let token = await axios({

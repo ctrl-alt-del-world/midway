@@ -3,6 +3,7 @@ import axios from 'axios'
 
 import {
   statusReturn,
+  preparePayload,
   shopifyConfig,
   SHOPIFY_GRAPHQL_URL,
   CUSTOMER_QUERY,
@@ -16,7 +17,7 @@ let data: {
 
 let accessToken
 
-exports.handler = async (event: APIGatewayEvent): Promise<any> => {
+export const handler = async (event: APIGatewayEvent): Promise<any> => {
   if (event.httpMethod !== 'POST' || !event.body) return statusReturn(400, {})
 
   try {
@@ -26,15 +27,12 @@ exports.handler = async (event: APIGatewayEvent): Promise<any> => {
     return statusReturn(400, { error: 'Bad Request Body' })
   }
 
-  const payload = {
-    query: CUSTOMER_TOKEN_QUERY,
-    variables: {
-      input: {
-        email: data.email,
-        password: data.password
-      }
+  const payload = preparePayload(CUSTOMER_TOKEN_QUERY, {
+    input: {
+      email: data.email,
+      password: data.password
     }
-  }
+  })
   try {
     const token = await axios({
       url: SHOPIFY_GRAPHQL_URL,
@@ -51,12 +49,9 @@ exports.handler = async (event: APIGatewayEvent): Promise<any> => {
     return statusReturn(200, { error: 'Problem with email or password' })
   }
 
-  const payloadCustomer = {
-    query: CUSTOMER_QUERY,
-    variables: {
-      customerAccessToken: accessToken
-    }
-  }
+  const payloadCustomer = preparePayload(CUSTOMER_QUERY, {
+    customerAccessToken: accessToken
+  })
 
   try {
     let customer = await axios({

@@ -15,7 +15,7 @@ const client = sanityClient({
   useCdn: false
 });
 
-exports.handler = async (event: APIGatewayEvent): Promise<any> => {
+export const handler = async (event: APIGatewayEvent): Promise<any> => {
   if (event.httpMethod !== 'POST' || !event.body) {
     return statusReturn(400, '')
   }
