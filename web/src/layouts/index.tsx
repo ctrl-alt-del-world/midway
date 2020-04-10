@@ -45,25 +45,32 @@ const Layout = ({ children, siteMetadata, location }: { children: any }) => {
             Smooth transition credits to Ian Williams: https://github.com/dictions
           
           */}
-          <SwitchTransition>
-            <Transition
-              key={location.pathname}
-              mountOnEnter
-              unmountOnExit
-              appear
-              timeout={TRANSITION_DURATION}>
-              {status => (
-                <div
-                  style={{
-                    ...TRANSITION_STYLES.default,
-                    ...TRANSITION_STYLES[status],
-                  }}>
-                  {children}
-                  <Footer />
-                </div>
-              )}
-            </Transition>
-          </SwitchTransition>
+          {!/account/.test(location.pathname) ? (
+            <SwitchTransition>
+              <Transition
+                key={location.pathname}
+                mountOnEnter
+                unmountOnExit
+                appear
+                timeout={TRANSITION_DURATION}>
+                  {status => (
+                    <div
+                      style={{
+                        ...TRANSITION_STYLES.default,
+                        ...TRANSITION_STYLES[status],
+                      }}>
+                      {children}
+                      <Footer />
+                    </div>
+                  )}
+              </Transition>
+            </SwitchTransition>
+          ) : (
+            <div>
+              {children}
+              <Footer />
+            </div>
+          )}
         </div>
       </PasswordWrapper>
     </React.Fragment>
