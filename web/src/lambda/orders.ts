@@ -9,10 +9,7 @@ import {
 } from './requestConfig'
 
 exports.handler = async (event: APIGatewayEvent): Promise<any> => {
-  if (event.httpMethod !== 'POST' || !event.body) {
-    return statusReturn(400, '')
-  }
-
+  if (event.httpMethod !== 'POST' || !event.body) return statusReturn(400, '')
   let data: {
     token: string
   }

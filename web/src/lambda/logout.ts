@@ -8,20 +8,16 @@ import {
   CUSTOMER_LOGOUT_QUERY
 } from './requestConfig'
 
+let data
+
 exports.handler = async (event: APIGatewayEvent): Promise<any> => {
-  if (event.httpMethod !== "POST" || !event.body) {
-    return statusReturn(400, '')
-  }
-
-  let data
-
+  if (event.httpMethod !== "POST" || !event.body) return statusReturn(400, '')
+  
   try {
     data = JSON.parse(event.body)
   } catch (error) {
-    console.log('JSON parsing error:', error);
     return statusReturn(400, { error: 'Bad Request Body' })
   }
-
   const payload = {
     query: CUSTOMER_LOGOUT_QUERY,
     variables: {

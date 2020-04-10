@@ -9,16 +9,15 @@ import {
   CUSTOMER_TOKEN_QUERY
 } from './requestConfig'
 
-exports.handler = async (event: APIGatewayEvent): Promise<any> => {
-  if (event.httpMethod !== 'POST' || !event.body) {
-    return statusReturn(400, {})
-  }
-  let data: {
-    email?: string
-    password?: string
-  };
+let data: {
+  email?: string
+  password?: string
+}
 
-  let accessToken
+let accessToken
+
+exports.handler = async (event: APIGatewayEvent): Promise<any> => {
+  if (event.httpMethod !== 'POST' || !event.body) return statusReturn(400, {})
 
   try {
     data = JSON.parse(event.body)

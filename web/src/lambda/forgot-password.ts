@@ -2,38 +2,24 @@ import { APIGatewayEvent } from 'aws-lambda'
 import axios from 'axios'
 
 import {
-  headers,
+  statusReturn,
   shopifyConfig,
   SHOPIFY_GRAPHQL_URL,
   CUSTOMER_RECOVERY_QUERY
 } from './requestConfig'
 
+let data: {
+  email?: string
+};
+
 exports.handler = async (event: APIGatewayEvent): Promise<any> => {
-  if (event.httpMethod !== 'POST' || !event.body) {
-    return {
-      statusCode: 400,
-      headers,
-      body: ''
-    }
-  }
-
-  let data: {
-    email?: string
-  };
-
-  console.log('data', event.body)
+  if (event.httpMethod !== "POST" || !event.body) return statusReturn(400, '')
 
   try {
     data = JSON.parse(event.body)
   } catch (error) {
     console.log('JSON parsing error:', error);
-
-    return {
-      statusCode: 400,
-      body: JSON.stringify({
-        error: 'Bad request body'
-      })
-    };
+    return statusReturn(400, { error: 'Bad Request Body' })
   }
   const payload = {
     query: CUSTOMER_RECOVERY_QUERY,
@@ -59,22 +45,9 @@ exports.handler = async (event: APIGatewayEvent): Promise<any> => {
     } else if (errors && errors.length > 0) {
       throw errors
     } else {
-      return {
-        statusCode: 200,
-        headers,
-        body: JSON.stringify({
-          customerRecover: customerRecover
-        })
-      }
+      return statusReturn(200, { customerRecover })
     }
   } catch (err) {
-
-    return {
-      statusCode: 500,
-      headers,
-      body: JSON.stringify({
-        error: err[0].message
-      })
-    }
+    return statusReturn(500, { error: err[0].message })
   }
 }

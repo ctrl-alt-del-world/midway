@@ -8,13 +8,10 @@ import {
   CUSTOMER_ACTIVATE_QUERY
 } from './requestConfig'
 
-exports.handler = async (event: APIGatewayEvent): Promise<any> => {
-  // TEST for POST request
-  if (event.httpMethod !== 'POST' || !event.body) {
-    return statusReturn(400, '')
-  }
+let data
 
-  let data;
+exports.handler = async (event: APIGatewayEvent): Promise<any> => {
+  if (event.httpMethod !== 'POST' || !event.body) return statusReturn(400, '')
 
   try {
     data = JSON.parse(event.body)
