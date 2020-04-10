@@ -7,8 +7,8 @@ import { navigate } from 'gatsby'
 import PasswordValidator from 'password-validator'
 import Timeout from 'await-timeout'
 
-import { ErrorHandling } from './error'
-import { UpdateCustomer } from "../../utils/updateCustomer"
+import { ErrorHandling } from 'src/utils/error'
+import { UpdateCustomer } from "src/utils/updateCustomer"
 
 export const Reset = (props: {
   path: string

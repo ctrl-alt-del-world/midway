@@ -70,7 +70,8 @@ module.exports = {
         pages: path.join(__dirname, 'src/pages'),
         context: path.join(__dirname, 'src/context'),
         static: path.join(__dirname, 'static'),
-        pages: path.join(__dirname, 'src/pages')
+        pages: path.join(__dirname, 'src/pages'),
+        utils: path.join(__dirname, 'src/utils')
       }
     },
     `gatsby-plugin-typescript`,

@@ -8,24 +8,13 @@ import { encode } from "shopify-gid"
 import { navigate } from "@reach/router"
 import Timeout from "await-timeout"
 import cx from "classnames"
-import PasswordValidator from "password-validator"
+
+import { PasswordSchema } from 'src/utils/schema'
 
 const Activate = (props: { id: string; token: string }) => {
   const [passwordField1, setPasswordField1] = useState("")
   const [passwordField2, setPasswordField2] = useState("")
   const [attempts, setAttempts] = useState(0)
-
-  const schema = new PasswordValidator()
-
-  schema
-    .is()
-    .min(8)
-    .is()
-    .max(100)
-    .has()
-    .lowercase()
-    .has()
-    .uppercase()
 
   const verifyAccount = useCallback(
     async e => {
@@ -36,7 +25,7 @@ const Activate = (props: { id: string; token: string }) => {
         throw new Error("Passwords do not match.")
       }
 
-      if (!schema.validate(passwordField1)) {
+      if (!PasswordSchema.validate(passwordField1)) {
         throw new Error(
           "Your password should be between 8 and 100 characters, and have at least one lowercase and one uppercase letter."
         )

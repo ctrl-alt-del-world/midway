@@ -4,7 +4,7 @@ import fetch from "unfetch"
 import { Link } from "gatsby"
 import { useLoads } from 'react-loads'
 
-import { ErrorHandling } from './error'
+import { ErrorHandling } from 'src/utils/error'
 
 export const ForgotPassword = ({ path }: { path: string }) => {
   const [formSuccess, setFormSuccess] = useState(false)

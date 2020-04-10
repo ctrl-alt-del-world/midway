@@ -3,12 +3,12 @@ import Helmet from 'react-helmet'
 import fetch from 'unfetch'
 import { Link, navigate } from 'gatsby'
 import { useLoads } from 'react-loads'
-import PasswordValidator from 'password-validator'
 import Timeout from 'await-timeout'
 
-import { ErrorHandling } from './error'
+import { ErrorHandling } from 'src/utils/error'
 
-import { UpdateCustomer } from '../../utils/updateCustomer'
+import { UpdateCustomer } from 'src/utils/updateCustomer'
+import { PasswordSchema } from 'src/utils/schema'
 
 export const Register = ({path}: {path: string}) => {
   const [passwordField1, setPasswordField1] = useState("")
@@ -16,23 +16,11 @@ export const Register = ({path}: {path: string}) => {
   const form = React.createRef() as React.RefObject<HTMLFormElement>
   const [attempts, setAttempts] = useState(0)
 
-  const schema = new PasswordValidator()
-
-  schema
-    .is()
-    .min(8)
-    .is()
-    .max(100)
-    .has()
-    .lowercase()
-    .has()
-    .uppercase()
-
   const handleRegister = useCallback(
     async (email, password, firstName, lastName) => {
       setAttempts(attempts + 1)
 
-      if (!schema.validate(passwordField1)) {
+      if (!PasswordSchema.validate(passwordField1)) {
         throw new Error(
           "Your password should be between 8 and 100 characters, and have at least one lowercase and one uppercase letter."
         )

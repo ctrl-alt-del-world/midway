@@ -6,9 +6,9 @@ import { useLoads } from 'react-loads'
 import cx from 'classnames'
 
 
-import { ErrorHandling } from './error'
+import { ErrorHandling } from 'src/utils/error'
 
-import { UpdateCustomer } from '../../utils/updateCustomer'
+import { UpdateCustomer } from 'src/utils/updateCustomer'
 import { setCustomerInState } from 'src/context/siteContext'
 
 export const Login = ({ path }: { path: string }) => {
