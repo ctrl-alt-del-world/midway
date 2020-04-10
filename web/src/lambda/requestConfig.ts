@@ -144,9 +144,18 @@ const CUSTOMER_ACTIVATE_QUERY = `mutation customerActivate($id: ID!, $input: Cus
   }
 }`
 
+const statusReturn = (code: number, body: {}) => {
+  return {
+    statusCode: code,
+    headers,
+    body: JSON.stringify(body)
+  }
+}
+
 export {
   headers,
   shopifyConfig,
+  statusReturn,
   SHOPIFY_GRAPHQL_URL,
   CUSTOMER_QUERY,
   CUSTOMER_RECOVERY_QUERY,

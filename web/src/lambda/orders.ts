@@ -2,7 +2,7 @@ import { APIGatewayEvent } from 'aws-lambda'
 import axios from 'axios'
 
 import {
-  headers,
+  statusReturn,
   shopifyConfig,
   SHOPIFY_GRAPHQL_URL,
   CUSTOMER_QUERY
@@ -10,11 +10,7 @@ import {
 
 exports.handler = async (event: APIGatewayEvent): Promise<any> => {
   if (event.httpMethod !== 'POST' || !event.body) {
-    return {
-      statusCode: 400,
-      headers,
-      body: ''
-    }
+    return statusReturn(400, '')
   }
 
   let data: {
@@ -25,13 +21,7 @@ exports.handler = async (event: APIGatewayEvent): Promise<any> => {
     data = JSON.parse(event.body)
   } catch (error) {
     console.log('JSON parsing error:', error);
-
-    return {
-      statusCode: 400,
-      body: JSON.stringify({
-        error: 'Bad request body'
-      })
-    };
+    return statusReturn(400, { error: 'Bad request body' })
   }
 
   const payloadCustomer = {
@@ -49,23 +39,14 @@ exports.handler = async (event: APIGatewayEvent): Promise<any> => {
       data: JSON.stringify(payloadCustomer)
     })
     customer = customer.data.data.customer
-    return {
-      statusCode: 200,
-      headers,
-      body: JSON.stringify({
-        token: data.token,
-        customer
-      })
-    }
+
+    return statusReturn(200, {
+      token: data.token,
+      customer
+    })
   } catch (err) {
     console.log(err)
-    return {
-      statusCode: 500,
-      headers,
-      body: JSON.stringify({
-        error: err.message
-      })
-    }
+    return statusReturn(500, { error: err.message })
   }
 
 

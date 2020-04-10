@@ -2,6 +2,7 @@ import { APIGatewayEvent } from 'aws-lambda'
 import sanityClient from '@sanity/client'
 
 const {
+  statusReturn,
   SANITY_API_TOKEN,
   SANITY_PROJECT_ID,
   SANITY_DATASET,
@@ -16,10 +17,7 @@ const client = sanityClient({
 
 exports.handler = async (event: APIGatewayEvent): Promise<any> => {
   if (event.httpMethod !== 'POST' || !event.body) {
-    return {
-      statusCode: 400,
-      body: ''
-    };
+    return statusReturn(400, '')
   }
 
   let data;
@@ -29,13 +27,7 @@ exports.handler = async (event: APIGatewayEvent): Promise<any> => {
     data = JSON.parse(event.body);
   } catch (error) {
     console.error('JSON parsing error:', error);
-
-    return {
-      statusCode: 400,
-      body: JSON.stringify({
-        error: 'Bad request body'
-      })
-    };
+    return statusReturn(400, { error: 'Bad request body' })
   }
 
   // Shopify sends both Product Updates/Creations AND deletions as POST requests
@@ -127,48 +119,27 @@ exports.handler = async (event: APIGatewayEvent): Promise<any> => {
                 .commit()
                 .then(response => {
                   console.log(`Successfully added variant references to ${data.id} in Sanity`);
-                  return {
-                    statusCode: 200,
-                    body: JSON.stringify(response)
-                  };
+                  return statusReturn(200, { response })
                 })
                 .catch(error => {
                   console.error('Sanity error:', error);
                   return error;
                 });
             } else {
-              return {
-                statusCode: 200,
-                body: JSON.stringify(res)
-              };
+              return statusReturn(200, { res })
             }
           }).catch(error => {
             console.error('Sanity error:', error);
-
-            return {
-              statusCode: 500,
-              body: JSON.stringify({
-                error: 'An internal server error has occurred',
-              })
-            };
+            return statusReturn(500, { error: 'An internal server error has occurred' })
           });
 
         } else {
-          return {
-            statusCode: 200,
-            body: JSON.stringify(res)
-          };
+          return statusReturn(200, { res })
         }
       })
       .catch(error => {
         console.error('Sanity error:', error);
-
-        return {
-          statusCode: 500,
-          body: JSON.stringify({
-            error: 'An internal server error has occurred',
-          })
-        };
+        return statusReturn(500, { error: 'An internal server error has occurred' })
       });
   } else if (data.hasOwnProperty('id') && (!data.hasOwnProperty('title') && !data.hasOwnProperty('handle'))) {
     // this is triggered if Shopify sends a Product Deletion webhook that does NOT contain anything besides an ID
@@ -186,13 +157,7 @@ exports.handler = async (event: APIGatewayEvent): Promise<any> => {
       })
       .catch(error => {
         console.error(`Sanity error:`, error)
-        return {
-          statusCode: 500,
-          headers,
-          body: JSON.stringify({
-            error: error[0].message
-          })
-        }
+        return statusReturn(500, { error: error[0].message })
       })
 
     // *~* OR *~*

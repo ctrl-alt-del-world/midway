@@ -2,7 +2,7 @@ import { APIGatewayEvent } from 'aws-lambda'
 import axios from 'axios'
 
 import {
-  headers,
+  statusReturn,
   shopifyConfig,
   SHOPIFY_GRAPHQL_URL,
   CUSTOMER_TOKEN_QUERY,
@@ -13,11 +13,7 @@ exports.handler = async (event: APIGatewayEvent): Promise<any> => {
 
   // TEST for POST request
   if (event.httpMethod !== 'POST' || !event.body) {
-    return {
-      statusCode: 400,
-      headers,
-      body: ''
-    }
+    return statusReturn(400, '')
   }
 
   let data
@@ -26,13 +22,7 @@ exports.handler = async (event: APIGatewayEvent): Promise<any> => {
     data = JSON.parse(event.body)
   } catch (error) {
     console.log('JSON parsing error:', error);
-
-    return {
-      statusCode: 400,
-      body: JSON.stringify({
-        error: 'Bad request body'
-      })
-    };
+    return statusReturn(400, { error: 'Bad request body' })
   }
 
   const payload = {
@@ -60,14 +50,7 @@ exports.handler = async (event: APIGatewayEvent): Promise<any> => {
     }
   } catch (err) {
 
-    let response = {
-      statusCode: 500,
-      headers,
-      body: JSON.stringify({
-        error: err[0].message
-      })
-    }
-    return response
+    return statusReturn(500, { error: err[0].message })
   }
 
   const loginPayload = {
@@ -91,25 +74,12 @@ exports.handler = async (event: APIGatewayEvent): Promise<any> => {
       throw token.data.data.customerAccessTokenCreate.userErrors
     } else {
       token = token.data.data.customerAccessTokenCreate.customerAccessToken.accessToken
-      let response = {
-        statusCode: 200,
-        headers,
-        body: JSON.stringify({
-          token,
-          customer
-        })
-      }
-      return response
-    }
-  } catch (err) {
-
-    let response = {
-      statusCode: 500,
-      headers,
-      body: JSON.stringify({
-        error: err.message
+      return statusReturn(200, {
+        token,
+        customer
       })
     }
-    return response
+  } catch (err) {
+    return statusReturn(500, { error: err.message })
   }
 }
