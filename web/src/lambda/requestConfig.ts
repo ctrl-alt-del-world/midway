@@ -132,6 +132,18 @@ const CUSTOMER_RESET_QUERY = `mutation customerReset($id: ID!, $input: CustomerR
   }
 }`
 
+const CUSTOMER_ACTIVATE_QUERY = `mutation customerActivate($id: ID!, $input: CustomerActivateInput!) {
+  customerActivate(id: $id, input: $input) {
+    userErrors {
+      field
+      message
+    }
+    customer {
+      email
+    }
+  }
+}`
+
 export {
   headers,
   shopifyConfig,
@@ -141,5 +153,6 @@ export {
   CUSTOMER_TOKEN_QUERY,
   CUSTOMER_LOGOUT_QUERY,
   CUSTOMER_CREATE_QUERY,
-  CUSTOMER_RESET_QUERY
+  CUSTOMER_RESET_QUERY,
+  CUSTOMER_ACTIVATE_QUERY
 }

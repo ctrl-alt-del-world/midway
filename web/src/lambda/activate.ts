@@ -4,7 +4,8 @@ import axios from 'axios'
 import {
   headers,
   shopifyConfig,
-  SHOPIFY_GRAPHQL_URL
+  SHOPIFY_GRAPHQL_URL,
+  CUSTOMER_ACTIVATE_QUERY
 } from './requestConfig'
 }
 
@@ -33,19 +34,7 @@ exports.handler = async (event: APIGatewayEvent): Promise<any> => {
     };
   }
   const payload = {
-    query: `
-      mutation customerActivate($id: ID!, $input: CustomerActivateInput!) {
-        customerActivate(id: $id, input: $input) {
-          userErrors {
-            field
-            message
-          }
-          customer {
-            email
-          }
-        }
-      }
-    `,
+    query: CUSTOMER_ACTIVATE_QUERY,
     variables: {
       id: data.id,
       input: data.input
@@ -65,24 +54,21 @@ exports.handler = async (event: APIGatewayEvent): Promise<any> => {
       throw customer.data.data.customerActivate.userErrors
     } else {
       customer = customer.data.data.customerActivate
-      let response = {
+      return {
         statusCode: 200,
         headers,
         body: JSON.stringify({
           data: customer
         })
       }
-      return response
     }
   } catch (err) {
-
-    let response = {
+    return {
       statusCode: 500,
       headers,
       body: JSON.stringify({
         error: err[0].message
       })
     }
-    return response
   }
 }
