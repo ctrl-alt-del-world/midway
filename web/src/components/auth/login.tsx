@@ -5,6 +5,9 @@ import Helmet from 'react-helmet'
 import { useLoads } from 'react-loads'
 import cx from 'classnames'
 
+
+import { ErrorHandling } from './error'
+
 import { UpdateCustomer } from '../../utils/updateCustomer'
 import { setCustomerInState } from 'src/context/siteContext'
 
@@ -73,14 +76,8 @@ export const Login = ({ path }: { path: string }) => {
               <span>Loading</span>
             )}
 
-            {isRejected && (
-              <div className='mt1 error'>
-                <span role='img' aria-label='error'>
-                  ⚠️
-                </span>
-                : {error.message}
-              </div>
-            )}
+          {isRejected && <ErrorHandling error={error.message} />}
+
             <div className='pb1 pya'>
               <div className='caps sans s14 ls my05'>Email</div>
               <input name='email' type='text' required={true} className='accounts__input py1 px1 s16 x' placeholder='Enter Email' />

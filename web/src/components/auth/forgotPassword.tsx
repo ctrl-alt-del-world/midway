@@ -4,6 +4,8 @@ import fetch from "unfetch"
 import { Link } from "gatsby"
 import { useLoads } from 'react-loads'
 
+import { ErrorHandling } from './error'
+
 export const ForgotPassword = ({ path }: { path: string }) => {
   const [formSuccess, setFormSuccess] = useState(false)
   const form = React.createRef() as React.RefObject<HTMLFormElement>
@@ -37,8 +39,10 @@ export const ForgotPassword = ({ path }: { path: string }) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    const { email } = form.current.elements
-    load(email.value)
+    if (form) {
+      const { email } = form!.current!.elements
+      load(email.value)
+    }
   }
 
   return (
@@ -52,14 +56,7 @@ export const ForgotPassword = ({ path }: { path: string }) => {
             <h2 className="my0">Forgot your password?</h2>
           </div>
 
-          {isRejected && (
-              <div className="studio mt1 error">
-                <span role="img" aria-label="error">
-                  ⚠️
-                </span>
-                : {error.message}
-              </div>
-            )}
+          {isRejected && <ErrorHandling error={error.message} />}
 
           {formSuccess && (
             <div className="small studio mt1">
@@ -69,8 +66,8 @@ export const ForgotPassword = ({ path }: { path: string }) => {
 
           <div className="x container--s col aic jcc">
             <div className="pb1 mb1 pya">
-              <div className="caps sans ls my05">Email</div>
-              <input name="email" type="text" required={true} className="accounts__input py1 px1 x s16 mb1" placeholder="Enter Email" />
+              <label htmlFor='email' className="caps sans ls my05">Email</label>
+              <input id='email' name="email" type="text" required={true} className="accounts__input py1 px1 x s16 mb1" placeholder="Enter Email" />
             </div>
             <div className="x mxa ac">
               <button type="submit" className="button button--wide cg ac akz ls-s mt1 inline-block caps s14 my1">

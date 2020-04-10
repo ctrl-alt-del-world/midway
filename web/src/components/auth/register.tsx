@@ -6,6 +6,8 @@ import { useLoads } from 'react-loads'
 import PasswordValidator from 'password-validator'
 import Timeout from 'await-timeout'
 
+import { ErrorHandling } from './error'
+
 import { UpdateCustomer } from '../../utils/updateCustomer'
 
 export const Register = ({path}: {path: string}) => {
@@ -76,7 +78,7 @@ export const Register = ({path}: {path: string}) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    const { email, password, firstName, lastName } = form.current.elements
+    const { email, password, firstName, lastName } = form!.current!.elements
     load(email.value, password.value, firstName.value, lastName.value)
   }
   return (
@@ -93,14 +95,7 @@ export const Register = ({path}: {path: string}) => {
             <span>Loading</span>
           )}
 
-          {isRejected && (
-            <div className="studio mt1 error">
-              <span role="img" aria-label="error">
-                ⚠️
-              </span>
-              : {error.message}
-            </div>
-          )}
+          {isRejected && <ErrorHandling error={error.message} />}
 
           <div className='x container--s col'>
             <div className='pya pb1'>

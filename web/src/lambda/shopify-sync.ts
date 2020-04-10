@@ -1,4 +1,4 @@
-import { APIGatewayEvent } from "aws-lambda"
+import { APIGatewayEvent } from 'aws-lambda'
 import sanityClient from '@sanity/client'
 
 const {

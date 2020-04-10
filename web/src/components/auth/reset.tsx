@@ -3,10 +3,11 @@ import Helmet from 'react-helmet'
 import fetch from 'unfetch'
 import { encode } from 'shopify-gid'
 import { useLoads } from 'react-loads'
-import { Link, navigate } from 'gatsby'
+import { navigate } from 'gatsby'
 import PasswordValidator from 'password-validator'
 import Timeout from 'await-timeout'
 
+import { ErrorHandling } from './error'
 import { UpdateCustomer } from "../../utils/updateCustomer"
 
 export const Reset = (props: {
@@ -104,14 +105,8 @@ export const Reset = (props: {
               <span>Loading</span>
             )}
 
-            {isRejected && (
-              <div className="studio mt1 error">
-                <span role="img" aria-label="error">
-                  ⚠️
-                </span>
-                : {error.message}
-              </div>
-            )}
+            {isRejected && <ErrorHandling error={error.message} />}
+
             <div className="container--s al mxa x">
               {formSuccess && (
                 <div className='small mt1'>Got it! Email coming your way now.</div>

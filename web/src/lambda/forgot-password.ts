@@ -1,4 +1,5 @@
-const axios = require('axios')
+import { APIGatewayEvent } from 'aws-lambda'
+import axios from 'axios'
 
 const {
   SHOPIFY_TOKEN,
@@ -15,9 +16,7 @@ const shopifyConfig = {
   'X-Shopify-Storefront-Access-Token': SHOPIFY_TOKEN
 }
 
-exports.handler = async (event, context, callback) => {
-
-  console.log('found?')
+exports.handler = async (event: APIGatewayEvent): Promise<any> => {
   if (event.httpMethod !== 'POST' || !event.body) {
     return {
       statusCode: 400,
