@@ -17,8 +17,8 @@ import cookie from 'js-cookie'
 const SHOPIFY_CHECKOUT_STORAGE_KEY = 'shopify_checkout_id'
 
 const client = ShopifyClient.buildClient({
-  storefrontAccessToken: '919118b51c64eb39f9627dd1fa0bd936',
-  domain: 'midway-sanity.myshopify.com',
+  storefrontAccessToken: process.GATSBY_SHOPIFY_TOKEN,
+  domain: process.GATSBY_SHOPIFY_STORE,
 })
 
 interface InitialStore {
