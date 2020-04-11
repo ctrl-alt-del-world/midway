@@ -4,7 +4,14 @@ import Img from "gatsby-image"
 import { getFluidGatsbyImage } from "gatsby-source-sanity"
 import React, { useState, useEffect } from "react"
 
-const sanityConfig = { projectId: "hinqmch5", dataset: "production" }
+const {
+  GATSBY_SANTITY_PROJECT_ID,
+  GATSBY_SANITY_PROJECTSET
+} = process.env
+
+console.log(process.env)
+
+const sanityConfig = { projectId: GATSBY_SANTITY_PROJECT_ID, dataset: GATSBY_SANITY_PROJECTSET }
 
 export const Image = ({ imageId, className, width, alt, src }: {
   imageId?: string

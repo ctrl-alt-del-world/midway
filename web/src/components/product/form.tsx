@@ -2,7 +2,11 @@ import React, { useEffect, useState } from 'react'
 import { encode, decode } from 'shopify-gid'
 
 import { Newsletter } from 'src/components/newsletter'
-import { client, useAddItemToCart, useToggleCart } from 'src/context/siteContext'
+import { client, useAddItemToCart } from 'src/context/siteContext'
+
+const {
+  GATSBY_SHOPIFY_TOKEN
+} = process.env
 
 export const ProductForm = ({ title, defaultPrice, productId, showQuantity, waitlist = true, addText }: {
   title: string
@@ -26,7 +30,7 @@ export const ProductForm = ({ title, defaultPrice, productId, showQuantity, wait
   useEffect(() => {
     if (check) {
       const shopifyId = encode("Product", productId, {
-        accessToken: "919118b51c64eb39f9627dd1fa0bd936",
+        accessToken: GATSBY_SHOPIFY_TOKEN,
       })
 
       client.product.fetch(shopifyId).then((product: any) => {
