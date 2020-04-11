@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { encode, decode } from 'shopify-gid'
 
-import { Newsletter } from 'src/components/newsletter'
+import { Waitlist } from 'src/components/product/waitlist'
 import { client, useAddItemToCart } from 'src/context/siteContext'
 
 export const ProductForm = ({ title, defaultPrice, productId, showQuantity, waitlist = true, addText }: {
@@ -90,15 +90,11 @@ export const ProductForm = ({ title, defaultPrice, productId, showQuantity, wait
               waitlist ? (
                 <div className='mt1 pt1'>
                   <h5>Get notifed when stock is replenished</h5>
-                  <Newsletter
-                    listId='LfipJz'
+                  <Waitlist
+                    accountId='KKfBYU'
                     message="Got it! We'll update you when it's back"
                     buttonText='Notify Me'
-                    customFields={{
-                      $fields: ["ProductName", "ProductId"],
-                      ProductName: title,
-                      ProductId: productId
-                    }} />
+                    variantId={activeVariantId} />
                 </div>
               ) : (
                 // Left empty for now
