@@ -1,9 +1,9 @@
 {
-  "name": "your-project-title",
+  "name": "midway",
   "private": true,
   "description": "Boilerplate for Gatsby + Sanity + Shopify",
   "version": "0.1.0",
-  "author": "You <your-email@domain.com>",
+  "author": "You <kevin@ctrlaltdel.wprld>",
   "dependencies": {
     "@picostate/react": "^3.0.1",
     "@sanity/block-content-to-react": "^2.0.7",
