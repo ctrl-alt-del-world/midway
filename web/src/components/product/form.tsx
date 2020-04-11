@@ -4,10 +4,6 @@ import { encode, decode } from 'shopify-gid'
 import { Newsletter } from 'src/components/newsletter'
 import { client, useAddItemToCart } from 'src/context/siteContext'
 
-const {
-  GATSBY_SHOPIFY_TOKEN
-} = process.env
-
 export const ProductForm = ({ title, defaultPrice, productId, showQuantity, waitlist = true, addText }: {
   title: string
   defaultPrice: string
@@ -30,7 +26,7 @@ export const ProductForm = ({ title, defaultPrice, productId, showQuantity, wait
   useEffect(() => {
     if (check) {
       const shopifyId = encode("Product", productId, {
-        accessToken: GATSBY_SHOPIFY_TOKEN,
+        accessToken: process.env.GATSBY_SHOPIFY_TOKEN,
       })
 
       client.product.fetch(shopifyId).then((product: any) => {
