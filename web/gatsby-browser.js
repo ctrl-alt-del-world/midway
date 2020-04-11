@@ -9,7 +9,7 @@
   
 import React from "react"
 import { StoreContextProvider } from "src/context/siteContext"
-const Sentry = require('@sentry/browser');
+import * as Sentry from '@sentry/browser'
 
 export const shouldUpdateScroll = ({
 	routerProps: { location },
