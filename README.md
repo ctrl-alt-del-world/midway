@@ -82,8 +82,9 @@ The studio is ready/useful, I'll more than likely further modify the structure, 
 ✖️ 🍝 Docz website?  
 
 #### Bonus Features?
+✔️ ✨ Sentry INIT  
+✖️ ✨ Sentry Function logging  
 ✖️ ✨ netlify plugins (a11y/gatsby booster)   
-✖️ ✨ Sentry pattern   
 ✖️ ✨ Logrocket pattern   
 ✖️ ✨ jest testing   
 
