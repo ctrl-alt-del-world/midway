@@ -9,6 +9,8 @@
   
 import React from "react"
 import { StoreContextProvider } from "src/context/siteContext"
+const Sentry = require('@sentry/browser');
+
 export const shouldUpdateScroll = ({
 	routerProps: { location },
 	getSavedScrollPosition
@@ -21,6 +23,11 @@ export const shouldUpdateScroll = ({
 	}
 	return false;
 };
+
+
+// Optional Config Sentry
+Sentry.init({dsn: process.env.GATSBY_SENTRY_DSN});
+
 export const wrapRootElement = ({ element }) => (
   <StoreContextProvider>{element}</StoreContextProvider>
 )
