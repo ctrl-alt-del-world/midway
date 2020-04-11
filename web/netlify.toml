@@ -2,9 +2,6 @@
   command = "gatsby build && netlify-lambda build src/lambda && yarn sentry:release && yarn sentry:commits"
   functions = "./functions"
 
-[[plugins]]
-package = "netlify-plugin-gatsby-cache"
-
 [context.production]
   environment = { TYPE = 'production' }
 
