@@ -24,7 +24,6 @@ export const shouldUpdateScroll = ({
 	return false;
 };
 
-
 // Optional Config Sentry
 Sentry.init({dsn: process.env.GATSBY_SENTRY_DSN});
 
