@@ -104,9 +104,11 @@ Please keep in mind I assume you are already familiar with the Shopify eco syste
 <details>
 <summary>Local Development of Functions</summary>
 You can alternatively run your webhook locally, you can do this with ngrok
-  1. npm install ngrok -g  
-  2. ngrok [:PORT] http  
-  3. Point Shopify webhook to the above url +  /.netlify/functions/shopify  
+  <ol>
+    <li>npm install ngrok -g</li>
+<li>ngrok http [:PORT]</li>
+<li>Point Shopify webhook to the above url +  /.netlify/functions/shopify-sync</li>
+  </ol>
 </details>
 
 ## Features
