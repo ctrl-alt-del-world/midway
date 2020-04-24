@@ -1,7 +1,7 @@
 
 
 [build]
-  command = "gatsby build && netlify-lambda build src/lambda && yarn sentry:release && yarn sentry:commits"
+  command = "gatsby build && netlify-lambda build src/lambda"
   functions = "./functions"
 
 [context.production]
