@@ -1,8 +1,9 @@
+require("dotenv").config();
 import { APIGatewayEvent } from 'aws-lambda'
 import sanityClient from '@sanity/client'
+import { statusReturn } from "./requestConfig";
 
 const {
-  statusReturn,
   SANITY_API_TOKEN,
   SANITY_PROJECT_ID,
   SANITY_DATASET,
