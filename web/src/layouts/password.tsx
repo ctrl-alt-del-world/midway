@@ -11,7 +11,9 @@ const browser = typeof window !== 'undefined' && window;
 export const PasswordWrapper = ({ children }: {
   children: any
 }) => {
-  const [password, setPassword] = useState(cookie.get('password'))
+  // Comment this out to turn the password back on!
+  // const [password, setPassword] = useState(cookie.get('password'))
+  const [password, setPassword] = useState('spaghetti')
   const [error, setError] = useState(false)
   const form = React.createRef() as React.RefObject<HTMLFormElement>
 
