@@ -2,11 +2,14 @@ require("dotenv").config();
 import { APIGatewayEvent } from 'aws-lambda'
 import sanityClient from '@sanity/client'
 import { statusReturn } from "./requestConfig";
+import crypto from 'crypto'
+
 
 const {
   SANITY_API_TOKEN,
   SANITY_PROJECT_ID,
   SANITY_DATASET,
+  SHOPIFY_SECRET
 } = process.env;
 
 const client = sanityClient({
@@ -21,11 +24,19 @@ export const handler = async (event: APIGatewayEvent): Promise<any> => {
     return statusReturn(400, '')
   }
 
-  let data;
+  let data
   let hasVariantsToSync = false;
+  const hmac = event.headers['x-shopify-hmac-sha256']
 
   try {
     data = JSON.parse(event.body);
+    const generatedHash = crypto
+          .createHmac('sha256', SHOPIFY_SECRET)
+          .update(event.body)
+          .digest('base64')
+    if (generatedHash !== hmac) {
+      return statusReturn(400, { error: 'Invalid Webhook' })
+    }
   } catch (error) {
     console.error('JSON parsing error:', error);
     return statusReturn(400, { error: 'Bad request body' })
