@@ -33,7 +33,7 @@ const Page = ({
 
   const url = slug.current === 'home' ? '' : path
   return (
-    <div className='mt1 ac'>
+    <div className='mt1 x ac'>
       {preview && (
         <div className='bcblue ac cw x p1'>This is a Preview</div>
       )}
