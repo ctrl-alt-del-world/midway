@@ -14,7 +14,7 @@ export interface PageProps {
     },
     meta: {}
   }
-  path: string
+  path?: string
   preview?: boolean
 }
 
