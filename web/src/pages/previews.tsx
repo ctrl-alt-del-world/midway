@@ -1,5 +1,7 @@
-import React from "react"
+import React, { useState, useEffect, useCallback} from "react"
 import { Router } from "@reach/router"
+
+import { useLoads } from 'react-loads'
 
 import Page from "src/templates/page"
 import Product from "src/templates/product"
@@ -11,105 +13,86 @@ import {
   productQuery
 } from "src/utils/queries"
 
-// FIXME: why can't we access process env here again 🤔
 const client = sanityClient({
   projectId: process.env.GATSBY_SANITY_PROJECT_ID,
   dataset: process.env.GATSBY_SANITY_PROJECTSET,
-  useCdn: false, // `false` i,f you want to ensure fresh data
+  useCdn: false, 
   withCredentials: true,
 })
 
-// FIXME: Update this component to be TS-y
+const PreviewPage = ({ document }: { document: string }) => {
+  const [doc, setDoc] = useState(null as any)
+  
+  //  @ts-ignore
+  const queryDraft = `*[_id == "${document}"]  {
+    ...,
+  }`
 
-class PreviewPage extends React.Component<
-  { path: string; document?: Document },
-  { document: null | Document; type: null | string; doc: any; loaded: boolean }
-> {
-  constructor(
-    props: Readonly<{ path: string; document?: Document | undefined }>
-  ) {
-    super(props)
-    this.state = {
-      document: null,
-      type: null,
-      doc: {},
-      loaded: false,
+  // @ts-ignore
+  const queryPreviewPage = `*[_id == "${document}"]  {
+    ${pageQuery}
+  }`
+
+  // @ts-ignore
+  const queryPreviewProduct = `*[_id == "${document}"]  {
+    ${productQuery}
+  }`
+
+  const handlePreviewFetch = useCallback(
+    () => 
+      client
+        .fetch(queryDraft)
+        .then((response: any) => {
+          switch (response[0]._type) {
+            case 'page':
+              client.fetch(queryPreviewPage).then(res => {
+                setDoc(res[0])
+              })
+              break
+            case 'product':
+              client.fetch(queryPreviewProduct).then(res => {
+                setDoc(res[0])
+              })
+              break
+            default:
+              break
+          }
+        }),
+      []
+  )
+
+  const { error, isResolved, isPending, isReloading, load } = useLoads(
+    'handlePreviewFetch',
+    handlePreviewFetch as any,
+    {
+      defer: true,
     }
-  }
+  )
 
-  public componentDidMount() {
-    // @ts-ignore
-    const queryDraft = `*[_id == "${this.props.document}"]  {
-        ...,
-      }`
+  useEffect(() => {
+    load()
+  }, [0])
 
-    // @ts-ignore
-    const queryPreviewPage = `*[_id == "${this.props.document}"]  {
-        ${pageQuery}
-      }`
-
-    // @ts-ignore
-    const queryPreviewProduct = `*[_id == "${this.props.document}"]  {
-        ${productQuery}
-      }`
-
-    client
-      .fetch(queryDraft)
-      // @ts-ignore
-      .then(response => {
-        this.setState({
-          type: response[0]._type,
-        })
-        switch (response[0]._type) {
-          case "page":
-            // @ts-ignore
-            client.fetch(queryPreviewPage).then(res => {
-              this.setState({
-                doc: res[0],
-                loaded: true,
-              })
-            })
-            break
-          case "product":
-            // @ts-ignore
-            client.fetch(queryPreviewProduct).then(res => {
-              this.setState({
-                doc: res[0],
-                loaded: true,
-              })
-            })
-            break
-          default:
-            return
-        }
-      })
-      // @ts-ignore
-      .catch(error => {
-        console.log("problem", error)
-      })
-  }
-
-  public renderPreview() {
-    console.log('render preview', this.state.doc)
-    // @ts-ignore
-    if (this.state.loaded) {
-      // @ts-ignore
-      switch (this.state.type) {
-        case "page":
-          return <Page pageContext={this.state.doc.content} preview={true} />
-        case "product":
-          return <Product pageContext={this.state.doc.content} location={{search: ''}} preview={true} />
-        case "post":
-        default:
-          break
+  const renderPreview = () => {
+    if (doc) {
+      switch (doc._type) {
+        case 'page': return <Page pageContext={doc.content} preview={true} />
+        case 'product': return <Product pageContext={doc.content} preview={true} />
+        default: break
       }
     }
   }
-
-  public render() {
-    return <div>{this.renderPreview()}</div>
-  }
+  return (
+    <>
+      {(isPending ||
+        isReloading) && (
+        <div className='ac'><span>Loading</span></div>
+      )}
+      {isResolved && !isPending && renderPreview()}
+    </>
+  )
 }
+
 
 const Previews = () => {
   return (
