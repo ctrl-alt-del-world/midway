@@ -18,6 +18,7 @@ import siteGlobal from './types/siteGlobal'
 import menus from './types/menus'
 import post from './types/post'
 import variant from './types/variant'
+import subscription from './types/subscription'
 
 // Modules
 import externalLink from './modules/externalLink'
@@ -64,6 +65,7 @@ export default createSchema({
     collection,
     product,
     variant,
+    subscription, // This can be disabled/hidden if not using recharge
     // Modules
     externalLink,
     internalLink,
