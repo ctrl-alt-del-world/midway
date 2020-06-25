@@ -42,6 +42,23 @@ The studio is ready/useful, I'll more than likely further modify the structure, 
 </details>
 
 <details>
+<summary>Content Preview</summary>
+
+### Why
+Previewing content is a priority client experience. As a result we implement this out of the box, please keep in mind the pattern + graphql does require groq experience. I wrote an [article documenting](https://medium.com/the-couch/live-preview-in-gatsby-without-the-cost-21f8ac0337bb) this experience. I will echo some of that below for this particular experience.
+
+### Enable API access to local for testing
+Inside of the manage panel in Sanity, make sure you navigate to settings->api->cors origins and enable the localhost with the correct port, in our case `http://localhost:8000` with allow creditials. 
+
+### Frontend Preview 
+Inside of our Gatsby experience you'll notice a `previews.tsx` within our pages, you'll also find our config is extended with `gatsby-plugin-create-client-paths` to include the `previews/` route as a dynamic experience. This allows us to param this route without causing a 404 in Gatsby.
+
+### Sanity preview locally
+Inside  of the Sanity structure builder for `pages` and `products` I have referenced a new view component. This adds a preview link to the Sanity admin. That componenet: `studio/structure/views/preview.js` has a production url (where your live site lives) and a local url: `http://localhost:8000`, update accordingly. 
+</details>
+
+
+<details>
 <summary>Current Feature Status</summary>
 
 ✔️ Gatbsy Typescript style   
