@@ -5,7 +5,7 @@ const browser = typeof window !== "undefined" && window
 const NotFoundPage = () => {
   return (
     browser && (
-      <div className='container--xl mxa ac'>
+      <div className='x'>
         Not Found
       </div>
     )

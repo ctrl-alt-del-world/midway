@@ -22,6 +22,7 @@ const client = sanityClient({
 
 const PreviewPage = ({ document }: { document: string }) => {
   const [doc, setDoc] = useState(null as any)
+
   
   //  @ts-ignore
   const queryDraft = `*[_id == "${document}"]  {
