@@ -141,7 +141,7 @@ You can alternatively run your webhook locally, you can do this with ngrok
   * 📸 gatsby-image support
   * 🔧 Minimal configuration
   * 💆‍♀️ Headless Account Managements via `/accounts/*` 
-  * 📹 Headless Preview via `/previews/*` **coming soon**
+  * 📹 Headless Preview via `/previews/*`
   * 💻 Custom lambda function that will create/update products from Shopify, as well as flag deleted items
 
 **Sanity Studio with a schema for**
@@ -156,8 +156,10 @@ You can alternatively run your webhook locally, you can do this with ngrok
     * Meta Card support for SEO with Tabs
     * Common modularity patterns
   * 📰 Posts
+  * 📫 Subscriptions sync'd from Shopify/Recharge
   * 🛍 Products & Variants
     * Products have default settings for `title`, `slug`, `defaultPrice`, `id`, `productId`.
+    * Products have a subscription flag so you can easily hide recharge duplicated products + a subscription reference for linking to the recharge related subscription
     * Variants have default settings for `id`, `productId`, `variantId`, `title`, `variantTitle`, `sku`, and `price`.
     * The `web/src/lambda/shopify` file will generate new Sanity documents with these default fields.
 
