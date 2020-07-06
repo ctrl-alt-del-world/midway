@@ -37,7 +37,7 @@ export const handler = async (event: APIGatewayEvent): Promise<any> => {
       data: stringData
     })
     
-    return statusReturn(200, subscription)
+    return statusReturn(200, subscription.data)
   } catch (err) {
     console.log(err)
     return statusReturn(500, { error: err.message })
