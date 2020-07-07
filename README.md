@@ -12,7 +12,7 @@ Named for the sake of being the middle component missing from your ecom business
 
 ### Starter kit for [Gatsby](https://www.gatsbyjs.org/), [Sanity.io](https://www.sanity.io), & Shopify
 
-I've taken a relatively more opinionated approach and started to fully build out a complete expereince. The documentation is being written while the experience is created, please don't make issues/tickets just yet, if you have contributions around my TS linting/issues feel free to PR those aspects.  
+I've taken a relatively more opinionated approach and started to fully build out a complete expereince. The documentation is being written while the experience is created, please don't make issues/tickets just yet, if you have contributions around my TS linting/issues feel free to PR those aspects.
 
 Clone this repository to bootstrap a fresh Typescript Gatsby site, powered by Sanity CMS and dynamically import Shopify products to Sanity with the help of a WebHook
 
@@ -36,9 +36,14 @@ The studio is ready/useful, I'll more than likely further modify the structure, 
 ### Web/
 1. Rename `env.example` to `.env` by typing `mv env.example .env` in your terminal.
 2. Enter your Sanity API keys in the `.env` file.
-3. Modify `gatsby-config.js` and add your site title, etc.
-3. Develop your front end, etc. (purposely left this ultra stripped-down)
-4. Create a repo specifically for your Gatsby build, host with Netlify or anywhere you can have a Lambda function.
+3. Enter your Shopify API keys and urls to the `.env` file.
+   * `GATSBY_SHOPIFY_GRAPHQL_URL` - this url is to your Shopify store graphql data source. e.g - `[mystore].myshopify.com/api/graphql`  *NOTE:* there is no `http(s)` before the url structure
+   * `GATSBY_SHOPIFY_TOKEN` - also known as the **Storefront Access Token**
+   * `GATSBY_SHOPIFY_STORE` - this is the url to your Shopify store. e.g. - `https://[mystore].myshopify.com/` - *Note:* there is `https` before the URL
+   * `SHOPIFY_SECRET` - this is your webhook secret. Once you create a webhook in Shopify you will see this token below your webhooks `https://[mystore].myshopify.com/admin/settings/notifications`
+4. Modify `gatsby-config.js` and add your site title, etc.
+5. Develop your front end, etc. (purposely left this ultra stripped-down)
+6. Create a repo specifically for your Gatsby build, host with Netlify or anywhere you can have a Lambda function.
 </details>
 
 <details>
@@ -48,72 +53,72 @@ The studio is ready/useful, I'll more than likely further modify the structure, 
 Previewing content is a priority client experience. As a result we implement this out of the box, please keep in mind the pattern + graphql does require groq experience. I wrote an [article documenting](https://medium.com/the-couch/live-preview-in-gatsby-without-the-cost-21f8ac0337bb) this experience. I will echo some of that below for this particular experience.
 
 ### Enable API access to local for testing
-Inside of the manage panel in Sanity, make sure you navigate to settings->api->cors origins and enable the localhost with the correct port, in our case `http://localhost:8000` with allow creditials. 
+Inside of the manage panel in Sanity, make sure you navigate to settings->api->cors origins and enable the localhost with the correct port, in our case `http://localhost:8000` with allow creditials.
 
-### Frontend Preview 
+### Frontend Preview
 Inside of our Gatsby experience you'll notice a `previews.tsx` within our pages, you'll also find our config is extended with `gatsby-plugin-create-client-paths` to include the `previews/` route as a dynamic experience. This allows us to param this route without causing a 404 in Gatsby.
 
 ### Sanity preview locally
-Inside  of the Sanity structure builder for `pages` and `products` I have referenced a new view component. This adds a preview link to the Sanity admin. That componenet: `studio/structure/views/preview.js` has a production url (where your live site lives) and a local url: `http://localhost:8000`, update accordingly. 
+Inside  of the Sanity structure builder for `pages` and `products` I have referenced a new view component. This adds a preview link to the Sanity admin. That componenet: `studio/structure/views/preview.js` has a production url (where your live site lives) and a local url: `http://localhost:8000`, update accordingly.
 </details>
 
 
 <details>
 <summary>Current Feature Status</summary>
 
-✔️ Gatbsy Typescript style   
-✔️ Fetching data and building pages from Sanity   
-✔️ Cart object created via the buy-sdk   
-✔️ Lambda functions being built from src->functions   
-✔️ Ability to login   
-✔️ Ability to register   
-✔️ Ability to logout   
-✔️ Better error handling for register   
-✔️ Ability to activate accounts   
-✔️ Ability to forgot passwords   
-✔️ Ability to reset passwords   
-✔️ account status in the header + logout   
-✔️ view single product detail   
-✔️ ability to add to cart   
-✔️ Ability to quick add to cart   
-✔️ cart visible on the frontend   
-✔️ Add/remove items from the cart    
-✔️ Ability to see orders   
-✖️ Add/remove addresses   
-✖️ Ability to see/edit addresses   
+✔️ Gatbsy Typescript style
+✔️ Fetching data and building pages from Sanity
+✔️ Cart object created via the buy-sdk
+✔️ Lambda functions being built from src->functions
+✔️ Ability to login
+✔️ Ability to register
+✔️ Ability to logout
+✔️ Better error handling for register
+✔️ Ability to activate accounts
+✔️ Ability to forgot passwords
+✔️ Ability to reset passwords
+✔️ account status in the header + logout
+✔️ view single product detail
+✔️ ability to add to cart
+✔️ Ability to quick add to cart
+✔️ cart visible on the frontend
+✔️ Add/remove items from the cart
+✔️ Ability to see orders
+✖️ Add/remove addresses
+✖️ Ability to see/edit addresses
 </details>
 
 
 #### Feature roadmap
-✔️ 🍝 Klaviyo Newsletter  
-✔️ 🍝 Klaviyo Waitlisting for out of stock products   
-✔️ 🍝 Product schema json-ld     
-✔️ 🍝 Focus States & Tab Index for ADA  
-✔️ 🍝 Seo Meta out of the Box (this works but i have a no-follow on robots.txt)  
+✔️ 🍝 Klaviyo Newsletter
+✔️ 🍝 Klaviyo Waitlisting for out of stock products
+✔️ 🍝 Product schema json-ld
+✔️ 🍝 Focus States & Tab Index for ADA
+✔️ 🍝 Seo Meta out of the Box (this works but i have a no-follow on robots.txt)
 ✔️ 🍝 Sanity Live Preview Content
-✔️ 🍝 Docz website?  
-✖️ 🍝 Add Analytics patterns (via get analytics)  
-✖️ 🍝 Add ability to do multi-variant selection  
-✖️ 🍝 Add a single sync function via sane-sanity!!   
-✖️ 🍝 Product carousel   
-✖️ 🍝 Promo Bar in the schema  
-✖️ 🍝 Mock Blog  
-✖️ 🍝 Example PDP with extended modularity  
-✖️ 🍝 Gatsby Create support for filling a sanity studio and getting a working frontend faster  
+✔️ 🍝 Docz website?
+✖️ 🍝 Add Analytics patterns (via get analytics)
+✖️ 🍝 Add ability to do multi-variant selection
+✖️ 🍝 Add a single sync function via sane-sanity!!
+✖️ 🍝 Product carousel
+✖️ 🍝 Promo Bar in the schema
+✖️ 🍝 Mock Blog
+✖️ 🍝 Example PDP with extended modularity
+✖️ 🍝 Gatsby Create support for filling a sanity studio and getting a working frontend faster
 
 #### Bonus Features?
-✔️ ✨ Sentry INIT  
-✖️ ✨ Sentry Function logging  
-✖️ ✨ netlify plugins (a11y/gatsby booster)   
-✖️ ✨ Logrocket pattern   
-✖️ ✨ jest testing   
+✔️ ✨ Sentry INIT
+✖️ ✨ Sentry Function logging
+✖️ ✨ netlify plugins (a11y/gatsby booster)
+✖️ ✨ Logrocket pattern
+✖️ ✨ jest testing
 
 ### Shopify/
 In the Shopify folder I provide an example theme.liquid file, this file is needed if you intend to add accounts to your headless environment (which this theme has functional components to support), shopify doesn't allow you to override the URL structure of the account information, so we redirect to where the headless experience lives. We also pass the hash/pathname etc so we can use that in our headless account system.
 
 Please keep in mind I assume you are already familiar with the Shopify eco system, this repo assumes you've already crafted ecommerce experiences before.
 
-### Shopify 
+### Shopify
 
 1. In your Netlify environment, go to your project and create a new Function.
 2. Set the functions directory to be the `functions/` folder in your project.
@@ -132,7 +137,7 @@ You can alternatively run your webhook locally, you can do this with ngrok
 ## Features
 
 **Gatsby site with real integrations into a Shopify Instance**
-  * 👨‍💻 TYPESCRIPT 
+  * 👨‍💻 TYPESCRIPT
   * 🛒 Shopping Cart create powered by Shopify Buy SDK
   * 📡 Real-time content preview in development
   * ⏱ Fast & frugal builds
@@ -140,7 +145,7 @@ You can alternatively run your webhook locally, you can do this with ngrok
   * 🧰 Full Render Control with Portable Text
   * 📸 gatsby-image support
   * 🔧 Minimal configuration
-  * 💆‍♀️ Headless Account Managements via `/accounts/*` 
+  * 💆‍♀️ Headless Account Managements via `/accounts/*`
   * 📹 Headless Preview via `/previews/*`
   * 💻 Custom lambda function that will create/update products from Shopify, as well as flag deleted items
 
@@ -163,17 +168,17 @@ You can alternatively run your webhook locally, you can do this with ngrok
     * Variants have default settings for `id`, `productId`, `variantId`, `title`, `variantTitle`, `sku`, and `price`.
     * The `web/src/lambda/shopify` file will generate new Sanity documents with these default fields.
 
-## Credits 
-Thanks to [Lucas](https://github.com/lucasvocos/gatsby-sanity-shopify) for kicking this whole thing off.  
-[Ian](https://github.com/dictions) with the smooth react-transition-group page transitions  
-[Trevor](https://github.com/thetrevorharmon) for the siteContext component from his [Gatsby-Shopify-Starter](https://github.com/thetrevorharmon/sell-things-fast/blob/master/src/context/StoreContext.js)   
-[David](https://github.com/blimpmason) for fixing the scrollTop on page transition   
- 
+## Credits
+Thanks to [Lucas](https://github.com/lucasvocos/gatsby-sanity-shopify) for kicking this whole thing off.
+[Ian](https://github.com/dictions) with the smooth react-transition-group page transitions
+[Trevor](https://github.com/thetrevorharmon) for the siteContext component from his [Gatsby-Shopify-Starter](https://github.com/thetrevorharmon/sell-things-fast/blob/master/src/context/StoreContext.js)
+[David](https://github.com/blimpmason) for fixing the scrollTop on page transition
+
 
 ## More learning
 
 * [Sample company website built with Gatsby & Sanity.io](https://github.com/sanity-io/example-company-website-gatsby-sanity-combo)
-* [Sanity + Shopify Roundtable: Headless ecommerce with Kevin Green & Joseph Thomas](https://www.youtube.com/watch?v=4mgI333aGvo) 
+* [Sanity + Shopify Roundtable: Headless ecommerce with Kevin Green & Joseph Thomas](https://www.youtube.com/watch?v=4mgI333aGvo)
 
 ## License
 
