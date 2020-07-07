@@ -66,52 +66,52 @@ Inside  of the Sanity structure builder for `pages` and `products` I have refere
 <details>
 <summary>Current Feature Status</summary>
 
-✔️ Gatbsy Typescript style
-✔️ Fetching data and building pages from Sanity
-✔️ Cart object created via the buy-sdk
-✔️ Lambda functions being built from src->functions
-✔️ Ability to login
-✔️ Ability to register
-✔️ Ability to logout
-✔️ Better error handling for register
-✔️ Ability to activate accounts
-✔️ Ability to forgot passwords
-✔️ Ability to reset passwords
-✔️ account status in the header + logout
-✔️ view single product detail
-✔️ ability to add to cart
-✔️ Ability to quick add to cart
-✔️ cart visible on the frontend
-✔️ Add/remove items from the cart
-✔️ Ability to see orders
-✖️ Add/remove addresses
-✖️ Ability to see/edit addresses
+✔️ Gatbsy Typescript style  
+✔️ Fetching data and building pages from Sanity  
+✔️ Cart object created via the buy-sdk  
+✔️ Lambda functions being built from src->functions  
+✔️ Ability to login  
+✔️ Ability to register  
+✔️ Ability to logout  
+✔️ Better error handling for register  
+✔️ Ability to activate accounts  
+✔️ Ability to forgot passwords  
+✔️ Ability to reset passwords  
+✔️ account status in the header + logout  
+✔️ view single product detail  
+✔️ ability to add to cart  
+✔️ Ability to quick add to cart  
+✔️ cart visible on the frontend  
+✔️ Add/remove items from the cart  
+✔️ Ability to see orders  
+✖️ Add/remove addresses  
+✖️ Ability to see/edit addresses  
 </details>
 
 
 #### Feature roadmap
-✔️ 🍝 Klaviyo Newsletter
-✔️ 🍝 Klaviyo Waitlisting for out of stock products
-✔️ 🍝 Product schema json-ld
-✔️ 🍝 Focus States & Tab Index for ADA
-✔️ 🍝 Seo Meta out of the Box (this works but i have a no-follow on robots.txt)
-✔️ 🍝 Sanity Live Preview Content
-✔️ 🍝 Docz website?
-✖️ 🍝 Add Analytics patterns (via get analytics)
-✖️ 🍝 Add ability to do multi-variant selection
-✖️ 🍝 Add a single sync function via sane-sanity!!
-✖️ 🍝 Product carousel
-✖️ 🍝 Promo Bar in the schema
-✖️ 🍝 Mock Blog
-✖️ 🍝 Example PDP with extended modularity
-✖️ 🍝 Gatsby Create support for filling a sanity studio and getting a working frontend faster
+✔️ 🍝 Klaviyo Newsletter  
+✔️ 🍝 Klaviyo Waitlisting for out of stock products  
+✔️ 🍝 Product schema json-ld  
+✔️ 🍝 Focus States & Tab Index for ADA  
+✔️ 🍝 Seo Meta out of the Box (this works but i have a no-follow on robots.txt)  
+✔️ 🍝 Sanity Live Preview Content  
+✔️ 🍝 Docz website?  
+✖️ 🍝 Add Analytics patterns (via get analytics)  
+✖️ 🍝 Add ability to do multi-variant selection  
+✖️ 🍝 Add a single sync function via sane-sanity!!  
+✖️ 🍝 Product carousel  
+✖️ 🍝 Promo Bar in the schema  
+✖️ 🍝 Mock Blog  
+✖️ 🍝 Example PDP with extended modularity  
+✖️ 🍝 Gatsby Create support for filling a sanity studio and getting a working frontend faster  
 
 #### Bonus Features?
-✔️ ✨ Sentry INIT
-✖️ ✨ Sentry Function logging
-✖️ ✨ netlify plugins (a11y/gatsby booster)
-✖️ ✨ Logrocket pattern
-✖️ ✨ jest testing
+✔️ ✨ Sentry INIT  
+✖️ ✨ Sentry Function logging  
+✖️ ✨ netlify plugins (a11y/gatsby booster)  
+✖️ ✨ Logrocket pattern  
+✖️ ✨ jest testing  
 
 ### Shopify/
 In the Shopify folder I provide an example theme.liquid file, this file is needed if you intend to add accounts to your headless environment (which this theme has functional components to support), shopify doesn't allow you to override the URL structure of the account information, so we redirect to where the headless experience lives. We also pass the hash/pathname etc so we can use that in our headless account system.
