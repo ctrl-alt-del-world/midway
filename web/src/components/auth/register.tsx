@@ -30,30 +30,33 @@ export const Register = ({path}: {path: string}) => {
         await Timeout.set(400)
         throw new Error("Passwords do not match.")
       }
-
-        fetch(`/.netlify/functions/register`, {
-          method: 'POST',
-          body: JSON.stringify({
-            email,
-            password,
-            firstName,
-            lastName
-          }),
+      const res = await fetch(`/.netlify/functions/register`, {
+        method: 'POST',
+        body: JSON.stringify({
+          email,
+          password,
+          firstName,
+          lastName
         })
-          .then(res => res.json())
-          .then(res => {
-            if (res.error) {
-              throw new Error(res.error)
-            } else {
-              UpdateCustomer(res, email)
-              // re-hydrate the cart so it contains the email
-              // checkout.hydrate()
-              setTimeout(() => {
-                navigate('/')
-              }, 400)
-            }
-          })
-        },
+      })
+      try {
+        const customer = await res.json()
+
+        if (customer.error) {
+
+          throw new Error(customer.error)
+        } else {
+            UpdateCustomer(customer, email)
+            // re-hydrate the cart so it contains the email
+            // checkout.hydrate()
+            setTimeout(() => {
+              navigate('/')
+            }, 400)
+          }
+        } catch (err) {
+          throw err
+        }
+      },
     [passwordField1, passwordField2, attempts]
   )
   const { error, isRejected, isPending, isReloading, load } = useLoads(
