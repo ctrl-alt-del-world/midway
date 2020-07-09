@@ -41,7 +41,9 @@ export const Orders = () => {
 
   useEffect(() => {
     const token = customerToken || cookie.get('customer_token')
-    load(token)
+    if (token) {
+      load(token)
+    }
   }, [])
 
   return (
