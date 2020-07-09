@@ -18,6 +18,7 @@ module.exports = {
   siteMetadata: {
     title: `Midway`,
     description: `Gatsby + Sanity + Shopify Repo`,
+    siteUrl: `https://midway.ctrlaltdel.world`,
     author: `iamkevingreen`,
     password: true
   },
