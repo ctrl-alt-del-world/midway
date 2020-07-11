@@ -45,7 +45,7 @@ const Layout = ({ children, siteMetadata, location }: { children: any }) => {
             Smooth transition credits to Ian Williams: https://github.com/dictions
           
           */}
-          {!/account/.test(location.pathname) ? (
+          {/* {!/account/.test(location.pathname) ? (
             <SwitchTransition>
               <Transition
                 key={location.pathname}
@@ -65,12 +65,12 @@ const Layout = ({ children, siteMetadata, location }: { children: any }) => {
                   )}
               </Transition>
             </SwitchTransition>
-          ) : (
+          ) : ( */}
             <div>
               {children}
               <Footer />
             </div>
-          )}
+          {/* )} */}
         </div>
       </PasswordWrapper>
     </React.Fragment>
