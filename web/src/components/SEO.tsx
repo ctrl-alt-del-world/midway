@@ -11,8 +11,8 @@ export const SEO = ({
   metaInfo: {
     metaTitle?: string
     metaDescription?: string
-    openImageUrl?: string
-    twitterImageUrl?: string
+    openImage?: string
+    twitterImage?: string
     twitterTitle?: string
     openTitle?: string
     openGraphDescription?: string
@@ -31,13 +31,13 @@ export const SEO = ({
     : "Midway is an Open source Headless  Shopify + Sanity starter."
   const metaKeywords = "midway, sanity, shopify, graphql, starter"
   const ogImage = metaInfo
-    ? metaInfo.openImageUrl
-      ? metaInfo.openImageUrl
+    ? metaInfo.openImage
+      ? metaInfo.openImage.asset.url
       : ""
     : ""
   const twitterImage = metaInfo
-    ? metaInfo.twitterImageUrl
-      ? metaInfo.twitterImageUrl
+    ? metaInfo.twitterImage
+      ? metaInfo.twitterImage.asset.url
       : ""
     : ""
   const openTitle = metaInfo
