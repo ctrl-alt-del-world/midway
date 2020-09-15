@@ -101,6 +101,14 @@ const StoreContextProvider = ({ children }: { children: any }) => {
         if (existingCheckoutId) {
           try {
             const checkout = await fetchCheckout(store, existingCheckoutId)
+            
+            // Make sure none of the items in this cart have been deleted from Shopify.
+            if (checkout.lineItems.some((lineItem) => !lineItem.variant)) {
+              throw new Error(
+                'Invalid line item in checkout. This variant was probably deleted from Shopify',
+              )
+            }
+            
             // Make sure this cart hasn’t already been purchased.
             console.log('sup checkout?', checkout)
             if (!checkout.completedAt) {
