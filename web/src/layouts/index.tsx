@@ -44,6 +44,7 @@ const Layout = ({ children, siteMetadata, location, pageContext }: { children: a
     return (
       <React.Fragment>
         <Helmet title='Accounts' />
+        <Disclaimer />
         <Header />
         <div>{children}</div>
         <Footer />
