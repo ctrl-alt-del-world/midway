@@ -10,7 +10,8 @@ export default {
       type: 'image',
       options: {
         hotspot: true
-      }
+      },
+      validation: Rule => Rule.required()
     },
     {
       name: 'caption',

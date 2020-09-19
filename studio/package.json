@@ -24,6 +24,7 @@
     "@sanity/default-layout": "^1.150.7",
     "@sanity/default-login": "^1.150.1",
     "@sanity/desk-tool": "^1.150.7",
+    "@sanity/vision": "^1.150.6",
     "a11y-react-emoji": "^1.1.2",
     "node-emoji": "^1.10.0",
     "prop-types": "^15.7.2",
@@ -32,8 +33,7 @@
     "react-icons": "^3.8.0",
     "sanity-plugin-media": "^0.2.10",
     "sanity-plugin-seo-tools": "^1.0.6",
-    "sanity-plugin-tabs": "1.1.2",
-    "sanity-plugin-vision": "^2.0.7"
+    "sanity-plugin-tabs": "^1.3.1"
   },
   "devDependencies": {
     "eslint": "^6.8.0",

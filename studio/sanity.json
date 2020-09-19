@@ -14,11 +14,11 @@
     "@sanity/default-layout",
     "@sanity/default-login",
     "@sanity/desk-tool",
-    "vision",
     "@sanity/color-input",
     "media",
     "tabs",
-    "seo-tools"
+    "seo-tools",
+    "@sanity/vision"
   ],
   "parts": [
     {
