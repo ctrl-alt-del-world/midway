@@ -40,6 +40,17 @@ const Layout = ({ children, siteMetadata, location, pageContext }: { children: a
     )
   }
 
+  if (pageContext.layout === 'accounts') {
+    return (
+      <React.Fragment>
+        <Helmet title='Accounts' />
+        <Header />
+        <div>{children}</div>
+        <Footer />
+      </React.Fragment>
+    )
+  }
+
   return (
     <React.Fragment>
       <Helmet title='Midway'>
@@ -55,7 +66,7 @@ const Layout = ({ children, siteMetadata, location, pageContext }: { children: a
             Smooth transition credits to Ian Williams: https://github.com/dictions
           
           */}
-          {/* {!/account/.test(location.pathname) ? (
+          {!/account/.test(location.pathname) ? (
             <SwitchTransition>
               <Transition
                 key={location.pathname}
@@ -75,12 +86,12 @@ const Layout = ({ children, siteMetadata, location, pageContext }: { children: a
                   )}
               </Transition>
             </SwitchTransition>
-          ) : ( */}
+          ) : (
             <div>
               {children}
               <Footer />
             </div>
-          {/* )} */}
+          )}
         </div>
       </PasswordWrapper>
     </React.Fragment>
