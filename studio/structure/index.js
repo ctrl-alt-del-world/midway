@@ -3,6 +3,7 @@ import { ProductMenuItem } from './products.js'
 import { ProductVariantParent } from './variants.js'
 import { CollectionMenuItem } from './collections.js'
 import { PageMenuItem } from './pages.js'
+import { DocMenuItem } from './docs.js'
 import { SubscriptionMenuItem } from './subscriptions.js'
 
 module.exports = {
@@ -11,5 +12,6 @@ module.exports = {
   ProductVariantParent: ProductVariantParent,
   CollectionMenuItem: CollectionMenuItem,
   PageMenuItem: PageMenuItem,
+  DocMenuItem: DocMenuItem,
   SubscriptionMenuItem: SubscriptionMenuItem
 }

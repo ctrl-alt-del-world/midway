@@ -1,31 +1,13 @@
 import React from "react"
 
 import { ProductCard } from 'src/components/product/card'
+import { ProductInt } from 'src/interfaces/product'
 
 export interface ProductGridProps {
   data: {
     title?: string
     shortDescription?: string
-    products: Array<{
-      _id: string
-      content: {
-        main: {
-          title: string
-          mainImage: {
-            asset: {
-              _ref: string
-            }
-          }
-          slug: {
-            current: string
-          }
-        }
-        shopify: {
-          defaultPrice: string
-          productId: number
-        }
-      }
-    }>
+    products: [ProductInt]
   }
 }
 

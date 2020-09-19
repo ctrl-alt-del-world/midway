@@ -63,7 +63,7 @@ module.exports = {
 
     {
       resolve: `gatsby-plugin-create-client-paths`,
-      options: { prefixes: [`/account/*`, `/previews/*`] },
+      options: { prefixes: [`/account/*`, `/docs/*`, `/previews/*`] },
     },
     {
       resolve: 'gatsby-plugin-root-import',

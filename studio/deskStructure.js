@@ -7,7 +7,8 @@ import {
   ProductVariantParent,
   CollectionMenuItem,
   SubscriptionMenuItem,
-  PageMenuItem
+  PageMenuItem,
+  DocMenuItem
 } from './structure/index'
 
 //
@@ -23,5 +24,6 @@ export default () =>
       CollectionMenuItem,
       ProductMenuItem,
       ProductVariantParent,
-      SubscriptionMenuItem
+      SubscriptionMenuItem,
+      DocMenuItem
     ])

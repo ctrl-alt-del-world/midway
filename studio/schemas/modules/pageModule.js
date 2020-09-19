@@ -2,7 +2,6 @@ export default {
   title: 'Page Content',
   name: 'pageModule',
   type: 'object',
-  hidden: true,
   fieldsets: [
     {
       name: 'modules',

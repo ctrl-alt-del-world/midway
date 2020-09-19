@@ -18,6 +18,7 @@ import siteGlobal from './types/siteGlobal'
 import menus from './types/menus'
 import post from './types/post'
 import variant from './types/variant'
+import doc from './types/doc'
 import subscription from './types/subscription'
 
 // Modules
@@ -61,6 +62,7 @@ export default createSchema({
     siteGlobal,
     page,
     post,
+    doc,
     menus,
     collection,
     product,

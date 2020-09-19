@@ -29,7 +29,17 @@ const TRANSITION_STYLES = {
 
 import 'src/styles/main.css'
 
-const Layout = ({ children, siteMetadata, location }: { children: any }) => {
+const Layout = ({ children, siteMetadata, location, pageContext }: { children: any }) => {
+
+  // Render documentation for CMS minus header/footer experience
+  if (pageContext.layout === 'docs') {
+    return (
+      <div>
+        {children}
+      </div>
+    )
+  }
+
   return (
     <React.Fragment>
       <Helmet title='Midway'>

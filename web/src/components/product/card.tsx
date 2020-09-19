@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import { encode, decode } from 'shopify-gid'
 
 import { PageLink } from 'src/components/link'
 import { Image } from 'src/components/image'
+import { ProductInt } from 'src/interfaces/product'
 import { ProductForm } from './form'
 
 import { client, useAddItemToCart } from 'src/context/siteContext'
@@ -13,7 +13,7 @@ export const ProductCard = ({
     main,
     shopify
   }
-}: Product ) => {
+}: ProductInt ) => {
   return (
     <div className='grid__product c30 x' key={_id}>
       <PageLink className='block' to={`/products/${main.slug.current}`}>
@@ -28,25 +28,4 @@ export const ProductCard = ({
       </div>
     </div>
   )
-}
-
-export interface Product {
-  _id: string
-  content: {
-    main: {
-      title: string
-      mainImage: {
-        asset: {
-          _ref: string
-        }
-      }
-      slug: {
-        current: string
-      }
-    }
-    shopify: {
-      defaultPrice: string
-      productId: number
-    }
-  }
 }

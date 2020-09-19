@@ -16,7 +16,6 @@ export interface ProductProps {
       slug: {
         current: string
       },
-      colorAssociation?: string
       title: string
     },
     meta: {}
@@ -34,8 +33,7 @@ const Product = ({
   const {
     main: {
       modules,
-      slug,
-      colorAssociation
+      slug
     },
     meta,
     shopify
@@ -58,7 +56,7 @@ const Product = ({
           `
         }} />
       <SEO metaInfo={meta} pagePath={url} />
-      <div className={cx('mxa x al site__main', pageContext.main.slug.current, colorAssociation)}>
+      <div className={cx('mxa x al site__main', pageContext.main.slug.current)}>
         <ProductHero main={pageContext.main} product={shopify} />
         {RenderModules(modules)}
       </div>

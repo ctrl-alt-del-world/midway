@@ -86,3 +86,11 @@ exports.createPages = async ({graphql, actions}) => {
     })
   })
 }
+
+exports.onCreatePage = ({ page, actions }) => {
+  const { createPage } = actions
+  if (page.path.startsWith('/docs')) {
+    page.context.layout = 'docs'
+    createPage(page)
+  }
+}
