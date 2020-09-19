@@ -94,7 +94,7 @@ exports.onCreatePage = ({ page, actions }) => {
     createPage(page)
   }
 
-  if (page.path.startsWith('/accounts')) {
+  if (page.path.startsWith('/account')) {
     page.context.layout = 'accounts'
     createPage(page)
   }
