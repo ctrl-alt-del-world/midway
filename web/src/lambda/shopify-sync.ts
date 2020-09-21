@@ -3,7 +3,7 @@ import { APIGatewayEvent } from 'aws-lambda'
 import sanityClient from '@sanity/client'
 import { statusReturn } from "./requestConfig";
 import crypto from 'crypto'
-
+import _ from 'lodash'
 
 const {
   SANITY_API_TOKEN,
@@ -19,13 +19,119 @@ const client = sanityClient({
   useCdn: false
 });
 
+const updateEverything = async (data: {
+  id: number
+  title: string
+  variants: any[]
+  handle: string
+}) => {
+  const product = {
+    _type: 'product',
+    _id: data.id.toString()
+  }
+
+  /*
+  /    Because of the nested structure of the products (with tabs)
+  /    we need select the fields we want to update specifically in Shopify
+  /    Syncs to prevent erasing other modular/custom data
+  */
+  const productObject = {
+    "content.shopify.productId": data.id,
+    "content.shopify.title": data.title,
+    "content.shopify.defaultPrice": data.variants[0].price,
+    "content.shopify.defaultVariant.title": data.variants[0].title,
+    "content.shopify.defaultVariant.price": data.variants[0].price,
+    "content.shopify.defaultVariant.sku": data.variants[0].sku,
+    "content.shopify.defaultVariant.variantId": data.variants[0].id,
+    "content.shopify.defaultVariant.taxable": data.variants[0].taxable,
+    "content.shopify.defaultVariant.inventoryQuantity": data.variants[0].inventory_quantity,
+    "content.shopify.defaultVariant.inventoryPolicy": data.variants[0].inventory_policy,
+    "content.shopify.defaultVariant.barcode": data.variants[0].barcode,
+    "content.main.title": data.title,
+    "content.main.slug.current": data.handle
+  }
+
+  try {
+
+    console.log('UPDATE FAM')
+
+    let tx = client.transaction()
+
+    //
+    // === Patch Product ===
+    //
+
+    tx = tx.createIfNotExists(product)
+    tx = tx.patch(data.id.toString(), patch => patch.set(productObject))
+    console.log(`Successfully updated/patched Product ${data.id} in Sanity`);
+
+    //
+    // === Patch Variants ===
+    //
+
+    const productVariants = data.variants.map(variant => ({
+      _type: 'productVariant',
+      _id: variant.id.toString(),
+      content: {
+        main: {
+          title: data.title,
+        },
+        shopify: {
+          productId: data.id,
+          variantId: variant.id,
+          title: data.title,
+          variantTitle: variant.title,
+          sku: variant.sku,
+          price: variant.price
+        }
+      }
+    }))
+
+    // Create Variant
+    productVariants.forEach(variant => {
+      tx = tx.createIfNotExists(variant);
+      tx = tx.patch(variant._id, p => p.set(variant));
+    })
+
+    console.log(`Updating/patching Variants ${data.variants.map(v => v.id).join(', ')} in Sanity`);
+
+    //
+    // === Include variants on product document ===
+    //
+
+    tx = tx.patch(data.id.toString(), p => p.set({
+      "content.shopify.variants": data.variants.map(variant => ({
+        _type: 'reference',
+        _ref: variant.id.toString(),
+        _key: variant.id.toString(),
+      }))
+    }))
+
+    console.log(`Adding variant references to ${data.id} in Sanity`);
+
+    const result = await tx.commit()
+
+    return statusReturn(200, { body: JSON.stringify(result) })
+
+
+  } catch (error) {
+    console.log(error);
+
+    return {
+      statusCode: 500,
+      body: JSON.stringify({
+        error: 'An internal server error has occured',
+      })
+    };
+  }
+}
+
 export const handler = async (event: APIGatewayEvent): Promise<any> => {
   if (event.httpMethod !== 'POST' || !event.body) {
     return statusReturn(400, '')
   }
 
   let data
-  let hasVariantsToSync = false;
   const hmac = event.headers['x-shopify-hmac-sha256']
 
   try {
@@ -47,112 +153,68 @@ export const handler = async (event: APIGatewayEvent): Promise<any> => {
   // Product Deletions only contain a singular 'id'
   if (data.hasOwnProperty('title') && data.hasOwnProperty('handle')) {
     // Build our initial product
-    const product = {
-      _type: 'product',
-      _id: data.id.toString()
+
+
+    try {
+      return client.fetch(`*[_type == "product" && _id == "${data.id.toString()}"][0] {
+        ...,
+        content {
+          ...,
+          shopify {
+            ...,
+            variants[]->
+          }
+        }
+      }`)
+        .then(res => {
+
+          // Check if product updates have happened that matter
+          const {
+            title,
+            slug: {
+              current
+            },
+          } = res.content.main
+          const {
+            defaultVariant,
+            variants
+          } = res.content.shopify
+
+          // Check Top Level Changes occured and rebuild
+          if (title !== data.title || current !== data.handle || defaultVariant.price !== data.variants[0].price) {
+            return updateEverything(data)
+          } else {
+            // Check if more variants then currently stored and rebuild  
+            if (variants.length === data.variants.length) {
+              // Check if nested variant information has changed
+              let triggerRebuild = false
+              variants.forEach((v, i) => {
+                const { productId, variantTitle, variantId } = v.content.shopify
+                const { id, title, product_id } = data.variants[i]
+                if (productId !== product_id || variantId !== id || variantTitle !== title) {
+                  console.log('variant different')
+                  triggerRebuild = true
+                }
+              })
+              if (triggerRebuild) {
+                return updateEverything(data)
+              } else {
+                return statusReturn(200, { body: 'nothing important changed' })
+              }
+            } else {
+              return updateEverything(data)
+            }
+          }
+        }).catch(error => {
+          console.error(`Sanity error:`, error)
+          return statusReturn(500, { error: error[0].message })
+        })
+    } catch (err) {
+      return statusReturn(400, { error: 'Bad request body' })
     }
 
-    /*
-    /    Because of the nested structure of the products (with tabs)
-    /    we need select the fields we want to update specifically in Shopify
-    /    Syncs to prevent erasing other modular/custom data
-    */
-   const productObject = {
-    "content.shopify.productId": data.id,
-    "content.shopify.title": data.title,
-    "content.shopify.defaultPrice": data.variants[0].price,
-    "content.shopify.defaultVariant.title": data.variants[0].title,
-    "content.shopify.defaultVariant.price": data.variants[0].price,
-    "content.shopify.defaultVariant.sku": data.variants[0].sku,
-    "content.shopify.defaultVariant.variantId": data.variants[0].id,
-    "content.shopify.defaultVariant.taxable": data.variants[0].taxable,
-    "content.shopify.defaultVariant.inventoryQuantity": data.variants[0].inventory_quantity,
-    "content.shopify.defaultVariant.inventoryPolicy": data.variants[0].inventory_policy,
-    "content.shopify.defaultVariant.barcode": data.variants[0].barcode,
-    "content.main.title": data.title,
-    "content.main.slug.current": data.handle
-  }
+  // move all of this inside of the fetch request to block builds when not necessary
 
-    return client
-      .transaction()
-      .createIfNotExists(product)
-      .patch(data.id.toString(), patch => patch.set(productObject))
-      .commit()
-      .then(res => {
-        console.log(`Successfully updated/patched Product ${data.id} in Sanity`);
-
-        if (data.variants.length > 1) {
-          hasVariantsToSync = true;
-
-          return Promise.all(data.variants.map(variant => {
-            const variantData = {
-              _type: 'productVariant',
-              _id: variant.id.toString(),
-              content: {
-                main: {
-                  title: data.title,
-                },
-                shopify: {
-                  productId: data.id,
-                  variantId: variant.id,
-                  title: data.title,
-                  variantTitle: variant.title,
-                  sku: variant.sku,
-                  price: variant.price
-                }
-              }
-            };
-
-            return client
-              .transaction()
-              .createIfNotExists(variantData)
-              .patch(variant.id.toString(), patch => patch.set(variantData))
-              .commit()
-              .then(response => {
-                console.log(`Successfully updated/patched Variant ${variant.id} in Sanity`);
-                return response;
-              })
-              .catch(error => {
-                console.error('Sanity error:', error);
-                return error;
-              });
-          })).then(result => {
-            if (hasVariantsToSync) {
-              return client
-                .transaction()
-                .createIfNotExists(product)
-                .patch(data.id.toString(), patch => patch.set({
-                  "content.shopify.variants": data.variants.map(variant => ({
-                    _type: 'reference',
-                    _ref: variant.id.toString(),
-                    _key: variant.id.toString(),
-                  }))
-                }))
-                .commit()
-                .then(response => {
-                  console.log(`Successfully added variant references to ${data.id} in Sanity`);
-                  return statusReturn(200, { response })
-                })
-                .catch(error => {
-                  console.error('Sanity error:', error);
-                  return error;
-                });
-            } else {
-              return statusReturn(200, { res })
-            }
-          }).catch(error => {
-            console.error('Sanity error:', error);
-            return statusReturn(500, { error: 'An internal server error has occurred' })
-          });
-
-        } else {
-          return statusReturn(200, { res })
-        }
-      })
-      .catch(error => {
-        console.error('Sanity error:', error);
-        return statusReturn(500, { error: 'An internal server error has occurred' })
-      });
   } else if (data.hasOwnProperty('id') && (!data.hasOwnProperty('title') && !data.hasOwnProperty('handle'))) {
     // this is triggered if Shopify sends a Product Deletion webhook that does NOT contain anything besides an ID
 
@@ -171,21 +233,5 @@ export const handler = async (event: APIGatewayEvent): Promise<any> => {
         console.error(`Sanity error:`, error)
         return statusReturn(500, { error: error[0].message })
       })
-
-    // *~* OR *~*
-
-    // DELETE FROM SANITY
-    // tread carefully here: you might not want to do this if you have products associated anywhere else such as "related products" or any other schemas. 
-    // this will likely cause in your schemas breaking
-    //   return client
-    //     .delete(data.id.toString())
-    //     .then(res => {
-    //       console.log(`Successfully deleted product ${data.id}`)
-    //     })
-    //     .catch(err => {
-    //       console.error('Delete failed: ', err.message)
-    //     })
-
-
   }
 };
