@@ -168,6 +168,12 @@ export const handler = async (event: APIGatewayEvent): Promise<any> => {
       }`)
         .then(res => {
 
+          console.log(res)
+
+          if (!res.content) {
+            return updateEverything(data)
+          }
+
           // Check if product updates have happened that matter
           const {
             title,
