@@ -198,7 +198,7 @@ export const handler = async (event: APIGatewayEvent): Promise<any> => {
                 const { productId, variantTitle, variantId } = v.content.shopify
                 const { id, title, product_id } = data.variants[i]
                 if (productId !== product_id || variantId !== id || variantTitle !== title) {
-                  console.log('variant different')
+                  console.log(`variant ${variantId} of ${variantTitle} has changed`)
                   triggerRebuild = true
                 }
               })
