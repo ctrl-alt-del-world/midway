@@ -99,6 +99,7 @@
     "sentry:release": "sentry-cli releases --org ctrl-alt-del-world new -p midway $COMMIT_REF",
     "sentry:commits": "sentry-cli releases --org ctrl-alt-del-world set-commits $COMMIT_REF --commit \"ctrl-alt-del-world/midway@$COMMIT_REF\"",
     "start": "npm run develop",
+    "ngrok": "ngrok http 8000 --subdomain midway-shop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
