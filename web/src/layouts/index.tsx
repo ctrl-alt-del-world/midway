@@ -27,6 +27,7 @@ const TRANSITION_STYLES = {
 	},
 };
 
+import 'src/styles/vendor.css'
 import 'src/styles/main.css'
 
 const Layout = ({ children, siteMetadata, location, pageContext }: { children: any }) => {

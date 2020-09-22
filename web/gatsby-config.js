@@ -33,6 +33,7 @@ module.exports = {
     },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
+    `gatsby-plugin-robots-txt`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
@@ -60,7 +61,6 @@ module.exports = {
         watchMode: true
       }
     },
-
     {
       resolve: `gatsby-plugin-create-client-paths`,
       options: { prefixes: [`/account/*`, `/docs/*`, `/previews/*`] },

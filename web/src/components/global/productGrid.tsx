@@ -7,7 +7,7 @@ export interface ProductGridProps {
   data: {
     title?: string
     shortDescription?: string
-    products: [ProductInt]
+    products?: [ProductInt]
   }
 }
 
@@ -17,7 +17,7 @@ export const ProductGrid = ({ data }: ProductGridProps) => {
     <div className="container--xl outer mxa py2 al p1 p x">
       <h3 className='m0 p0'>{title}</h3>
       <div className='f fw mt1 jcb aic'>
-        {products.map((singleProduct) => (
+        {products && products.map((singleProduct) => (
           <ProductCard key={singleProduct._id} {...singleProduct} />
         ))}
         <div className='x c30' />
