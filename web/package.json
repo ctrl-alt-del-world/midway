@@ -49,6 +49,7 @@
     "picostate": "^4.0.0",
     "postcss": "6.0.23",
     "postcss-cli": "^8.0.0",
+    "postcss-custom-properties": "^10.0.0",
     "prismjs": "^1.19.0",
     "prop-types": "^15.7.2",
     "raw-body": "^2.4.1",

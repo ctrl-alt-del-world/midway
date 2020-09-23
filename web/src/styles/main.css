@@ -12,7 +12,6 @@
 @import './midway/_cart.css';
 @import './midway/_product-card.css';
 
-
 /* My generic Lib import, feel free to remove for vanilla styles */
 @import './lib/_breakpoints.css';
 @import './lib/_colors.css';
@@ -23,6 +22,7 @@
 
 /* Page animations */
 @import './lib/_animate.css';
+
 
 
 body {
