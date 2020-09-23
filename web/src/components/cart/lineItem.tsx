@@ -39,7 +39,6 @@ export const LineItem = ({ id, title, quantity, variant: { price, compareAtPrice
     image,
     { maxWidth: 300, maxHeight: 300 }
   )
-  console.log(itemImage)
 
   return (
     <div className='f x aic rel cart__single'>
@@ -47,7 +46,7 @@ export const LineItem = ({ id, title, quantity, variant: { price, compareAtPrice
         <img className='x' src={itemImage} alt={title} />
       </div>
       <div>
-        <span className='h4 ls1 caps m0 p0 offlimits'>{title}</span>
+        <span className='h4 ls1 caps m0 p0'>{title}</span>
         <div className='f jcs aic product__form-qty-wrapper mt05 mxa'>
           <button className='block rel qty__control no-style s24 f jcc aic founders cursor py05 aic' onClick={() => stateQuantity === 1 ? null : updateQuantity(stateQuantity - 1)}><Minus /></button>
           <input type='number' value={stateQuantity} onChange={e => updateQuantity(parseInt(e.currentTarget.value, 10))} name='quantity' min='1' className='cb founders card-qty bn ac' />

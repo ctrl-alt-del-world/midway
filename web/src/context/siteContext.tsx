@@ -110,7 +110,6 @@ const StoreContextProvider = ({ children }: { children: any }) => {
             }
             
             // Make sure this cart hasn’t already been purchased.
-            console.log('sup checkout?', checkout)
             if (!checkout.completedAt) {
               setCheckoutInState(checkout, setStore)
               return
