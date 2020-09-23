@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Helmet from 'react-helmet'
+import tighpo from 'tighpo'
 
 import { Header } from 'src/components/header'
 import { Footer } from 'src/components/footer'
@@ -7,6 +8,7 @@ import { SwitchTransition, Transition } from 'react-transition-group'
 import { Disclaimer } from 'src/components/disclaimer'
 import { CartDrawer } from 'src/components/cartDrawer'
 import { PasswordWrapper } from './password'
+
 
 const TRANSITION_DURATION = 400;
 const TRANSITION_STYLES = {
@@ -52,6 +54,14 @@ const Layout = ({ children, siteMetadata, location, pageContext }: { children: a
       </React.Fragment>
     )
   }
+
+  useEffect(() => {
+    tighpo('spaghetti', function () {
+      var style = document.createElement('style')
+      document.body.appendChild(style)
+      style.sheet.insertRule('html, body { cursor: url(https://spaghet.now.sh), auto !important; }')
+    })
+  }, [0])
 
   return (
     <React.Fragment>
