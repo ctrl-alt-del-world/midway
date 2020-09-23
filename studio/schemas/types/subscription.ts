@@ -1,12 +1,8 @@
 import React from 'react';
-import Emoji from 'a11y-react-emoji'
-
-const Icon = () => <Emoji style={{ fontSize: '2rem' }} symbol='📫' />
 
 export default {
 	name: 'subscription',
 	title: 'Subscriptions',
-	icon: Icon,
 	type: 'document',
 	__experimental_actions: ['update', 'publish', 'delete'],
 	fields: [

@@ -35,6 +35,20 @@ module.exports = {
     `gatsby-plugin-sharp`,
     `gatsby-plugin-robots-txt`,
     {
+			resolve: 'gatsby-plugin-netlify',
+			options: {
+				mergeSecurityHeaders: false,
+				headers: {
+					'/preview': [
+						// 'X-Frame-Options: DENY', allow iframe usage
+						'X-XSS-Protection: 1; mode=block',
+						'X-Content-Type-Options: nosniff',
+						'Referrer-Policy: same-origin',
+					],
+				}
+			}
+		},
+    {
       resolve: `gatsby-plugin-manifest`,
       options: {
         name: `gatsby-starter-default`,

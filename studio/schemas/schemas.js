@@ -16,6 +16,7 @@ import page from './types/page'
 import collection from './types/collection'
 import siteGlobal from './types/siteGlobal'
 import menus from './types/menus'
+import redirect from './types/redirect'
 import post from './types/post'
 import variant from './types/variant'
 import doc from './types/doc'
@@ -63,6 +64,7 @@ export default createSchema({
     page,
     post,
     doc,
+    redirect,
     menus,
     collection,
     product,

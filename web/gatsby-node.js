@@ -2,6 +2,44 @@
 exports.createPages = async ({graphql, actions}) => {
   const {createPage} = actions
 
+  // Handle Redirects
+  const redirectsQuery = await graphql(`
+    {
+      allSanityRedirect {
+        edges {
+          node {
+            id
+            fromPath
+            statusCode
+            toPath
+          }
+        }
+      }
+    }
+  `)
+
+  if (redirectsQuery.errors) {
+    throw redirectsQuery.errors
+  }
+
+  //
+  // === Redirects ===
+  //
+  const redirects = redirectsQuery.data.allSanityRedirect.edges || []
+  redirects.forEach(redirect => {
+    const {
+      fromPath,
+      toPath,
+      statusCode
+    } = redirect.node
+    actions.createRedirect({
+      fromPath: fromPath,
+      toPath: toPath,
+      isPermanent: statusCode === 301, // use as fallback. this is part of Gatsby's API
+      statusCode: statusCode || 302 // Netlify specific. Will override `isPermanent`
+    });
+  });
+
   // Query Pages
   const pagesQuery = await graphql(`
     {

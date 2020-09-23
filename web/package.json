@@ -24,6 +24,7 @@
     "gatsby-plugin-create-client-paths": "^2.1.22",
     "gatsby-plugin-layout": "^1.2.1",
     "gatsby-plugin-manifest": "^2.2.31",
+    "gatsby-plugin-netlify": "^2.3.15",
     "gatsby-plugin-offline": "^3.0.27",
     "gatsby-plugin-postcss": "^2.1.20",
     "gatsby-plugin-react-helmet": "^3.1.16",

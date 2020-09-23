@@ -16,14 +16,14 @@
     "test": "sanity check"
   },
   "dependencies": {
-    "@sanity/base": "^1.150.7",
+    "@sanity/base": "^1.150.8",
     "@sanity/cli": "^1.150.7",
     "@sanity/color-input": "^1.150.1",
-    "@sanity/components": "^1.150.7",
+    "@sanity/components": "^1.150.8",
     "@sanity/core": "^1.150.7",
-    "@sanity/default-layout": "^1.150.7",
+    "@sanity/default-layout": "^1.150.8",
     "@sanity/default-login": "^1.150.1",
-    "@sanity/desk-tool": "^1.150.7",
+    "@sanity/desk-tool": "^1.150.8",
     "@sanity/vision": "^1.150.6",
     "a11y-react-emoji": "^1.1.2",
     "node-emoji": "^1.10.0",
