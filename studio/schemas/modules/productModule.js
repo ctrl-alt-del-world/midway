@@ -2,7 +2,6 @@ export default {
   title: 'Product Content',
   name: 'productModule',
   type: 'object',
-  hidden: true,
   fieldsets: [
     {
       name: 'modules',

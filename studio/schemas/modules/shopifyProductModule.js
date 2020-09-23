@@ -2,7 +2,6 @@ export default {
   title: 'Shopify Product Content',
   name: 'shopifyProductModule',
   type: 'object',
-  hidden: true,
   fieldsets: [
     {
       name: 'default',
