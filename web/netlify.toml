@@ -1,5 +1,3 @@
-
-
 [build]
   command = "gatsby build && netlify-lambda build src/lambda"
   functions = "./functions"
