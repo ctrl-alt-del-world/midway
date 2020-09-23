@@ -20,8 +20,8 @@ export const PasswordWrapper = ({ children }: {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     if (form.current) {
-      const { password } = form.current.elements
-      const found = passwords.filter(el =>  el === password.value)
+      const { elements } = form.current
+      const found = passwords.filter(el =>  el === elements.password.value)
 
       if (found.length === 1) {
         cookie.set('password', 'true', { expires: 30 })

@@ -22,10 +22,10 @@ export interface NestedPagesProps {
 }
 
 export const NestedPages = ({ data }: NestedPagesProps) => {
-  const { page, title } = data
+  const { page } = data
   return (
     <div className="container--xl outer mxa py2 p1 al p x">
-      <h5 className='caps ls1'>{title}</h5>
+      <h5 className='caps ls1'>{data.title}</h5>
       <div className='f fw jcb ais'>
         {page.map(({ title, _key, description, linkedPage }) => (
           <div key={_key} className='x c50 mb1 doc__block'>

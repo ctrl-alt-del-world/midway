@@ -16,13 +16,14 @@ import cookie from 'js-cookie'
 
 const SHOPIFY_CHECKOUT_STORAGE_KEY = 'shopify_checkout_id'
 
+// @ts-ignore
 const client = ShopifyClient.buildClient({
   storefrontAccessToken: process.env.GATSBY_SHOPIFY_TOKEN,
   domain: process.env.GATSBY_SHOPIFY_STORE
 })
 
 interface InitialStore {
-  client: ShopifyClient
+  shopifyClient: ShopifyClient
   isAdding: boolean
   cartIsOpen: boolean
   navIsOpen: boolean
@@ -35,7 +36,7 @@ interface InitialStore {
 }
 
 const initialStoreState = {
-  client,
+  shopifyClient: client,
   isAdding: false,
   cartIsOpen: false,
   page: undefined,
@@ -55,11 +56,11 @@ const StoreContext = React.createContext({
 })
 
 const createNewCheckout = (store: InitialStore): Checkout => {
-  return store.client.checkout.create()
+  return store.shopifyClient.checkout.create()
 }
 
 const fetchCheckout = (store: InitialStore, id: string): Checkout => {
-  return store.client.checkout.fetch(id)
+  return store.shopifyClient.checkout.fetch(id)
 }
 
 const setCheckoutInState = (checkout: Checkout, setStore: any) => {
@@ -126,7 +127,7 @@ const StoreContextProvider = ({ children }: { children: any }) => {
       initializeCheckout()
       setInitStore(true)
     }
-  }, [store, setStore, store.client.checkout, initStore])
+  }, [store, setStore, store.shopifyClient.checkout, initStore])
 
   return (
     <StoreContext.Provider
@@ -213,8 +214,9 @@ function useCustomer() {
 }
 
 function useAddItemToCart() {
+  // @ts-ignore
   const {
-    store: { checkout, client },
+    store: { checkout, shopifyClient },
     setStore,
   }: { store: InitialStore, setStore: any } = useContext(StoreContext)
 
@@ -231,7 +233,7 @@ function useAddItemToCart() {
     const checkoutId = checkout.id
     const lineItemsToAdd = [{ variantId, quantity, customAttributes: attributes }]
 
-    const newCheckout = await client.checkout.addLineItems(
+    const newCheckout = await shopifyClient.checkout.addLineItems(
       checkoutId,
       lineItemsToAdd
     )
@@ -254,7 +256,7 @@ function useRemoveItemFromCart() {
   } = useContext(StoreContext)
 
   async function removeItemFromCart(itemId) {
-    const newCheckout = await client.checkout.removeLineItems(checkout.id, [
+    const newCheckout = await shopifyClient.checkout.removeLineItems(checkout.id, [
       itemId,
     ])
 
@@ -277,7 +279,7 @@ function useUpdateItemsFromCart() {
 
   async function updateItemsFromCart(items: any) {
     items = [].concat(items)
-    const newCheckout = await client.checkout.updateLineItems(checkout.id, items)
+    const newCheckout = await shopifyClient.checkout.updateLineItems(checkout.id, items)
 
     setStore((prevState: InitialStore) => {
       return { ...prevState, checkout: newCheckout }

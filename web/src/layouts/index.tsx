@@ -72,9 +72,9 @@ const Layout = ({ children, siteMetadata, location, pageContext }: { children: a
             <SwitchTransition>
               <Transition
                 key={location.pathname}
-                mountOnEnter
-                unmountOnExit
-                appear
+                mountOnEnter={true}
+                unmountOnExit={true}
+                appear={true}
                 timeout={TRANSITION_DURATION}>
                   {status => (
                     <div
