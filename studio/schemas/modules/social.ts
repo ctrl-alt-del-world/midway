@@ -2,7 +2,6 @@ export default {
   title: 'Social',
   name: 'social',
   type: 'object',
-  hidden: true,
   fields: [
     {
       name: 'twitter',

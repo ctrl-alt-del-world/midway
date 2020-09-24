@@ -2,7 +2,6 @@ export default {
   title: 'Variant Content',
   name: 'variantModule',
   type: 'object',
-  hidden: true,
   fieldsets: [
     {
       name: 'modules',

@@ -2,7 +2,6 @@ export default {
   title: 'Meta Information',
   name: 'metaCard',
   type: 'object',
-  // hidden: true,
   fieldsets: [
     {
       name: 'opengraph',
