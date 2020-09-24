@@ -110,7 +110,7 @@
     "build": "gatsby build",
     "build:lambda": "netlify-lambda build src/lambda",
     "develop": "gatsby develop",
-    "dev": "export NETLIFY_DEV=true; netlify dev:exec netlify-lambda serve src/lambda --port 34567 --timeout 20 & netlify dev:exec gatsby develop",
+    "dev": "export NETLIFY_DEV=true; netlify dev:exec netlify-lambda serve src/lambda --port 34567 --timeout 20 & netlify dev:exec gatsby develop -H 0.0.0.0",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
     "__postinstall": "netlify-lambda install",
     "sentry:release": "sentry-cli releases --org ctrl-alt-del-world new -p midway $COMMIT_REF",
