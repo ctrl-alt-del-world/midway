@@ -33,6 +33,7 @@ module.exports = {
     },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
+    `gatsby-plugin-sass`,
     `gatsby-plugin-robots-txt`,
     {
 			resolve: 'gatsby-plugin-netlify',
@@ -51,8 +52,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `gatsby-starter-default`,
-        short_name: `starter`,
+        name: `midway`,
+        short_name: `midway`,
         start_url: `/`,
         background_color: `#663399`,
         theme_color: `#663399`,

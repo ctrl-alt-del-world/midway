@@ -30,7 +30,7 @@
     "gatsby-plugin-react-helmet": "^3.1.16",
     "gatsby-plugin-robots-txt": "^1.5.2",
     "gatsby-plugin-root-import": "^2.0.5",
-    "gatsby-plugin-sass": "^2.1.27",
+    "gatsby-plugin-sass": "^2.3.13",
     "gatsby-plugin-sharp": "^2.3.5",
     "gatsby-plugin-tslint": "^0.0.2",
     "gatsby-plugin-typescript": "^2.1.27",
