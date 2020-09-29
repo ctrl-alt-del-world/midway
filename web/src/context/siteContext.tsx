@@ -248,7 +248,7 @@ function useAddItemToCart() {
 
 function useRemoveItemFromCart() {
   const {
-    store: { checkout },
+    store: { checkout, shopifyClient },
     setStore,
   }: {
     store: InitialStore
@@ -270,7 +270,7 @@ function useRemoveItemFromCart() {
 
 function useUpdateItemsFromCart() {
   const {
-    store: { checkout },
+    store: { checkout, shopifyClient },
     setStore,
   }: {
     store: InitialStore
