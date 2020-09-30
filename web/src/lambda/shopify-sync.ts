@@ -53,8 +53,6 @@ const updateEverything = async (data: {
 
   try {
 
-    console.log('UPDATE FAM')
-
     let tx = client.transaction()
 
     //
@@ -71,26 +69,23 @@ const updateEverything = async (data: {
 
     const productVariants = data.variants.map(variant => ({
       _type: 'productVariant',
-      _id: variant.id.toString(),
-      content: {
-        main: {
-          title: data.title,
-        },
-        shopify: {
-          productId: data.id,
-          variantId: variant.id,
-          title: data.title,
-          variantTitle: variant.title,
-          sku: variant.sku,
-          price: variant.price
-        }
-      }
+      _id: variant.id.toString()
+    }))
+
+    const productVariantSchema = data.variants.map(variant => ({
+      "content.main.title": data.title,
+      "content.shopify.productId": data.id,
+      "content.shopify.variantId": variant.id,
+      "content.shopify.title": data.title,
+      "content.shopify.variantTitle": variant.title,
+      "content.shopify.sku": variant.sku,
+      "content.shopify.price": variant.price
     }))
 
     // Create Variant
-    productVariants.forEach(variant => {
+    productVariants.forEach((variant, i) => {
       tx = tx.createIfNotExists(variant);
-      tx = tx.patch(variant._id, p => p.set(variant));
+      tx = tx.patch(variant._id, p => p.set(productVariantSchema[i]));
     })
 
     console.log(`Updating/patching Variants ${data.variants.map(v => v.id).join(', ')} in Sanity`);
@@ -115,7 +110,7 @@ const updateEverything = async (data: {
 
 
   } catch (error) {
-    console.log(error);
+    console.log('this is an error', error);
 
     return {
       statusCode: 500,
@@ -168,7 +163,6 @@ export const handler = async (event: APIGatewayEvent): Promise<any> => {
       }`)
         .then(res => {
 
-          console.log(res)
 
           if (!res.content) {
             return updateEverything(data)
