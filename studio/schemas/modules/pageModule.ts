@@ -2,16 +2,6 @@ export default {
   title: 'Page Content',
   name: 'pageModule',
   type: 'object',
-  fieldsets: [
-    {
-      name: 'modules',
-      title: 'Page Modules',
-      options: {
-        collapsible: true,
-        collapsed: true
-      }
-    }
-  ],
   fields: [
     {
       name: 'title',
@@ -32,7 +22,6 @@ export default {
       name: 'modules',
       title: 'Modules',
       type: 'moduleContent',
-      fieldset: 'modules'
     }
   ]
 }

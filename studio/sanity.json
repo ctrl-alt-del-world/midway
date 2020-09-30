@@ -23,11 +23,11 @@
   "parts": [
     {
       "name": "part:@sanity/base/schema",
-      "path": "./schemas/schemas.js"
+      "path": "./schemas/schemas.ts"
     },
     {
       "name": "part:@sanity/desk-tool/structure",
-      "path": "./deskStructure.js"
+      "path": "./deskStructure.tsx"
     }
   ]
 }
