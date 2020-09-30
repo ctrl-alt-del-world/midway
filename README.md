@@ -147,13 +147,15 @@ You can alternatively run your webhook locally, you can do this with ngrok
   * 🔧 Minimal configuration
   * 💆‍♀️ Headless Account Managements via `/accounts/*`
   * 📹 Headless Preview via `/previews/*`
+  * 📹 Inline studio documentation via `/docs/*`
   * 💻 Custom lambda function that will create/update products from Shopify, as well as flag deleted items
 
 **Sanity Studio with a schema for**
   * 🖼️ Media Plugin
   * 👨‍💻 Vision Plugin
   * 🚀 Graphql Deployment Support
-  * 📹 Preview via panes **coming soon**
+  * 📹 Preview via panes
+  * 🔀 Redirects
   * 🏢 Site settings
     * Menu configuration pattern
     * Basic Footer configuration pattern
