@@ -64,6 +64,37 @@ const updateEverything = async (data: {
     console.log(`Successfully updated/patched Product ${data.id} in Sanity`);
 
     //
+    // === Patch Product Image
+    //
+
+    const shopifyImage = data.image ? data.image.src : null
+
+    try {
+      if (shopifyImage) {
+        await fetch(shopifyImage)
+          .then(res => res.buffer())
+          .then(buffer => client.assets.upload('image', buffer))
+          .then(assetDocument => {
+            const productImageObject = {
+              "content.shopify.image": {
+                _type: "image",
+                asset: {
+                  _ref: assetDocument._id,
+                  _type: "reference"
+
+                }
+              }
+            }
+            tx = tx.patch(data.id.toString(), patch => patch.set(productImageObject))
+
+            console.log(`patching image ${data.id} in Sanity`);
+          })
+      }
+    } catch(e) {
+      console.log(e)
+    }
+
+    //
     // === Patch Variants ===
     //
 

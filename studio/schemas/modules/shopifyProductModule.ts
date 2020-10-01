@@ -33,6 +33,12 @@ export default {
       description: 'This can be a flag set if the item is deleted from Shopify'
     },
     {
+      name: 'image',
+      type: 'image',
+      title: 'Shopify Image',
+      readOnly: true,
+    },
+    {
       name: 'productId',
       title: 'Product ID',
       type: 'number',
