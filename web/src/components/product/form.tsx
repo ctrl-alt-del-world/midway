@@ -4,8 +4,7 @@ import { encode, decode } from 'shopify-gid'
 import { Waitlist } from 'src/components/product/waitlist'
 import { client, useAddItemToCart } from 'src/context/siteContext'
 
-export const ProductForm = ({ title, defaultPrice, productId, showQuantity, waitlist = true, addText }: {
-  title: string
+export const ProductForm = ({ defaultPrice, productId, showQuantity, waitlist = true, addText }: {
   defaultPrice: string
   productId: number
   waitlist?: boolean | true
@@ -16,7 +15,9 @@ export const ProductForm = ({ title, defaultPrice, productId, showQuantity, wait
 
   const [quantity, setQuantity] = useState(1 as number)
   const [adding, setAdding] = useState(false as boolean)
+  const [price, setPrice] = useState(defaultPrice)
   const [available, setAvailable] = useState(false)
+  const [variants, setVariants] = useState([])
   const [activeVariantId, setActiveVariantId] = useState('' as string)
   const [compareAtPrice, setCompareAtPrice] = useState(undefined as string | undefined)
   const [check, setCheck] = useState(true)
@@ -37,6 +38,8 @@ export const ProductForm = ({ title, defaultPrice, productId, showQuantity, wait
             cleanId: parseInt(decode(variant.id).id, 0),
           })
         })
+
+        setVariants(decodedVariants)
         setActiveVariantId(decodedVariants[0].id as string)
         setAvailable(decodedVariants[0].available)
 
@@ -51,6 +54,7 @@ export const ProductForm = ({ title, defaultPrice, productId, showQuantity, wait
     e.preventDefault()
     e.stopPropagation()
     setAdding(true)
+    console.log(activeVariantId)
     if (available) {
       addItemToCart(activeVariantId, quantity).then(() => {
         setAdding(false)
@@ -58,29 +62,54 @@ export const ProductForm = ({ title, defaultPrice, productId, showQuantity, wait
     }
   }
 
+  const handleChange = (e: React.FormEvent) => {
+    setActiveVariantId(e.target.value)
+    variants.forEach(variant => {
+      console.log(variant)
+      if (variant.id === e.target.value) {
+        if (variant.compareAtPrice) {
+          setCompareAtPrice(variant.compareAtPrice)
+        }
+        setPrice(variant.price)
+      }
+    })
+  }
+
   return (
     <div className='container--m'>
       <form onSubmit={(e) => handleSubmit(e)} ref={form}>
         {available && !check ? (
-          <div className='s24 product__form f jcs aist'>
-            {showQuantity && (
-              <div className='product__form-qty bcw cb bb f jcb aic'>
-                <div className='f jcc p1 aic product__form-qty-wrapper mxa'>
-                  <button type='button' className='block rel mr05 qty__control no-style s24 founders cursor p05 aic' onClick={() => quantity === 1 ? null : setQuantity(quantity - 1)}>-</button>
-                  <input type='number' value={quantity} onChange={e => setQuantity(parseInt(e.currentTarget.value, 10))} name='quantity' min='1' className='cb founders card-qty bn ac' />
-                  <button type='button' className='qty__control no-style s1 block  founders s24 cursor rel p05 jcc aic' onClick={() => setQuantity(quantity + 1)}>+</button>
-                </div>
+          <div className='x'>
+            {variants.length > 1 && (
+              <div className='x'>
+                <select onChange={handleChange} className='x p1'>
+                  {variants.map(({ id, title, available }: {id: string, title: string, available: boolean}) => (
+                    <option disabled={!available} key={id} value={id}>{title}</option>
+                  ))}
+                </select>
               </div>
             )}
-            <button type='submit' className='p1 x s1 bcblue cw button--h-black s20 button'>
-              <span>{adding ? 'Adding' : addText ? addText : 'Add to Cart'}</span>
-              {compareAtPrice && (
-                <span className='bold s20 ml1 strikethrough'>${parseFloat(compareAtPrice * quantity)}</span>
+          
+            <div className='s24 product__form f jcs aist'>
+              {showQuantity && (
+                <div className='product__form-qty bcw cb bb f jcb aic'>
+                  <div className='f jcc p1 aic product__form-qty-wrapper mxa'>
+                    <button type='button' className='block rel mr05 qty__control no-style s24 founders cursor p05 aic' onClick={() => quantity === 1 ? null : setQuantity(quantity - 1)}>-</button>
+                    <input type='number' value={quantity} onChange={e => setQuantity(parseInt(e.currentTarget.value, 10))} name='quantity' min='1' className='cb founders card-qty bn ac' />
+                    <button type='button' className='qty__control no-style s1 block  founders s24 cursor rel p05 jcc aic' onClick={() => setQuantity(quantity + 1)}>+</button>
+                  </div>
+                </div>
               )}
-              <span className='bold s20 ml1'>
-                ${parseFloat(defaultPrice * quantity)}
-              </span>
-            </button>
+              <button type='submit' className='p1 x s1 bcblue cw button--h-black s20 button'>
+                <span>{adding ? 'Adding' : addText ? addText : 'Add to Cart'}</span>
+                {compareAtPrice && (
+                  <span className='bold s20 ml1 strikethrough'>${parseFloat(compareAtPrice * quantity)}</span>
+                )}
+                <span className='bold s20 ml1'>
+                  ${parseFloat(price * quantity)}
+                </span>
+              </button>
+            </div>
           </div>
         ): (
           <div>
