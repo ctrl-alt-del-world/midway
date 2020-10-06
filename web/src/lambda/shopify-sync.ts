@@ -5,6 +5,8 @@ import { statusReturn } from "./requestConfig";
 import crypto from 'crypto'
 import _ from 'lodash'
 
+import fetch from 'node-fetch'
+
 const {
   SANITY_API_TOKEN,
   SANITY_PROJECT_ID,

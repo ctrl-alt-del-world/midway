@@ -4,8 +4,11 @@ import { encode, decode } from 'shopify-gid'
 import { Waitlist } from 'src/components/product/waitlist'
 import { client, useAddItemToCart } from 'src/context/siteContext'
 
-export const ProductForm = ({ defaultPrice, productId, showQuantity, waitlist = true, addText }: {
+export const ProductForm = ({ slug, defaultPrice, productId, showQuantity, waitlist = true, addText }: {
   defaultPrice: string
+  slug?: {
+    current: string
+  }
   productId: number
   waitlist?: boolean | true
   showQuantity?: boolean | true
@@ -21,6 +24,11 @@ export const ProductForm = ({ defaultPrice, productId, showQuantity, waitlist = 
   const [activeVariantId, setActiveVariantId] = useState('' as string)
   const [compareAtPrice, setCompareAtPrice] = useState(undefined as string | undefined)
   const [check, setCheck] = useState(true)
+
+  const [gift, setGift] = useState({
+    giftEmail: '',
+    giftMessage: ''
+  })
 
   const form = React.createRef()
 
@@ -54,9 +62,9 @@ export const ProductForm = ({ defaultPrice, productId, showQuantity, waitlist = 
     e.preventDefault()
     e.stopPropagation()
     setAdding(true)
-    console.log(activeVariantId)
+    const attributes = []
     if (available) {
-      addItemToCart(activeVariantId, quantity).then(() => {
+      addItemToCart(activeVariantId, quantity, attributes).then(() => {
         setAdding(false)
       })
     }
@@ -65,7 +73,6 @@ export const ProductForm = ({ defaultPrice, productId, showQuantity, waitlist = 
   const handleChange = (e: React.FormEvent) => {
     setActiveVariantId(e.target.value)
     variants.forEach(variant => {
-      console.log(variant)
       if (variant.id === e.target.value) {
         if (variant.compareAtPrice) {
           setCompareAtPrice(variant.compareAtPrice)
@@ -73,6 +80,10 @@ export const ProductForm = ({ defaultPrice, productId, showQuantity, waitlist = 
         setPrice(variant.price)
       }
     })
+  }
+
+  const handleGiftChange = e => {
+    setGift({ ...gift, [e.target.name]: e.target.value });
   }
 
   return (
@@ -89,14 +100,14 @@ export const ProductForm = ({ defaultPrice, productId, showQuantity, waitlist = 
                 </select>
               </div>
             )}
-          
+
             <div className='s24 product__form f jcs aist'>
               {showQuantity && (
                 <div className='product__form-qty bcw cb bb f jcb aic'>
                   <div className='f jcc p1 aic product__form-qty-wrapper mxa'>
-                    <button type='button' className='block rel mr05 qty__control no-style s24 founders cursor p05 aic' onClick={() => quantity === 1 ? null : setQuantity(quantity - 1)}>-</button>
-                    <input type='number' value={quantity} onChange={e => setQuantity(parseInt(e.currentTarget.value, 10))} name='quantity' min='1' className='cb founders card-qty bn ac' />
-                    <button type='button' className='qty__control no-style s1 block  founders s24 cursor rel p05 jcc aic' onClick={() => setQuantity(quantity + 1)}>+</button>
+                    <button type='button' className='block rel mr05 qty__control no-style s24 = cursor p05 aic' onClick={() => quantity === 1 ? null : setQuantity(quantity - 1)}>-</button>
+                    <input type='number' value={quantity} onChange={e => setQuantity(parseInt(e.currentTarget.value, 10))} name='quantity' min='1' className='cb card-qty bn ac' />
+                    <button type='button' className='qty__control no-style s1 block  s24 cursor rel p05 jcc aic' onClick={() => setQuantity(quantity + 1)}>+</button>
                   </div>
                 </div>
               )}
