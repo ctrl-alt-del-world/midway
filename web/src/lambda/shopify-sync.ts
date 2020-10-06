@@ -208,11 +208,12 @@ export const handler = async (event: APIGatewayEvent): Promise<any> => {
           } = res.content.main
           const {
             defaultVariant,
-            variants
+            variants,
+            image
           } = res.content.shopify
 
           // Check Top Level Changes occured and rebuild
-          if (title !== data.title || current !== data.handle || defaultVariant.price !== data.variants[0].price) {
+          if (!image || title !== data.title || current !== data.handle || defaultVariant.price !== data.variants[0].price) {
             return updateEverything(data)
           } else {
             // Check if more variants then currently stored and rebuild  
