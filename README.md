@@ -1,6 +1,6 @@
 > ⚠️ Sentry - I have Sentry set up in the build step, in the `netlify.toml` file. I recommend removing this if you don't want to use Sentry, working on abstracting it as optional
 
-# Midway v 0.85
+# Midway v 0.86
 
 > ⚠️ Disclaimer: The Gatsby theme is in active development as I work on documentation + extending the system, the studio is fairly ready for referenced use if you so desire. I will post a v1.0 once everything is in a better place hopefully very very soon :). I am working on creating a full shoppable/authed Shopify experience. The idea here is viewing products, adding them to a cart and getting to a real checkout, you will also be able to register, login, view orders, and also update your address (all traditional shopify experiences but in a headless environment).
 
@@ -98,7 +98,7 @@ Inside  of the Sanity structure builder for `pages` and `products` I have refere
 ✔️ 🍝 Sanity Live Preview Content  
 ✔️ 🍝 Docz website?  
 ✖️ 🍝 Add Analytics patterns (via get analytics)  
-✖️ 🍝 Add ability to do multi-variant selection  
+✔️ 🍝 Add ability to do multi-variant selection  
 ✖️ 🍝 Add a single sync function via sane-sanity!!  
 ✖️ 🍝 Product carousel  
 ✖️ 🍝 Promo Bar in the schema  

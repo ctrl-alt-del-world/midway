@@ -34,7 +34,14 @@ module.exports = {
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     `gatsby-plugin-sass`,
-    `gatsby-plugin-robots-txt`,
+    {
+      resolve: `gatsby-plugin-robots-txt`,
+      options: {
+        host: 'https://www.midway.ctrlaltdel.world',
+        sitemap: 'https://www.midway.ctrlaltdel.world/sitemap.xml',
+        policy: [{ userAgent: '*', allow: '/', disallow: ['/checkout', '/account', '/docs', '/previews'] }]
+      }
+    },
     {
 			resolve: 'gatsby-plugin-netlify',
 			options: {
