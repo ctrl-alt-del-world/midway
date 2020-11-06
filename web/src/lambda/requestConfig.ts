@@ -144,6 +144,67 @@ const CUSTOMER_ACTIVATE_QUERY = `mutation customerActivate($id: ID!, $input: Cus
   }
 }`
 
+
+// 
+// == PRODUCTS ===
+//
+
+const PRODUCT_QUERY = `query getProduct($id: ID!) {
+  node(id: $id) {
+    ... on Product {
+      id
+      handle
+      title
+      totalVariants
+      images(first: 100) {
+        edges {
+          node {
+            id
+            originalSrc
+          }
+        }
+      }
+      variants(first: 100) {
+        edges {
+          node {
+            id
+            title
+            price
+            displayName
+          }
+        }
+      }
+      metafield(namespace: "sync", key: "productData") {
+        value
+        id
+      }
+    }
+  }
+}
+`
+
+const PRODUCT_UPDATE = `mutation productMetaUpdate($input: ProductInput!) {
+  productUpdate(input: $input) {
+    product {
+      metafields(first: 100) {
+        edges {
+          node {
+            id
+            namespace
+            key
+            value
+          }
+        }
+      }
+    }
+    userErrors {
+      field
+      message
+    }
+  }
+}`
+
+
 const statusReturn = (code: number, body: {}) => {
   return {
     statusCode: code,
@@ -171,5 +232,7 @@ export {
   CUSTOMER_LOGOUT_QUERY,
   CUSTOMER_CREATE_QUERY,
   CUSTOMER_RESET_QUERY,
-  CUSTOMER_ACTIVATE_QUERY
+  CUSTOMER_ACTIVATE_QUERY,
+  PRODUCT_QUERY,
+  PRODUCT_UPDATE
 }

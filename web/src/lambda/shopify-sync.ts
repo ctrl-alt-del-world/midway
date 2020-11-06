@@ -1,9 +1,11 @@
 require("dotenv").config();
 import { APIGatewayEvent } from 'aws-lambda'
+import axios from 'axios'
 import sanityClient from '@sanity/client'
-import { statusReturn } from "./requestConfig";
 import crypto from 'crypto'
 import _ from 'lodash'
+
+const jsondiffpatch =  require('jsondiffpatch')
 
 import fetch from 'node-fetch'
 
@@ -11,6 +13,9 @@ const {
   SANITY_API_TOKEN,
   SANITY_PROJECT_ID,
   SANITY_DATASET,
+  SHOPIFY_API_PASSWORD,
+  SHOPIFY_API_KEY,
+  SHOPIFY_URL,
   SHOPIFY_SECRET
 } = process.env;
 
@@ -21,12 +26,20 @@ const client = sanityClient({
   useCdn: false
 });
 
+import {
+  statusReturn,
+  preparePayload,
+  shopifyConfig,
+  PRODUCT_QUERY,
+  PRODUCT_UPDATE
+} from './requestConfig'
+
 const updateEverything = async (data: {
   id: number
   title: string
   variants: any[]
   handle: string
-}) => {
+}, inputObject) => {
   const product = {
     _type: 'product',
     _id: data.id.toString()
@@ -52,6 +65,15 @@ const updateEverything = async (data: {
     "content.main.title": data.title,
     "content.main.slug.current": data.handle
   }
+
+  const metaPayLoad = preparePayload(PRODUCT_UPDATE, inputObject)
+          
+  const updateMetaField = await axios({
+    url: `https://${SHOPIFY_API_KEY}:${SHOPIFY_API_PASSWORD}@${SHOPIFY_URL}/admin/api/2020-10/graphql.json`,
+    method: 'POST',
+    headers: shopifyConfig,
+    data: JSON.stringify(metaPayLoad)
+  })
 
   try {
 
@@ -165,9 +187,9 @@ export const handler = async (event: APIGatewayEvent): Promise<any> => {
   try {
     data = JSON.parse(event.body);
     const generatedHash = crypto
-          .createHmac('sha256', SHOPIFY_SECRET)
-          .update(event.body)
-          .digest('base64')
+      .createHmac('sha256', SHOPIFY_SECRET)
+      .update(event.body)
+      .digest('base64')
     if (generatedHash !== hmac) {
       return statusReturn(400, { error: 'Invalid Webhook' })
     }
@@ -182,71 +204,72 @@ export const handler = async (event: APIGatewayEvent): Promise<any> => {
   if (data.hasOwnProperty('title') && data.hasOwnProperty('handle')) {
     // Build our initial product
 
-
+    const payload = preparePayload(PRODUCT_QUERY, {
+      id: data.admin_graphql_api_id
+    })
+    
     try {
-      return client.fetch(`*[_type == "product" && _id == "${data.id.toString()}"][0] {
-        ...,
-        content {
-          ...,
-          shopify {
-            ...,
-            variants[]->
-          }
-        }
-      }`)
-        .then(res => {
+      const shopifyProduct = await axios({
+        url: `https://${SHOPIFY_API_KEY}:${SHOPIFY_API_PASSWORD}@${SHOPIFY_URL}/admin/api/2020-10/graphql.json`,
+        method: 'POST',
+        headers: shopifyConfig,
+        data: JSON.stringify(payload)
+      })
 
+      const {
+        metafield,
+        title,
+        id,
+        handle,
+        totalVariants,
+        images,
+        variants
+      } = shopifyProduct.data.data.node
 
-          if (!res.content) {
-            return updateEverything(data)
-          }
-
-          // Check if product updates have happened that matter
-          const {
-            title,
-            slug: {
-              current
-            },
-          } = res.content.main
-          const {
-            defaultVariant,
-            variants,
-            image
-          } = res.content.shopify
-
-          // Check Top Level Changes occured and rebuild
-          if (!image || title !== data.title || current !== data.handle || defaultVariant.price !== data.variants[0].price) {
-            return updateEverything(data)
-          } else {
-            // Check if more variants then currently stored and rebuild  
-            if (variants.length === data.variants.length) {
-              // Check if nested variant information has changed
-              let triggerRebuild = false
-              variants.forEach((v, i) => {
-                const { productId, variantTitle, variantId } = v.content.shopify
-                const { id, title, product_id } = data.variants[i]
-                if (productId !== product_id || variantId !== id || variantTitle !== title) {
-                  console.log(`variant ${variantId} of ${variantTitle} has changed`)
-                  triggerRebuild = true
-                }
-              })
-              if (triggerRebuild) {
-                return updateEverything(data)
-              } else {
-                return statusReturn(200, { body: 'nothing important changed' })
-              }
-            } else {
-              return updateEverything(data)
+      const metaCompare = {
+        id,
+        title,
+        handle,
+        totalVariants,
+        images,
+        variants
+      }
+      const inputObject = {
+        input: {
+          "id": data.admin_graphql_api_id,
+          "metafields": [
+            {
+              id: metafield ? metafield.id : null,
+              "namespace": "sync",
+              "key": "productData",
+              "value": JSON.stringify(metaCompare),
+              "valueType": "STRING"
             }
-          }
-        }).catch(error => {
-          console.error(`Sanity error:`, error)
-          return statusReturn(500, { error: error[0].message })
-        })
-    } catch (err) {
-      return statusReturn(400, { error: 'Bad request body' })
-    }
+          ]
+        }
+      }
+      if (metafield) {
+         if (jsondiffpatch.diff(JSON.parse(metafield.value), metaCompare)) {
+            try {
+              return updateEverything(data, inputObject)
+            } catch (err) {
+              return statusReturn(200, { error: 'Problem with mutation' })
+            }
+         } else {
+          return statusReturn(200, { body: 'nothing important changed' })
+         }
+      } else {
+        try {
 
+          return updateEverything(data, inputObject)
+        } catch (err) {
+          return statusReturn(200, { error: 'Problem with mutation' })
+        }
+      }
+    } catch (err) {
+      console.log(err)
+      return statusReturn(200, { error: 'Problem looking up Product' })
+    }
   // move all of this inside of the fetch request to block builds when not necessary
 
   } else if (data.hasOwnProperty('id') && (!data.hasOwnProperty('title') && !data.hasOwnProperty('handle'))) {
