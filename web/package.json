@@ -43,6 +43,7 @@
     "js-cookie": "^2.2.1",
     "jsondiffpatch": "^0.4.1",
     "klaviyo-subscribe": "^1.0.0",
+    "magic-tricks": "^0.3.1",
     "markdown-it": "^10.0.0",
     "netlify-lambda": "^1.6.3",
     "node-fetch": "^2.6.1",
