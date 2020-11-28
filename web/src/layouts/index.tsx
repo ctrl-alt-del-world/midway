@@ -5,7 +5,6 @@ import tighpo from 'tighpo'
 import { Header } from 'src/components/header'
 import { Footer } from 'src/components/footer'
 import { SwitchTransition, Transition } from 'react-transition-group'
-import { Disclaimer } from 'src/components/disclaimer'
 import { CartDrawer } from 'src/components/cartDrawer'
 import { PasswordWrapper } from './password'
 
@@ -29,8 +28,7 @@ const TRANSITION_STYLES = {
 	},
 };
 
-import 'src/styles/vendor.css'
-import 'src/styles/main.css'
+import 'src/styles/main.scss'
 
 const Layout = ({ children, siteMetadata, location, pageContext }: { children: any }) => {
 
@@ -47,7 +45,6 @@ const Layout = ({ children, siteMetadata, location, pageContext }: { children: a
     return (
       <React.Fragment>
         <Helmet title='Accounts' />
-        <Disclaimer />
         <Header />
         <div>{children}</div>
         <Footer />
@@ -70,7 +67,13 @@ const Layout = ({ children, siteMetadata, location, pageContext }: { children: a
       </Helmet>
       <PasswordWrapper>
         <div>
-          <Disclaimer />
+          <a
+            name='maincontent'
+            className='pf top left z10 skip'
+            href='#maincontent'
+          >
+            Skip to main content
+          </a>
           <Header />
           <CartDrawer />
           {/* 
@@ -87,14 +90,16 @@ const Layout = ({ children, siteMetadata, location, pageContext }: { children: a
                 appear={true}
                 timeout={TRANSITION_DURATION}>
                   {status => (
-                    <div
+                    <main
+                      className='site'
+                      id='maincontent'
                       style={{
                         ...TRANSITION_STYLES.default,
                         ...TRANSITION_STYLES[status],
                       }}>
                       {children}
                       <Footer />
-                    </div>
+                    </main>
                   )}
               </Transition>
             </SwitchTransition>

@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&display=swap');
+
+body, html {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.03px;
+}
+
+
+p {
+  line-height: 1.5;
+  padding: 10px 0;
+  margin: 12px 0;
+  a {
+    text-decoration: underline;
+  }
+}
+
+h1, h2, h3, h4 {
+  font-weight: 700;
+}
+
+h3 {
+  @include breakpoint(800) {
+    margin: 1.4rem 0;
+  }
+}
+
+a, .a {
+  background-color: transparent;
+  /* color: var(--blu; */
+  text-decoration: none;
+}
+
+a, button {
+  position: relative;
+  line-height: 1;
+}
+
+select {
+  border-radius: 0;
+}
+
+ul {
+  li {
+    list-style-type: disc;
+    margin-left: 20px;
+    padding-bottom: 6px;
+  }
+}
+
+ol {
+  li {
+    list-style-type: decimal;
+    margin-left: 20px;
+    padding-bottom: 6px;
+  }
+}
+
+.s12 {
+  font-size: 12px;
+}
+
+input:focus {
+  border: 1px dashed currentColor;
+}
+
+.strikethrough {
+  text-decoration: line-through;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+.caps {
+  text-transform: uppercase;
+}
+
+.ls1 {
+  letter-spacing: 1px;
+}
+
+.skip {
+  left: 2rem;
+  top: 2px;
+  z-index: 99999;
+  background-color: white;
+  border: 2px solid black;
+  padding: 0.4rem;
+  border-top: 0;
+  transition: all 0.3s ease-in-out;
+  transform: translateY(-40px);
+  &:focus {
+    transform: translateY(0px);
+  }
+}

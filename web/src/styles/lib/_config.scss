@@ -1,0 +1,160 @@
+//
+// === Colors ===
+//
+
+$all-colors: (
+	white       : #FFFFFF,
+	off-white   : #FBFBFB,
+	black       : #000000,
+  gray-border : #BFBFBF,
+  blue        : #041893
+);
+
+//
+// === Directions ===
+//
+$sides: (
+	t : top,
+	b : bottom,
+	l : left,
+	r : right,
+	j : justify,
+);
+$alignments: (
+	l : left,
+	r : right,
+	c : center,
+);
+
+
+//
+// === Breakpoints ===
+//
+
+$breakpoints : (
+	400   : 400px,
+	600   : 600px,
+	md    : 800px,
+	800   : 800px,
+	1000  : 1000px,
+	1200  : 1200px,
+	1400  : 1400px,
+);
+
+@mixin breakpoint($size) {
+	$breakpoint-found: map-has-key($breakpoints, $size);
+	@if ($breakpoint-found == true) {
+		$breakpoint: map-get($breakpoints, $size);
+		@media (min-width: #{$breakpoint}) {
+			@content;
+		}
+	} @else {
+		@warn "Breakpoint size " + #{$size} + " doesn't exist.";
+	}
+}
+
+//
+// === Components ===
+//
+// Spacer
+$spacer-max: 10;
+$spacer-size: 10px;
+// Inline Grid
+$prime-grid-column-size: 12;
+$inline-grid-column-size: 12;
+$inline-grid-breakpoint: md;
+$inline-grid-gutter-mobile: 10px;
+$inline-grid-gutter-desktop: 10px;
+$inline-grid-gutter-extra: (
+	none : 0px,
+);
+// Grid Container
+$grid-padding-mobile: 10px;
+$grid-padding-desktop: 20px;
+$grid-max-width: 1920px;
+// CSS Grid
+$grid-column-sizes: (
+	xs:  12,
+	lg:  12,
+);
+$grid-gutter-sizes: (
+	xs:  10px,
+	lg:  10px,
+);
+$grid-column-max: max(map-values($grid-column-sizes)...);
+$grid-gutter-extra: (
+	none : 0px,
+);
+@function gutter($gutter-name) {
+	$gutter-found: map-has-key($inline-grid-gutter-extra, $gutter-name);
+	@if ($gutter-found == true) {
+		@return map-get($inline-grid-gutter-extra, $gutter-name);
+	} @else {
+		@warn "Gutter " + #{$gutter-name} + " doesn't exist.";
+	}
+}
+
+// //
+// // === Spacer ===
+// //
+
+// $spacer-max: 12;
+$spacer-size: 10px;
+
+//
+// === Typography ===
+//
+
+$font-size-mobile: 14px;
+$line-height-mobile: 22px;
+
+$font-size-desktop: 14px;
+$line-height-desktop: 22px;
+
+$font-family-montserrat: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, sans-serif;
+$font-family-domaine: 'Domaine Display', 'Bodoni', Bodoni, serif;
+
+$body-letter-spacing: 0;
+
+//
+// === Constants ===
+//
+
+$cubic-bezier: cubic-bezier(.12,.67,.53,1);
+
+$header-height: 80px;
+
+/*
+// === Config Getter Functions ===
+*/
+
+@function color($color-name) {
+	$color-found: map-has-key($all-colors, $color-name);
+	@if ($color-found == true) {
+		@return map-get($all-colors, $color-name);
+	} @else {
+		@warn "Color " + #{$color-name} + " doesn't exist.";
+	}
+}
+
+@mixin breakpoint($size) {
+	$breakpoint-found: map-has-key($breakpoints, $size);
+	@if ($breakpoint-found == true) {
+		$breakpoint: map-get($breakpoints, $size);
+		@media (min-width: #{$breakpoint}) {
+			@content;
+		}
+	} @else {
+		@warn "Breakpoint size " + #{$size} + " doesn't exist."
+	}
+}
+
+@function gutter($gutter-name) {
+	$gutter-found: map-has-key($grid-gutter-extra, $gutter-name);
+	@if ($gutter-found == true) {
+		@return map-get($grid-gutter-extra, $gutter-name);
+	} @else {
+		@warn "Gutter " + #{$gutter-name} + " doesn't exist.";
+	}
+}
+

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { encode, decode } from 'shopify-gid'
+import cx from 'classnames'
 
 import { Waitlist } from 'src/components/product/waitlist'
 import { client, useAddItemToCart } from 'src/context/siteContext'
@@ -101,22 +102,24 @@ export const ProductForm = ({ slug, defaultPrice, productId, showQuantity, waitl
               </div>
             )}
 
-            <div className='s24 product__form f jcs aist'>
+            <div className='product__form df jcs aist'>
               {showQuantity && (
-                <div className='product__form-qty bcw cb bb f jcb aic'>
-                  <div className='f jcc p1 aic product__form-qty-wrapper mxa'>
-                    <button type='button' className='block rel mr05 qty__control no-style s24 = cursor p05 aic' onClick={() => quantity === 1 ? null : setQuantity(quantity - 1)}>-</button>
-                    <input type='number' value={quantity} onChange={e => setQuantity(parseInt(e.currentTarget.value, 10))} name='quantity' min='1' className='cb card-qty bn ac' />
-                    <button type='button' className='qty__control no-style s1 block  s24 cursor rel p05 jcc aic' onClick={() => setQuantity(quantity + 1)}>+</button>
+                <div className='product__form-qty bl bb f jcb aic'>
+                  <div className='df jcc p1 aic product__form-qty-wrapper mxa'>
+                    <button type='button' className='block rel mr05 qty__control bg--transparent bn s24 = cursor p05 aic' onClick={() => quantity === 1 ? null : setQuantity(quantity - 1)}>-</button>
+                    <input type='number' value={quantity} onChange={e => setQuantity(parseInt(e.currentTarget.value, 10))} name='quantity' min='1' className='color--black card-qty bn tc' />
+                    <button type='button' className='qty__control bg--transparent bn s1 block  s24 cursor rel p05 jcc aic' onClick={() => setQuantity(quantity + 1)}>+</button>
                   </div>
                 </div>
               )}
-              <button type='submit' className='p1 x s1 bcblue cw button--h-black s20 button'>
-                <span>{adding ? 'Adding' : addText ? addText : 'Add to Cart'}</span>
+              <button type='submit' className={cx('p1 x ba color--black bg--black s20 button', {
+                'bnt': variants.length > 1
+              })}>
+                <span className='color--white'>{adding ? 'Adding' : addText ? addText : 'Add to Cart'}</span>
                 {compareAtPrice && (
-                  <span className='bold s20 ml1 strikethrough'>${parseFloat(compareAtPrice * quantity)}</span>
+                  <span className='bold s20 ml1 color--white strikethrough'>${parseFloat(compareAtPrice * quantity)}</span>
                 )}
-                <span className='bold s20 ml1'>
+                <span className='color--white ml1'>
                   ${parseFloat(price * quantity)}
                 </span>
               </button>

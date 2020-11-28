@@ -14,9 +14,9 @@ export interface ProductGridProps {
 export const ProductGrid = ({ data }: ProductGridProps) => {
   const { title, products } = data
   return (
-    <div className="container--xl outer mxa py2 al p1 p x">
-      <h3 className='m0 p0'>{title}</h3>
-      <div className='f fw mt1 jcb ais'>
+    <div className="container--xl outer mxa pt2 pb2 al p1 p x">
+      <h3 className='mt0 p0 mb2'>{title}</h3>
+      <div className='row'>
         {products && products.map((singleProduct) => (
           <ProductCard key={singleProduct._id} {...singleProduct} />
         ))}

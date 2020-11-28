@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { PageLink } from 'src/components/link'
+import { Disclaimer } from 'src/components/disclaimer'
 
 import { useCartCount, useToggleCart, useStore } from 'src/context/siteContext'
 
@@ -10,17 +11,18 @@ export const Header = () => {
   const toggleCart = useToggleCart()
 
   return (
-    <div className='container--xl mxa p1 outer'>
-      <div className='f x jcb aic'>
+    <div className='x pf z10 top left bg--off-white '>
+      <Disclaimer />
+      <div className='df x jcb aic bb pl3--800 pr3--800 outer p1'>
         <div>
-          <PageLink to='/' className='mr1'>Index</PageLink>
-          <PageLink to='/documentation' className='mr1'>Docs</PageLink>
+          <PageLink to='/' className='mr2'>Index</PageLink>
+          <PageLink to='/documentation' className='mr2'>Docs</PageLink>
           <PageLink to='/collection/all'>Shop All</PageLink>
         </div>
         <div>
-          <a href='/account' className='mr1'>{customerName ? `Hi, ${customerName}` : 'Account'}</a>
-          <button aria-label='cart' className='p0 no-style a mr1 s1' onClick={() => toggleCart()}>
-            Cart (<span className='s1'>{count}</span>)
+          <a href='/account' className=''>{customerName ? `Hi, ${customerName}` : 'Account'}</a>
+          <button aria-label='cart' className='p0 dib p1 ml2 s1' onClick={() => toggleCart()}>
+            Cart (<span className=''>{count}</span>)
           </button>
         </div>
       </div>

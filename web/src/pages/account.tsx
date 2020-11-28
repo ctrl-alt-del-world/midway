@@ -18,7 +18,7 @@ const Account = ({
   pageContext: {}
 }) => {
   return (
-    <div id='account__container' className='accounts__wrapper'>
+    <div id='account__container' className='container--1000 mxa outer p2 site'>
       <Router>
         <PublicRoute path='/account'>
           <AuthWrapper path='/' component={Portal} />

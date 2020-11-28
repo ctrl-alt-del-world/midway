@@ -29,19 +29,21 @@ export const ProductHero = ({ product, main: { title, productDescription, linked
   return (
     <div className='product__hero'>
       <div className='container--xl p1 outer mxa'>
-        <div className='f fw jcb aic'>
-          <div className='c50 x'>
+        <div className='row df aic'>
+          <div className='col c12 c6--800 x'>
             <Image className='x' imageId={mainImage.asset._id} alt={title} />
           </div>
-          <div className='c50 container--s mxa'>
-            <h1>{title}</h1>
-            {productDescription && (<BlockContent blocks={productDescription} serializers={Serializer} />)}
-            {linkedSite && linkedSiteName && (
-              <div className='callout bcblue cw p1 my1'>
-                Shop the real product on the <a href={linkedSite} className='cw underline' target='_blank'>{linkedSiteName}</a> Website.
-              </div>
-            )}
-            <ProductForm {...product} showQuantity={true} />
+          <div className='col c12 c6--800'>
+            <div className='p4--800'>
+              <h1 className='mb2'>{title}</h1>
+              {productDescription && (<BlockContent blocks={productDescription} serializers={Serializer} />)}
+              {linkedSite && linkedSiteName && (
+                <div className='callout bg--blue color--white p1 my1'>
+                  Shop the real product on the <a href={linkedSite} className='cw underline' target='_blank'>{linkedSiteName}</a> Website.
+                </div>
+              )}
+              <ProductForm {...product} showQuantity={true} />
+            </div>
           </div>
         </div>
       </div>

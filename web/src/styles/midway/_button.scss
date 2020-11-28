@@ -1,0 +1,8 @@
+.button {
+  &:hover {
+    background-color: white;
+    span {
+      color: black;
+    }
+  }
+}

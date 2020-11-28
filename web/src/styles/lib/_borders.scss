@@ -1,0 +1,37 @@
+$default-border-width: 1px;
+
+.ba {
+  border: $default-border-width solid currentColor;
+}
+
+.bl {
+  border-left: $default-border-width solid currentColor;
+}
+
+.bt {
+  border-top: $default-border-width solid currentColor;
+
+}
+.bb {
+  border-bottom: $default-border-width solid currentColor;
+}
+
+.br {
+  border-right: $default-border-width solid currentColor;
+}
+
+.bn {
+  border: none;
+}
+
+.bnt {
+  border-top: none;
+}
+
+.bnl {
+  border-left: none;
+}
+
+.bnr {
+  border-right: none;
+}

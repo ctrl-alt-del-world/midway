@@ -38,7 +38,7 @@ const Page = ({
         <div className='bcblue ac cw x p1'>This is a Preview</div>
       )}
       <SEO metaInfo={meta} pagePath={url} />
-      <div className='container--m mxa x al'>
+      <div className='container--1000 mt2 pt6--800 mxa x al'>
         {RenderModules(modules)}
       </div>
     </div>
