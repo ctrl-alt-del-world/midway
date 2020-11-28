@@ -37,8 +37,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-robots-txt`,
       options: {
-        host: 'https://www.midway.ctrlaltdel.world',
-        sitemap: 'https://www.midway.ctrlaltdel.world/sitemap.xml',
+        host: 'https://midway.ctrlaltdel.world',
+        sitemap: 'https://midway.ctrlaltdel.world/sitemap.xml',
         policy: [{ userAgent: '*', allow: '/', disallow: ['/checkout', '/account', '/docs', '/previews'] }]
       }
     },
