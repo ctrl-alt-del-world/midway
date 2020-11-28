@@ -15,7 +15,7 @@ import {
 
 const client = sanityClient({
   projectId: process.env.GATSBY_SANITY_PROJECT_ID,
-  dataset: process.env.GATSBY_SANITY_PROJECTSET,
+  dataset: process.env.GATSBY_SANITY_DATASET,
   useCdn: false, 
   withCredentials: true,
 })

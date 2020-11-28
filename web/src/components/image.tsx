@@ -6,7 +6,7 @@ import React, { useState, useEffect } from "react"
 
 const sanityConfig = {
   projectId: process.env.GATSBY_SANITY_PROJECT_ID,
-  dataset: process.env.GATSBY_SANITY_PROJECTSET
+  dataset: process.env.GATSBY_SANITY_DATASET
 }
 
 export const Image = ({ imageId, className, width, alt, src }: {

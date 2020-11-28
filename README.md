@@ -36,11 +36,16 @@ The studio is ready/useful, I'll more than likely further modify the structure, 
 ### Web/
 1. Rename `env.example` to `.env` by typing `mv env.example .env` in your terminal.
 2. Enter your Sanity API keys in the `.env` file.
+  * `SANITY_API_TOKEN`
+  * `SANITY_DATASET`
+  * `SANITY_PROJECT_ID`
 3. Enter your Shopify API keys and urls to the `.env` file.
    * `GATSBY_SHOPIFY_GRAPHQL_URL` - this url is to your Shopify store graphql data source. e.g - `[mystore].myshopify.com/api/graphql`  *NOTE:* there is no `http(s)` before the url structure
    * `GATSBY_SHOPIFY_TOKEN` - also known as the **Storefront Access Token**
    * `GATSBY_SHOPIFY_STORE` - this is the url to your Shopify store. e.g. - `https://[mystore].myshopify.com/` - *Note:* there is `https` before the URL
    * `SHOPIFY_SECRET` - this is your webhook secret. Once you create a webhook in Shopify you will see this token below your webhooks `https://[mystore].myshopify.com/admin/settings/notifications`
+   * `SHOPIFY_API_KEY` - We use the Admin API to sync products, so we need this to fetch additional data in the sync function
+   * `SHOPIFY_API_PASSWORD` - Again we need this for the Admin API in the product SYNC
 4. Modify `gatsby-config.js` and add your site title, etc.
 5. Develop your front end, etc. (purposely left this ultra stripped-down)
 6. Create a repo specifically for your Gatsby build, host with Netlify or anywhere you can have a Lambda function.
