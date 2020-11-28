@@ -11,7 +11,7 @@ import React from "react"
 import { StoreContextProvider } from "src/context/siteContext"
 import * as Sentry from '@sentry/browser'
 
-import { Initialize } from 'src/components/Analytics'
+import { Initialize } from 'src/components/analytics'
 
 const app = {}
 
