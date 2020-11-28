@@ -1,6 +1,6 @@
 > ⚠️ Sentry - I have Sentry set up in the build step, in the `netlify.toml` file. I recommend removing this if you don't want to use Sentry, working on abstracting it as optional
 
-# Midway v 0.86
+# Midway v 0.87
 
 > ⚠️ Disclaimer: The Gatsby theme is in active development as I work on documentation + extending the system, the studio is fairly ready for referenced use if you so desire. I will post a v1.0 once everything is in a better place hopefully very very soon :). I am working on creating a full shoppable/authed Shopify experience. The idea here is viewing products, adding them to a cart and getting to a real checkout, you will also be able to register, login, view orders, and also update your address (all traditional shopify experiences but in a headless environment).
 
@@ -102,7 +102,7 @@ Inside  of the Sanity structure builder for `pages` and `products` I have refere
 ✔️ 🍝 Seo Meta out of the Box (this works but i have a no-follow on robots.txt)  
 ✔️ 🍝 Sanity Live Preview Content  
 ✔️ 🍝 Docz website?  
-✖️ 🍝 Add Analytics patterns (via get analytics)  
+✔ 🍝 Add Analytics patterns   
 ✔️ 🍝 Add ability to do multi-variant selection  
 ✖️ 🍝 Add a single sync function via sane-sanity!!  
 ✖️ 🍝 Product carousel  
@@ -176,10 +176,11 @@ You can alternatively run your webhook locally, you can do this with ngrok
     * The `web/src/lambda/shopify` file will generate new Sanity documents with these default fields.
 
 ## Credits
-Thanks to [Lucas](https://github.com/lucasvocos/gatsby-sanity-shopify) for kicking this whole thing off.
-[Ian](https://github.com/dictions) with the smooth react-transition-group page transitions
-[Trevor](https://github.com/thetrevorharmon) for the siteContext component from his [Gatsby-Shopify-Starter](https://github.com/thetrevorharmon/sell-things-fast/blob/master/src/context/StoreContext.js)
-[David](https://github.com/blimpmason) for fixing the scrollTop on page transition
+ * Thanks to [Lucas](https://github.com/lucasvocos/gatsby-sanity-shopify) for kicking this whole thing off.  
+ * [Ian](https://github.com/dictions) with the smooth react-transition-group page transitions  
+ * [Ian] For his analytics pattern  
+ * [Trevor](https://github.com/thetrevorharmon) for the siteContext component from his [Gatsby-Shopify-Starter](https://github.com/thetrevorharmon/sell-things-fast/blob/master/src/context/StoreContext.js)  
+ * [David](https://github.com/blimpmason) for fixing the scrollTop on page transition  
 
 
 ## More learning

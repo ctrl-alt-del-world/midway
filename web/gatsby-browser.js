@@ -11,6 +11,25 @@ import React from "react"
 import { StoreContextProvider } from "src/context/siteContext"
 import * as Sentry from '@sentry/browser'
 
+import { Initialize } from 'src/components/Analytics'
+
+const app = {}
+
+app.analytics = Initialize({
+  // Setup analytics
+  googleAnalyticsPropertyId: process.env.GATSBY_GA_ID,
+  googleLinkerDomains: [
+    'midway-sanity.myshopify.com',
+    'midway.ctrlaltdel.world',
+  ],
+})
+
+export const onRouteUpdate = ({
+  location, previousLocation
+}) => {
+  app.analytics.pageview(location)
+}
+
 export const shouldUpdateScroll = ({
 	routerProps: { location },
 	getSavedScrollPosition

@@ -8,6 +8,8 @@ import { SwitchTransition, Transition } from 'react-transition-group'
 import { CartDrawer } from 'src/components/cartDrawer'
 import { PasswordWrapper } from './password'
 
+import Analytics from 'src/components/Analytics'
+
 
 const TRANSITION_DURATION = 400;
 const TRANSITION_STYLES = {
@@ -65,6 +67,8 @@ const Layout = ({ children, siteMetadata, location, pageContext }: { children: a
       <Helmet title='Midway'>
         <link href='https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap' rel='stylesheet' />
       </Helmet>
+      <Analytics
+        googleAnalyticsPropertyId={process.env.GATSBY_GA_ID} />
       <PasswordWrapper>
         <div>
           <a
