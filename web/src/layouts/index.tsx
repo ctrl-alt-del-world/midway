@@ -8,7 +8,7 @@ import { SwitchTransition, Transition } from 'react-transition-group'
 import { CartDrawer } from 'src/components/cartDrawer'
 import { PasswordWrapper } from './password'
 
-import Analytics from 'src/components/Analytics'
+import Analytics from 'src/components/analytics'
 
 
 const TRANSITION_DURATION = 400;
