@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const {
   SHOPIFY_TOKEN,
   SHOPIFY_GRAPHQL_URL
@@ -10,9 +12,9 @@ const headers = {
 }
 
 const shopifyConfig = {
-  'Content-Type': 'application/json',
-  'X-Shopify-Storefront-Access-Token': SHOPIFY_TOKEN
-}
+  Accept: "application/json",
+  "X-Shopify-Storefront-Access-Token": SHOPIFY_TOKEN,
+};
 
 const CUSTOMER_ADDRESS_QUERY = `
   firstName
