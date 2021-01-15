@@ -41,31 +41,42 @@ export const LineItem = ({ id, title, quantity, variant: { price, compareAtPrice
   )
 
   return (
-    <div className='f x aic rel cart__single'>
-      <div className='cart__single-image mr1'>
-        <img className='x' src={itemImage} alt={title} />
-      </div>
-      <div>
-        <span className='h4 ls1 caps m0 p0'>{title}</span>
-        <div className='f jcs aic product__form-qty-wrapper mt05 mxa'>
-          <button className='block rel qty__control no-style s24 f jcc aic founders cursor py05 aic' onClick={() => stateQuantity === 1 ? null : updateQuantity(stateQuantity - 1)}><Minus /></button>
-          <input type='number' value={stateQuantity} onChange={e => updateQuantity(parseInt(e.currentTarget.value, 10))} name='quantity' min='1' className='cb founders card-qty bn ac' />
-          <button className='qty__control no-style s1 block f jcc aic founders s24 cursor rel py05 jcc aic' onClick={() => updateQuantity(stateQuantity + 1)}><Plus /></button>
-          <div className='abs right cart__single-price s16 bottom p1'>
-            {compareAtPrice && (
-              <span className='strikethrough'>
-                ${parseFloat(compareAtPrice) * stateQuantity} ({stateQuantity})
-              </span>
-            )}
-            <span>
-              ${parseFloat(price) * stateQuantity} ({stateQuantity})
-            </span>
-          </div>
+    <>
+      <div className='x df pr mt1 line__item-single row gutter--none'>
+        <div className='line__item-image col c5'>
+          <img className='x db' src={itemImage} alt={title} />
         </div>
-        <button type='reset' className='p05 abs no-style close right top cb' onClick={() => removeFromCart(id)}>
-          <Close className='block' />
-        </button>
+        <div className='col c11 df jcb fdc'>
+          <div className='df jcb y fdc pl1'>
+            <span className='s15  m0 p0'>{title}</span>
+            <div className='row'>
+              <div className='col c6'>
+                <div className='df aic jcb line__item-qty'>
+                  <button aria-label='decrease quantity' className='block rel qty__control button--none bg--transparent f jcc aic pr cursor aic' onClick={() => stateQuantity === 1 ? null : updateQuantity(stateQuantity - 1)}><Minus /></button>
+                  <span name='quantity' min='1' className=' tc card-qty'>{stateQuantity}</span>
+                  <button aria-label='increase quantity' className='qty__control button--none bg--transparent s1 block f jcc aic pr cursor rel jcc aic' onClick={() => updateQuantity(stateQuantity + 1)}><Plus /></button>
+                </div>
+              </div>
+              <div className='col c2' />
+              <div className='col c8 tl '>
+                <div className='right line__item-price s15'>
+                  {compareAtPrice && (
+                    <span className='strikethrough'>
+                      ${parseFloat(compareAtPrice) * stateQuantity}
+                    </span>
+                  )}
+                  <span className='s15'>
+                    ${parseFloat(price) * stateQuantity}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button type='reset' className='p05 pa button--none bg--transparent close right top cb' onClick={() => removeFromCart(id)}>
+            <Close className='block' />
+          </button>
+        </div>
       </div>
-    </div>
+    </>
   )
 }
