@@ -48,7 +48,7 @@
     "magic-tricks": "^0.3.1",
     "markdown-it": "^10.0.0",
     "netlify-lambda": "^1.6.3",
-    "node-fetch": "^2.6.1",
+    "node-fetch": "^3.0.0-beta.9",
     "node-sass": "^4.13.1",
     "password-validator": "^5.0.3",
     "picostate": "^4.0.0",
