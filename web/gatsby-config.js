@@ -75,15 +75,6 @@ module.exports = {
       }
     },
     {
-      resolve: 'gatsby-source-sanity',
-      options: {
-        projectId: process.env.SANITY_PROJECT_ID,
-        dataset: process.env.SANITY_DATASET,
-        token: process.env.SANITY_API_TOKEN,
-        watchMode: true
-      }
-    },
-    {
       resolve: `gatsby-plugin-create-client-paths`,
       options: { prefixes: [`/account/*`, `/docs/*`, `/previews/*`] },
     },
@@ -100,20 +91,6 @@ module.exports = {
     },
     `gatsby-plugin-typescript`,
     `gatsby-plugin-tslint`,
-    {
-      resolve: `gatsby-plugin-postcss`,
-      options: {
-        postCssPlugins: [
-          require(`postcss-preset-env`)({ stage: 0 }),
-          require('postcss-import'),
-          require('postcss-nested'),
-          require('postcss-cssnext'),
-          require('postcss-calc'),
-          require('postcss-discard-comments'),
-          require('postcss-reporter')
-        ]
-      }
-    },
   
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline

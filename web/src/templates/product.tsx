@@ -31,18 +31,20 @@ const Product = ({
   const setPage = useSetPage()
   const { main } = pageContext
   const {
-    main: {
-      modules,
-      slug
-    },
+    modules,
+    slug,
     meta,
-    shopify
+    content: {
+      shopify
+    }
   } = pageContext
   useEffect(() => {
-    setPage(pageContext.main.slug.current)
+    setPage(pageContext.main.slug)
   }, [0])
 
-  const url = `products/${slug.current}`
+  console.log(pageContext)
+
+  const url = `products/${slug}`
   return (
     <div className='ac x'>
       {preview && (

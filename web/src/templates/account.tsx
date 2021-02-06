@@ -9,8 +9,8 @@ import { ForgotPassword } from 'src/components/auth/forgotPassword'
 import { Register } from 'src/components/auth/register'
 import { Login } from 'src/components/auth/login'
 import { Reset } from 'src/components/auth/reset'
-import { InvalidToken } from '../components/auth/invalid_token'
-import { Portal } from '../components/auth/portal'
+import { InvalidToken } from 'src/components/auth/invalid_token'
+import { Portal } from 'src/components/auth/portal'
 
 const Account = ({
   pageContext

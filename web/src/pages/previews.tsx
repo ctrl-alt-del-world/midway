@@ -6,19 +6,13 @@ import { useLoads } from 'react-loads'
 import Page from "src/templates/page"
 import Product from "src/templates/product"
 
-import sanityClient  from "@sanity/client"
+import sanityClient from 'src/api/sanity'
 
 import {
   pageQuery,
   productQuery
-} from "src/utils/queries"
+} from "src/api/queries"
 
-const client = sanityClient({
-  projectId: process.env.GATSBY_SANITY_PROJECT_ID,
-  dataset: process.env.GATSBY_SANITY_DATASET,
-  useCdn: false, 
-  withCredentials: true,
-})
 
 const PreviewPage = ({ document }: { document: string }) => {
   const [doc, setDoc] = useState(null as any)
@@ -41,17 +35,17 @@ const PreviewPage = ({ document }: { document: string }) => {
 
   const handlePreviewFetch = useCallback(
     () => 
-      client
+      sanityClient
         .fetch(queryDraft)
         .then((response: any) => {
           switch (response[0]._type) {
             case 'page':
-              client.fetch(queryPreviewPage).then(res => {
+              sanityClient.fetch(queryPreviewPage).then(res => {
                 setDoc(res[0])
               })
               break
             case 'product':
-              client.fetch(queryPreviewProduct).then(res => {
+              sanityClient.fetch(queryPreviewProduct).then(res => {
                 setDoc(res[0])
               })
               break
@@ -77,8 +71,8 @@ const PreviewPage = ({ document }: { document: string }) => {
   const renderPreview = () => {
     if (doc) {
       switch (doc._type) {
-        case 'page': return <Page pageContext={doc.content} preview={true} />
-        case 'product': return <Product pageContext={doc.content} preview={true} />
+        case 'page': return <Page pageContext={doc} preview={true} />
+        case 'product': return <Product pageContext={doc} preview={true} />
         default: break
       }
     }

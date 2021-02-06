@@ -5,18 +5,12 @@ import { useLoads } from 'react-loads'
 
 import Documentation from "src/templates/documentation"
 
-import sanityClient  from "@sanity/client"
+import { sanityClient } from 'src/api/sanity'
 
 import {
   pageQuery
-} from "src/utils/queries"
+} from "src/api/queries"
 
-const client = sanityClient({
-  projectId: process.env.GATSBY_SANITY_PROJECT_ID,
-  dataset: process.env.GATSBY_SANITY_DATASET,
-  useCdn: false, 
-  withCredentials: true,
-})
 
 const PreviewPage = ({ document }: { document: string }) => {
   const [doc, setDoc] = useState(null as any)
@@ -34,12 +28,12 @@ const PreviewPage = ({ document }: { document: string }) => {
 
   const handlePreviewFetch = useCallback(
     () => 
-      client
+      sanityClient
         .fetch(queryDraft)
         .then((response: any) => {
           switch (response[0]._type) {
             case 'doc':
-              client.fetch(queryPreviewDocs).then(res => {
+              sanityClient.fetch(queryPreviewDocs).then(res => {
                 setDoc(res[0])
               })
               break

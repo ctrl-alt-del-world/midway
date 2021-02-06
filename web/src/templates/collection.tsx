@@ -3,7 +3,7 @@ import React from 'react'
 import { RenderModules } from 'src/utils/renderModules'
 import { SEO } from 'src/components/SEO'
 
-export interface PageProps {
+export interface CollectionProps {
   pageContext: {
     modules: []
     slug: string
@@ -16,17 +16,17 @@ export interface PageProps {
   preview?: boolean
 }
 
-const Page = ({
+const Collection = ({
   path,
   pageContext,
   preview = false
-}: PageProps) => {
+}: CollectionProps) => {
   const {
     modules,
     slug,
     meta
   } = pageContext
-  console.log('page', pageContext)
+
   const url = slug === 'home' ? '' : path
   return (
     <div className='mt1 x ac'>
@@ -41,4 +41,4 @@ const Page = ({
   )
 }
 
-export default Page
+export default Collection
