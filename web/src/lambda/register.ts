@@ -40,7 +40,7 @@ export const handler = async (event: APIGatewayEvent): Promise<any> => {
       url: SHOPIFY_GRAPHQL_URL,
       method: 'POST',
       headers: shopifyConfig,
-      data: JSON.stringify(payload)
+      data: payload
     })
 
     const { customerCreate } = customer.data.data
@@ -62,7 +62,7 @@ export const handler = async (event: APIGatewayEvent): Promise<any> => {
         url: SHOPIFY_GRAPHQL_URL,
         method: 'POST',
         headers: shopifyConfig,
-        data: JSON.stringify(loginPayload)
+        data: loginPayload
       })
       const {
         customerAccessTokenCreate
