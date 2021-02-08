@@ -26,7 +26,7 @@ const Page = ({
     slug,
     meta
   } = pageContext
-  console.log('page', pageContext)
+
   const url = slug === 'home' ? '' : path
   return (
     <div className='mt1 x ac'>

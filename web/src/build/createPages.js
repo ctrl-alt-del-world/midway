@@ -47,8 +47,6 @@ module.exports.createAllPages = (
   // === Create pages ===
   //
 
-  console.log('collections', collections)
-
   try {
 
     // Collections 
