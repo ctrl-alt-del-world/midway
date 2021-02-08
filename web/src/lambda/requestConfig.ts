@@ -1,7 +1,7 @@
 require("dotenv").config();
 
 const {
-  SHOPIFY_TOKEN,
+  GATSBY_SHOPIFY_STOREFRONT_TOKEN,
   SHOPIFY_GRAPHQL_URL
 } = process.env
 
@@ -13,7 +13,7 @@ const headers = {
 
 const shopifyConfig = {
   Accept: "application/json",
-  "X-Shopify-Storefront-Access-Token": SHOPIFY_TOKEN,
+  "X-Shopify-Storefront-Access-Token": GATSBY_SHOPIFY_STOREFRONT_TOKEN,
 };
 
 const CUSTOMER_ADDRESS_QUERY = `

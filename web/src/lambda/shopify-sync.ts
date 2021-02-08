@@ -16,7 +16,7 @@ const {
   SHOPIFY_API_PASSWORD,
   SHOPIFY_API_KEY,
   SHOPIFY_URL,
-  SHOPIFY_SECRET
+  SHOPIFY_WEBHOOK_SECRET
 } = process.env;
 
 const client = sanityClient({
@@ -187,7 +187,7 @@ export const handler = async (event: APIGatewayEvent): Promise<any> => {
   try {
     data = JSON.parse(event.body);
     const generatedHash = crypto
-      .createHmac('sha256', SHOPIFY_SECRET)
+      .createHmac('sha256', SHOPIFY_WEBHOOK_SECRET)
       .update(event.body)
       .digest('base64')
     if (generatedHash !== hmac) {

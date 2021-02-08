@@ -36,7 +36,7 @@ export const ProductForm = ({ slug, defaultPrice, productId, showQuantity, waitl
   useEffect(() => {
     if (check) {
       const shopifyId = encode("Product", productId, {
-        accessToken: process.env.GATSBY_SHOPIFY_TOKEN,
+        accessToken: process.env.GATSBY_SHOPIFY_STOREFRONT_TOKEN,
       })
 
       client.product.fetch(shopifyId).then((product: any) => {

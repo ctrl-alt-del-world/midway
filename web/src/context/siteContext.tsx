@@ -18,7 +18,7 @@ const SHOPIFY_CHECKOUT_STORAGE_KEY = 'shopify_checkout_id'
 
 // @ts-ignore
 const client = ShopifyClient.buildClient({
-  storefrontAccessToken: process.env.GATSBY_SHOPIFY_TOKEN,
+  storefrontAccessToken: process.env.GATSBY_SHOPIFY_STOREFRONT_TOKEN,
   domain: process.env.GATSBY_SHOPIFY_STORE
 })
 
