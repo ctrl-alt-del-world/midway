@@ -17,7 +17,7 @@ export default {
     },
     {
       type: "social",
-      name: "socail",
+      name: "social",
       description: "Handles the default meta information for all content types",
       fieldset: "social"
     }
