@@ -31,7 +31,7 @@ export const ProductHero = ({ product, main: { title, productDescription, linked
       <div className='container--xl p1 outer mxa'>
         <div className='row df aic'>
           <div className='col c12 c6--800 x'>
-            <Image className='x' imageId={mainImage.asset._id} alt={title} />
+            <Image className='x' imageId={mainImage?.asset._id} alt={title} />
           </div>
           <div className='col c12 c6--800'>
             <div className='p4--800'>

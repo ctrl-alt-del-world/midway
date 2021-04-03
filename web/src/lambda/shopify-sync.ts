@@ -72,7 +72,7 @@ const updateEverything = async (data: {
     url: `https://${SHOPIFY_API_KEY}:${SHOPIFY_API_PASSWORD}@${SHOPIFY_URL}/admin/api/2020-10/graphql.json`,
     method: 'POST',
     headers: shopifyConfig,
-    data: JSON.stringify(metaPayLoad)
+    data: metaPayLoad
   })
 
   try {
@@ -213,7 +213,7 @@ export const handler = async (event: APIGatewayEvent): Promise<any> => {
         url: `https://${SHOPIFY_API_KEY}:${SHOPIFY_API_PASSWORD}@${SHOPIFY_URL}/admin/api/2020-10/graphql.json`,
         method: 'POST',
         headers: shopifyConfig,
-        data: JSON.stringify(payload)
+        data: payload
       })
 
       const {

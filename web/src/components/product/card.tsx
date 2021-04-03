@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 
 import { PageLink } from 'src/components/link'
 import { Image } from 'src/components/image'
-import { ProductInt } from 'src/interfaces/product'
+import { ProductInt } from 'src/components/interfaces/product'
 import { ProductForm } from './form'
 
 import { client, useAddItemToCart } from 'src/context/siteContext'

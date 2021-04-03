@@ -92,7 +92,7 @@ export default createSchema({
     shopifyVariantModule,
     variantModule,
     defaultVariant,
-    // Grapqhl Tab sthings
+    // GrapqhQL Tab Things
     globalContent,
     pageContent,
     productContent,
