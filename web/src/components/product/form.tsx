@@ -3,7 +3,11 @@ import { encode, decode } from 'shopify-gid'
 import cx from 'classnames'
 
 import { Waitlist } from 'src/components/product/waitlist'
-import { client, useAddItemToCart } from 'src/context/siteContext'
+// import { client, useAddItemToCart } from 'src/context/siteContext'
+
+import {Shopify} from 'src/api/shopify'
+
+import useStore from 'src/stores/useStore'
 
 export const ProductForm = ({ slug, defaultPrice, productId, showQuantity, waitlist = true, addText }: {
   defaultPrice: string
@@ -15,7 +19,9 @@ export const ProductForm = ({ slug, defaultPrice, productId, showQuantity, waitl
   showQuantity?: boolean | true
   addText?: string
 }) => {
-  const addItemToCart = useAddItemToCart()
+  // const addItemToCart = useAddItemToCart()
+
+	const addItemsToCart = useStore(store => store.addItemsToCart)
 
   const [quantity, setQuantity] = useState(1 as number)
   const [adding, setAdding] = useState(false as boolean)
@@ -39,7 +45,7 @@ export const ProductForm = ({ slug, defaultPrice, productId, showQuantity, waitl
         accessToken: process.env.GATSBY_SHOPIFY_STOREFRONT_TOKEN,
       })
 
-      client.product.fetch(shopifyId).then((product: any) => {
+      Shopify.product.fetch(shopifyId).then((product: any) => {
         const decodedVariants = [] as any
         product.variants.forEach((variant: any) => {
           decodedVariants.push({
@@ -63,10 +69,15 @@ export const ProductForm = ({ slug, defaultPrice, productId, showQuantity, waitl
     e.preventDefault()
     e.stopPropagation()
     setAdding(true)
-    const attributes = []
+    const customAttributes = []
     if (availableForPurchase) {
-      addItemToCart(activeVariantId, quantity, attributes).then(() => {
-        setAdding(false)
+      addItemsToCart([
+        {
+          variantId: activeVariantId,
+          quantity,
+          customAttributes
+        }]).then(() => {
+          setAdding(false)
       })
     }
   }

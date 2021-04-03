@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import shallow from 'zustand/shallow'
 
 import {
   Close,
@@ -6,11 +7,10 @@ import {
   Plus
 } from 'src/components/svgs'
 
-import {
-  useUpdateItemsFromCart,
-  useRemoveItemFromCart,
-  client
-} from 'src/context/siteContext'
+
+import {Shopify} from 'src/api/shopify'
+import useStore from 'src/stores/useStore'
+
 
 export const LineItem = ({ id, title, quantity, variant: { price, compareAtPrice, image }, customAttributes }: {
   id: string
@@ -25,17 +25,20 @@ export const LineItem = ({ id, title, quantity, variant: { price, compareAtPrice
     value: string
   }]
 }) => {
-  const updateItemsFromCart = useUpdateItemsFromCart()
+
+  const {updateItemsInCart} = useStore(store => ({
+    updateItemsInCart: store.updateItemsInCart,
+  }), shallow)
 
   const [stateQuantity, setQuantity] = useState(quantity)
-  const removeFromCart = useRemoveItemFromCart()
+
 
   const updateQuantity = (qty: number) => {
-    updateItemsFromCart({id, quantity: qty})
+    updateItemsInCart([{id, quantity: qty}])
     setQuantity(qty)
   }
 
-  const itemImage = client.image.helpers.imageForSize(
+  const itemImage = Shopify.image.helpers.imageForSize(
     image,
     { maxWidth: 300, maxHeight: 300 }
   )
@@ -72,7 +75,7 @@ export const LineItem = ({ id, title, quantity, variant: { price, compareAtPrice
               </div>
             </div>
           </div>
-          <button type='reset' className='p05 pa button--none bg--transparent close right top cb' onClick={() => removeFromCart(id)}>
+          <button type='reset' className='p05 pa button--none bg--transparent close right top cb' onClick={() => updateItemsInCart([{id: id, quantity: 0}])}>
             <Close className='block' />
           </button>
         </div>
