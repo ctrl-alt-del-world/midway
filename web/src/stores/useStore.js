@@ -133,8 +133,6 @@ export const addItemsToCart = (set, get) => async (lineItems) => {
       lineItems
     )
 
-		console.log('add items', cart)
-
 		set({
 			cart,
 			cartCount: handleCount(cart.lineItems),
