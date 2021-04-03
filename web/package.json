@@ -3,6 +3,7 @@
   "private": true,
   "description": "Boilerplate for Gatsby + Sanity + Shopify",
   "version": "0.1.0",
+  "NPM_VERSION": "12.13.0",
   "author": "You <kevin@ctrlaltdel.wprld>",
   "dependencies": {
     "@asbjorn/eslint-plugin-groq": "^1.0.0",
