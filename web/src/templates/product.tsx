@@ -6,7 +6,6 @@ import { RenderModules } from 'src/utils/renderModules'
 import { ProductHero } from 'src/components/product/hero'
 import { ProductSchema } from 'src/components/product/schema'
 
-import { useSetPage } from 'src/context/siteContext'
 import { SEO } from 'src/components/SEO'
 
 export interface ProductProps {
@@ -30,7 +29,6 @@ const Product = ({
   pageContext,
   preview = false
 }: ProductProps) => {
-  const setPage = useSetPage()
   const { main } = pageContext
   const {
     modules,
@@ -40,9 +38,6 @@ const Product = ({
     meta,
     shopify
   } = pageContext
-  useEffect(() => {
-    setPage(slug)
-  }, [0])
 
   const url = `products/${slug}`
   return (

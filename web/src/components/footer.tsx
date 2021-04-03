@@ -4,7 +4,7 @@ import { Github } from 'src/components/svgs'
 import { Newsletter } from 'src/components/newsletter'
 import { Icon } from 'src/components/icon'
 
-export const Footer = ({ social }: { social?: Array<{ icon: string, url: string }>}) => {
+export const Footer = ({ social }: { social?: [{ icon: string, url: string }]}) => {
   return (
     <div className='bg--off-white pt4 pb4 mt5'>
       <div className='container--xl footer mxa x p1 mt3 mt6--800 outer'>

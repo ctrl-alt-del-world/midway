@@ -1,14 +1,22 @@
 import React from 'react'
+import shallow from 'zustand/shallow'
 
 import { PageLink } from 'src/components/link'
 import { Disclaimer } from 'src/components/disclaimer'
 
-import { useCartCount, useToggleCart, useStore } from 'src/context/siteContext'
+// import { useCartCount, useToggleCart, useStore } from 'src/context/siteContext'
+
+import useStore from '../stores/useStore'
 
 export const Header = () => {
-  const {customerName} = useStore()
-  const count = useCartCount()
-  const toggleCart = useToggleCart()
+  // const {customerName} = useStore()
+  // const count = useCartCount()
+  // const toggleCart = useToggleCart()
+  const {toggleCart, cartCount, customerName} = useStore(store => ({
+    toggleCart: store.toggleCart,
+		cartCount: store.cartCount,
+    customerName: store.customerName
+  }), shallow)
 
   return (
     <div className='x pf z10 top left bg--off-white '>
@@ -21,8 +29,8 @@ export const Header = () => {
         </div>
         <div>
           <a href='/account' className=''>{customerName ? `Hi, ${customerName}` : 'Account'}</a>
-          <button aria-label='cart' className='p0 dib p1 ml2 s1' onClick={() => toggleCart()}>
-            Cart (<span className=''>{count}</span>)
+          <button aria-label='cart' className='p0 dib p1 ml2 s1' onClick={toggleCart}>
+            Cart (<span className=''>{cartCount}</span>)
           </button>
         </div>
       </div>

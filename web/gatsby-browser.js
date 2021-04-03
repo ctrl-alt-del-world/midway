@@ -8,10 +8,15 @@
 
   
 import React from "react"
-import { StoreContextProvider } from "src/context/siteContext"
+// import { StoreContextProvider } from "src/context/siteContext"
 import * as Sentry from '@sentry/browser'
 
 import { Initialize } from 'src/components/analytics'
+import store from 'src/stores/useStore';
+
+const {initializeCartSession} = store.getState()
+
+initializeCartSession()
 
 const app = {}
 
@@ -47,5 +52,5 @@ export const shouldUpdateScroll = ({
 Sentry.init({dsn: process.env.GATSBY_SENTRY_DSN});
 
 export const wrapRootElement = ({ element }) => (
-  <StoreContextProvider>{element}</StoreContextProvider>
+  <React.Fragment>{element}</React.Fragment>
 )

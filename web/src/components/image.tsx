@@ -1,7 +1,7 @@
 import cx from "classnames"
-import Img from "gatsby-image"
+import { GatsbyImage } from "gatsby-plugin-image"
 // @ts-ignore
-import { getFluidGatsbyImage } from "gatsby-source-sanity"
+import { getGatsbyImageData } from "gatsby-source-sanity"
 import React, { useState, useEffect } from "react"
 
 const sanityConfig = {
@@ -21,13 +21,13 @@ export const Image = ({ imageId, className, width, alt, src }: {
   let fluidProps
 
   if (imageId && !/gif/.test(imageId)) {
-    fluidProps = getFluidGatsbyImage(imageId, { maxWidth: width || 2400 }, sanityConfig)
+    fluidProps = getGatsbyImageData(imageId, { maxWidth: width || 2400 }, sanityConfig)
   }
 
   return (
     <div className={cx("image__block ma", className)}>
       {fluidProps ? (
-        <Img fluid={fluidProps} alt={alt} defaultFadeIn={700} />
+        <GatsbyImage image={fluidProps} alt={alt} />
       ) : (
           <img
             alt={alt}
