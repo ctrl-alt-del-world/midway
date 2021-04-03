@@ -16,9 +16,9 @@ export const Cart = () => {
   }), shallow)
   return (
     <div>
-      {cart.lineItems.length > 0 ? (
+      {cart && cart.lineItems.length > 0 ? (
         <div className='bcw p1'>
-          {cart.lineItems.map((item: { id: string, quantity: number }) => (
+          {cart && cart.lineItems.map((item: { id: string, quantity: number }) => (
             <React.Fragment key={item.id + item.quantity}>
               <LineItem {...item} />
             </React.Fragment>
