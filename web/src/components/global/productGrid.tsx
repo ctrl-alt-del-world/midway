@@ -11,7 +11,7 @@ export interface ProductGridProps {
   }
 }
 
-export const ProductGrid = ({ data }: ProductGridProps) => {
+const ProductGrid = ({ data }: ProductGridProps) => {
   const { title, products } = data
   return (
     <div className="container--xl outer mxa pt2 pb2 al p1 p x">
@@ -25,3 +25,5 @@ export const ProductGrid = ({ data }: ProductGridProps) => {
     </div>
   )
 }
+
+export default ProductGrid

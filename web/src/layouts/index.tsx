@@ -32,7 +32,9 @@ const TRANSITION_STYLES = {
 
 import 'src/styles/main.scss'
 
-const Layout = ({ children, siteMetadata, location, pageContext }: { children: any }) => {
+const Layout = ({ children, location, pageContext }: { children: any, location: { pathname: string }, pageContext: { site?: {}, layout: string }}) => {
+
+  const { site } = pageContext
 
   // Render documentation for CMS minus header/footer experience
   if (pageContext.layout === 'docs') {
@@ -49,7 +51,7 @@ const Layout = ({ children, siteMetadata, location, pageContext }: { children: a
         <Helmet title='Accounts' />
         <Header />
         <div>{children}</div>
-        <Footer />
+        <Footer {...site} />
       </React.Fragment>
     )
   }
@@ -102,7 +104,7 @@ const Layout = ({ children, siteMetadata, location, pageContext }: { children: a
                         ...TRANSITION_STYLES[status],
                       }}>
                       {children}
-                      <Footer />
+                      <Footer {...site} />
                     </main>
                   )}
               </Transition>
@@ -110,7 +112,7 @@ const Layout = ({ children, siteMetadata, location, pageContext }: { children: a
           ) : (
             <div>
               {children}
-              <Footer />
+              <Footer {...site} />
             </div>
           )}
         </div>

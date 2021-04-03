@@ -10,12 +10,14 @@ module.exports.getAllPageData = () => {
   const productsQuery = sanity.fetch(queries.products)
   const pagesQuery = sanity.fetch(queries.pages);
   const collectionQuery = sanity.fetch(queries.collections);
+  const globalQuery = sanity.fetch(queries.global);
 
   // Wait for all data needs
   return Promise.all([
     productsQuery,
     pagesQuery,
-    collectionQuery
+    collectionQuery,
+    globalQuery
   ]);
 };
 
@@ -33,6 +35,7 @@ module.exports.createAllPages = (
     products,
     pages,
     collections,
+    global,
   ] = promiseResults;
 
   //
@@ -41,6 +44,7 @@ module.exports.createAllPages = (
   const sharedContext = {
     // menus,    Addd this pattern
     // siteGlobal
+    site: global
   };
 
   //

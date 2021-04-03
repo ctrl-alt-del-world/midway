@@ -58,7 +58,6 @@ const PreviewPage = ({ document }: { document: string }) => {
 
   const renderPreview = () => {
     if (doc) {
-      {console.log('nothing?', doc)}
       switch (doc._type) {
         case 'doc': return <Documentation pageContext={doc.content} preview={true} />
         default: break

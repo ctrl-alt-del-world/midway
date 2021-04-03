@@ -10,7 +10,7 @@ export interface StandardTextProps {
   }
 }
 
-export const StandardText = ({ data }: StandardTextProps) => {
+const StandardText = ({ data }: StandardTextProps) => {
   const { text } = data
   return (
     <div className="container--xl outer mxa py2 p1 al p x">
@@ -18,3 +18,5 @@ export const StandardText = ({ data }: StandardTextProps) => {
     </div>
   )
 }
+
+export default StandardText

@@ -11,13 +11,13 @@ export default {
   fields: [
     {
       type: "metaCard",
-      name: "metaInformation",
+      name: "meta",
       description: "Handles the default meta information for all content types",
       fieldset: "defaultMeta"
     },
     {
       type: "social",
-      name: "socail",
+      name: "social",
       description: "Handles the default meta information for all content types",
       fieldset: "social"
     }

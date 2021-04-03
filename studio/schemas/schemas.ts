@@ -27,6 +27,7 @@ import externalLink from './modules/externalLink'
 import internalLink from './modules/internalLink'
 import metaCard from './modules/metaCard'
 import social from './modules/social'
+import socialLink from './modules/socialLink'
 import nestedPages from './modules/nestedPages'
 import pageItem from './modules/pageItem'
 import pageModule from './modules/pageModule'
@@ -78,6 +79,7 @@ export default createSchema({
     nestedPages,
     pageItem,
     social,
+    socialLink,
     standardText,
     imageModule,
     moduleContent,

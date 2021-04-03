@@ -3,43 +3,49 @@ import Helmet from "react-helmet"
 
 const siteRoute = "https://midway-starter.netlify.com"
 
+interface MetaInformation {
+  metaTitle?: string
+  metaDescription?: string
+  openImage?: string
+  twitterImage?: string
+  twitterTitle?: string
+  openTitle?: string
+  openGraphDescription?: string
+  twitterDescription?: string
+}
+
 export const SEO = ({
+  defaultMeta,
+  defaultTitle,
   pagePath,
   metaInfo,
 }: {
   pagePath: string
-  metaInfo: {
-    metaTitle?: string
-    metaDescription?: string
-    openImage?: string
-    twitterImage?: string
-    twitterTitle?: string
-    openTitle?: string
-    openGraphDescription?: string
-    twitterDescription?: string
-  }
+  metaInfo: MetaInformation,
+  defaultMeta: MetaInformation,
+  defaultTitle: string
 }) => {
   const title = metaInfo
     ? metaInfo.metaTitle
       ? metaInfo.metaTitle
-      : "Midway"
-    : "Midway"
-  const metaDescription = metaInfo
+      : defaultTitle
+    : defaultTitle ? defaultTitle : defaultMeta && defaultMeta.metaTitle
+    const metaDescription = metaInfo
     ? metaInfo.metaDescription
       ? metaInfo.metaDescription
-      : "Midway is an Open source Headless  Shopify + Sanity starter."
-    : "Midway is an Open source Headless  Shopify + Sanity starter."
-  const metaKeywords = "midway, sanity, shopify, graphql, starter"
+      : defaultMeta.metaDescription
+    : defaultMeta.metaDescription
+  const metaKeywords = defaultMeta.metaKeywords
   const ogImage = metaInfo
     ? metaInfo.openImage
-      ? metaInfo.openImage.asset.url
-      : ""
-    : ""
+      ? metaInfo.openImage
+      : defaultMeta.openImage
+    : defaultMeta.openImage
   const twitterImage = metaInfo
     ? metaInfo.twitterImage
-      ? metaInfo.twitterImage.asset.url
-      : ""
-    : ""
+      ? metaInfo.twitterImage
+      : defaultMeta.twitterImage
+    : defaultMeta.twitterImage
   const openTitle = metaInfo
     ? metaInfo.openTitle
       ? metaInfo.openTitle

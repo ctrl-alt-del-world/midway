@@ -11,15 +11,17 @@ import { SEO } from 'src/components/SEO'
 
 export interface ProductProps {
   pageContext: {
-    main: {
-      modules: [],
-      slug: {
-        current: string
-      },
-      title: string
+    modules: any[],
+    slug: {
+      current: string
     },
+    main: {}
+    title: string
     meta: {}
     shopify: {}
+    site: {
+      defaultMeta: {}
+    }
   }
   preview?: boolean
 }
@@ -33,16 +35,14 @@ const Product = ({
   const {
     modules,
     slug,
+    site,
+    title,
     meta,
-    content: {
-      shopify
-    }
+    shopify
   } = pageContext
   useEffect(() => {
-    setPage(pageContext.main.slug)
+    setPage(slug)
   }, [0])
-
-  console.log(pageContext)
 
   const url = `products/${slug}`
   return (
@@ -57,7 +57,7 @@ const Product = ({
             </script>
           `
         }} />
-      <SEO metaInfo={meta} pagePath={url} />
+      <SEO defaultMeta={site.defaultMeta} defaultTitle={`${title} - Midway`} metaInfo={meta} pagePath={url} />
       <div className={cx('mxa x al site__main', pageContext.main.slug.current)}>
         <ProductHero main={pageContext.main} product={shopify} />
         {RenderModules(modules)}

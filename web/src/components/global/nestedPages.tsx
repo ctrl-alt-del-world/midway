@@ -21,7 +21,7 @@ export interface NestedPagesProps {
   }
 }
 
-export const NestedPages = ({ data }: NestedPagesProps) => {
+const NestedPages = ({ data }: NestedPagesProps) => {
   const { page } = data
   return (
     <div className="container--xl outer mxa py2 p1 al p x">
@@ -39,3 +39,5 @@ export const NestedPages = ({ data }: NestedPagesProps) => {
     </div>
   )
 }
+
+export default NestedPages

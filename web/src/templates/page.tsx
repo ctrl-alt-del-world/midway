@@ -7,10 +7,9 @@ export interface PageProps {
   pageContext: {
     modules: []
     slug: string
-    main: {
-      title: string
-    },
+    title: string
     meta: {}
+    site: {}
   }
   path?: string
   preview?: boolean
@@ -23,7 +22,9 @@ const Page = ({
 }: PageProps) => {
   const {
     modules,
+    title,
     slug,
+    site,
     meta
   } = pageContext
 
@@ -33,7 +34,7 @@ const Page = ({
       {preview && (
         <div className='bcblue ac cw x p1'>This is a Preview</div>
       )}
-      <SEO metaInfo={meta} pagePath={url} />
+      <SEO defaultMeta={site.defaultMeta} defaultTitle={slug === 'home' ? 'Midway' : title} metaInfo={meta} pagePath={url} />
       <div className='container--1000 mt2 pt6--800 mxa x al'>
         {RenderModules(modules)}
       </div>

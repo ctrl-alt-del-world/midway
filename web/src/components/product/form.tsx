@@ -20,7 +20,7 @@ export const ProductForm = ({ slug, defaultPrice, productId, showQuantity, waitl
   const [quantity, setQuantity] = useState(1 as number)
   const [adding, setAdding] = useState(false as boolean)
   const [price, setPrice] = useState(defaultPrice)
-  const [available, setAvailable] = useState(false)
+  const [availableForPurchase, setAvailable] = useState(false)
   const [variants, setVariants] = useState([])
   const [activeVariantId, setActiveVariantId] = useState('' as string)
   const [compareAtPrice, setCompareAtPrice] = useState(undefined as string | undefined)
@@ -64,7 +64,7 @@ export const ProductForm = ({ slug, defaultPrice, productId, showQuantity, waitl
     e.stopPropagation()
     setAdding(true)
     const attributes = []
-    if (available) {
+    if (availableForPurchase) {
       addItemToCart(activeVariantId, quantity, attributes).then(() => {
         setAdding(false)
       })
@@ -89,8 +89,8 @@ export const ProductForm = ({ slug, defaultPrice, productId, showQuantity, waitl
 
   return (
     <div className='container--m'>
-      <form onSubmit={(e) => handleSubmit(e)} ref={form}>
-        {available && !check ? (
+      {availableForPurchase && !check ? (
+        <form onSubmit={(e) => handleSubmit(e)} ref={form}>
           <div className='x'>
             {variants.length > 1 && (
               <div className='x'>
@@ -125,30 +125,30 @@ export const ProductForm = ({ slug, defaultPrice, productId, showQuantity, waitl
               </button>
             </div>
           </div>
-        ): (
-          <div>
-            {available ? (
-              <span>Checking Stock</span>
-            ): 
-              waitlist ? (
-                <div className='mt1 pt1'>
-                  <h5>Get notifed when stock is replenished</h5>
-                  <Waitlist
-                    accountId='KKfBYU'
-                    message="Got it! We'll update you when it's back"
-                    buttonText='Notify Me'
-                    variantId={activeVariantId} />
-                </div>
-              ) : (
-                // Left empty for now
-                <div className='ac x bold'>
-                  <span className='small' />
-                </div>
-              )
-            }
-          </div>
-        )}
-      </form>
+        </form>
+      ): (
+        <div>
+          {availableForPurchase ? (
+            <span>Checking Stock</span>
+          ): 
+            waitlist ? (
+              <div className='mt1 pt1'>
+                <h5>Get notifed when stock is replenished</h5>
+                <Waitlist
+                  accountId='KKfBYU'
+                  message="Got it! We'll update you when it's back"
+                  buttonText='Notify Me'
+                  variantId={activeVariantId} />
+              </div>
+            ) : (
+              // Left empty for now
+              <div className='ac x bold'>
+                <span className='small' />
+              </div>
+            )
+          }
+        </div>
+      )}
     </div>
   )
 }

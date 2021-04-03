@@ -1,19 +1,22 @@
 import React from 'react'
+import loadable from '@loadable/component'
 
-import { StandardText, StandardTextProps } from 'src/components/global/standardText'
-import { ProductGrid, ProductGridProps } from 'src/components/global/productGrid'
-import { NestedPages, NestedPagesProps } from 'src/components/global/nestedPages'
+const StandardText = loadable(() => import('src/components/global/standardText'))
+const ProductGrid = loadable(() => import('src/components/global/productGrid'))
+const NestedPages = loadable(() => import('src/components/global/nestedPages'))
 
+export const Modules = ({ reactModule }: { reactModule: any}) => getModule(reactModule)
 
-export const Modules = ({ reactModule, type }: { type: string, reactModule: any }) => {
-  switch(type) {
-    case 'standardText':
-      return <StandardText data={reactModule as StandardTextProps["data"]} />
-      case 'productGrid':
-        return <ProductGrid data={reactModule as ProductGridProps["data"]} />
-      case 'nestedPages':
-        return <NestedPages data={reactModule as NestedPagesProps["data"]} />
-    default:
-      return (<span>{type}</span>)
+const getModule = (module: any) => {
+  const type = module._type
+  const modules = {
+    'standardText':  StandardText,
+    'productGrid':  ProductGrid,
+    'nestedPages': NestedPages,
+    'default': () => <span className='h1'>{type}</span>
   }
+  /* tslint:disable:no-string-literal */
+  const Module = modules[type] || modules["default"];
+  /* tslint:enable:no-string-literal */
+  return <Module data={module} />;
 }

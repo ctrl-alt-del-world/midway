@@ -24,6 +24,11 @@ export const Serializer = {
     }) => (
       <span className='tick'>{props.children}</span>
     ),
+    italic: (props: {
+      children: any
+    }) => (
+      <span className='italic'>{props.children}</span>
+    ),
     code: (props: {
       children: any
     }) => (

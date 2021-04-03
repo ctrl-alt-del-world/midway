@@ -43,6 +43,12 @@ module.exports = {
       }
     },
     {
+      resolve: 'gatsby-plugin-loadable-components-ssr',
+      options: {
+        useHydrate: true
+      }
+    },
+    {
 			resolve: 'gatsby-plugin-netlify',
 			options: {
 				mergeSecurityHeaders: false,

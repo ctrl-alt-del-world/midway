@@ -11,7 +11,6 @@ export const RenderModules = (modules: []) => {
         <React.Fragment 
         key={module._key}>
           <Modules
-            type={module._type}
             reactModule={module} />
         </React.Fragment>
       )

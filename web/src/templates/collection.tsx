@@ -11,6 +11,8 @@ export interface CollectionProps {
       title: string
     },
     meta: {}
+    site: {}
+    title: string
   }
   path?: string
   preview?: boolean
@@ -24,6 +26,8 @@ const Collection = ({
   const {
     modules,
     slug,
+    title,
+    site,
     meta
   } = pageContext
 
@@ -33,7 +37,7 @@ const Collection = ({
       {preview && (
         <div className='bcblue ac cw x p1'>This is a Preview</div>
       )}
-      <SEO metaInfo={meta} pagePath={url} />
+      <SEO defaultMeta={site.defaultMeta} defaultTitle={`${title} Collection - Midway`} metaInfo={meta} pagePath={url} />
       <div className='container--1000 mt2 pt6--800 mxa x al'>
         {RenderModules(modules)}
       </div>

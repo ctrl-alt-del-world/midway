@@ -14,6 +14,18 @@ const asset = groq`{
   'url': image.asset->url,
 }`
 
+const SEOQuery = groq`
+  _type,
+  metaKeywords,
+  metaDescription,
+  metaTitle,
+  openGraphDescription,
+  'openImage': openImage.asset->url,
+  openTitle,
+  twitterTitle,
+  twitterDescription,
+  'twitterImage': twitterImage.asset->url
+`
 
 const moduleQuery = groq`
   _type == 'nestedPages' => {
@@ -33,7 +45,11 @@ const moduleQuery = groq`
 
 const pageQuery = groq`
   ${slugQuery},
+  'title': content.main.title,
   ...,
+  'meta': content.meta {
+    ${SEOQuery}
+  },
   'modules': content.main.modules[] {
     ...,
     ${moduleQuery}
@@ -42,11 +58,16 @@ const pageQuery = groq`
 
 const productQuery = groq`
   ${slugQuery},
+  'title': content.main.title,
   ...,
+  'meta': content.meta {
+    ${SEOQuery}
+  },
   'modules': content.main.modules[] {
     ...,
     ${moduleQuery}
   },
+  'shopify': content.shopify,
   'main': content.main {
     ...,
     mainImage {
@@ -56,6 +77,14 @@ const productQuery = groq`
     }
   }
 `
+module.exports.global = groq`*[_type == "siteGlobal"][0] {
+  ...,
+  'defaultMeta': content.meta {
+    ${SEOQuery}
+  },
+  'social': content.social.socialLinks
+}`
+
 module.exports.collections = groq`*[_type == "collection"] {
   ${pageQuery}
 }`
