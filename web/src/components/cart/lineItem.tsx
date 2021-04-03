@@ -21,9 +21,9 @@ export const LineItem = ({ id, title, quantity, variant: { price, compareAtPrice
     image: string
     compareAtPrice: string
   }
-  customAttributes: Array<{
+  customAttributes: [{
     value: string
-  }>
+  }]
 }) => {
   const updateItemsFromCart = useUpdateItemsFromCart()
 

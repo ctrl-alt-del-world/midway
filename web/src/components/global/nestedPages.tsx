@@ -4,7 +4,7 @@ import { PageLink } from 'src/components/link'
 export interface NestedPagesProps {
   data: {
     title: string
-    page: Array<{
+    page: [{
       _key: string
       description?: string
       title: string
@@ -17,7 +17,7 @@ export interface NestedPagesProps {
           }
         }
       }
-    }>
+    }]
   }
 }
 
