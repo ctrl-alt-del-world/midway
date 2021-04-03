@@ -83,6 +83,7 @@ export const fetchCheckout = (set, get) => async () => {
 			cookie.set(SHOPIFY_CHECKOUT_KEY, cart.id.toString(), {expires: 25})
 			set({
 				cart,
+				cartId,
 				cartCount: handleCount(cart.lineItems),
 				isFetchingCart: false
 			})
@@ -99,9 +100,9 @@ export const createCheckout = (set, get) => async () => {
 	const referralUser = queryString.parse(location.search)
 	try {
 		let cart = await Shopify.checkout.create()
-		
 		set({
 			cart,
+			cartId: cart.id,
 			cartCount: handleCount(cart.lineItems),
 			isFetchingCart: false
 		})

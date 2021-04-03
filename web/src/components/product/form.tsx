@@ -94,10 +94,6 @@ export const ProductForm = ({ slug, defaultPrice, productId, showQuantity, waitl
     })
   }
 
-  const handleGiftChange = e => {
-    setGift({ ...gift, [e.target.name]: e.target.value });
-  }
-
   return (
     <div className='container--m'>
       {availableForPurchase && !check ? (
